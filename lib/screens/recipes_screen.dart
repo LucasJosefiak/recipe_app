@@ -13,22 +13,6 @@ class RecipesScreen extends StatelessWidget {
         title: Text('Recipes'),
       ),
       body: RecipeList(),
-      // body: Column(
-      //   children: [
-      //     // RecipeList(),
-      //     TextButton(
-      //       onPressed: () {
-      //         FirebaseFirestore.instance
-      //             .collection('recipes')
-      //             .snapshots()
-      //             .listen((event) {
-      //           print(event.docs);
-      //         });
-      //       },
-      //       child: Text('Hello'),
-      //     ),
-      //   ],
-      // ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {

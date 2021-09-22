@@ -13,12 +13,11 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class App extends StatefulWidget {
-  // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  _AppState createState() => _AppState();
 }
 
-class _MyAppState extends State<App> {
+class _AppState extends State<App> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
@@ -33,33 +32,32 @@ class _MyAppState extends State<App> {
           if (snapshot.connectionState == ConnectionState.done) {
             return MultiProvider(
               providers: [
-                Provider<RecipesProvider>(
+                ChangeNotifierProvider<RecipesProvider>(
                   create: (ctx) => RecipesProvider(),
                 ),
-                Provider<ShoppingListProvider>(
+                ChangeNotifierProvider<ShoppingListProvider>(
                   create: (ctx) => ShoppingListProvider(),
                 ),
               ],
               child: MaterialApp(
-                  title: 'Shopping my recipes',
-                  theme: ThemeData(
-                    primarySwatch: Colors.blue,
-                    accentColor: Colors.amber,
-                  ),
-                  initialRoute: '/',
-                  routes: {
-                    '/': (context) => NavigationBar(),
-                    RecipesScreen.routeName: (ctx) => RecipesScreen(),
-                    RecipeDetailsScreen.routeName: (ctx) =>
-                        RecipeDetailsScreen(),
-                    ShoppingListScreen.routeName: (ctx) => ShoppingListScreen(),
-                    AddRecipeScreen.routeName: (ctx) => AddRecipeScreen(),
-                    EditRecipeScreen.routeName: (ctx) => EditRecipeScreen(),
-                    EditIngredientScreen.routeName: (ctx) =>
-                        EditIngredientScreen(),
-                    AddIngredientScreen.routeName: (ctx) =>
-                        AddIngredientScreen(),
-                  }),
+                title: 'Shopping my recipes',
+                theme: ThemeData(
+                  primarySwatch: Colors.blue,
+                  accentColor: Colors.amber,
+                ),
+                initialRoute: '/',
+                routes: {
+                  '/': (context) => NavigationBar(),
+                  RecipesScreen.routeName: (ctx) => RecipesScreen(),
+                  RecipeDetailsScreen.routeName: (ctx) => RecipeDetailsScreen(),
+                  ShoppingListScreen.routeName: (ctx) => ShoppingListScreen(),
+                  AddRecipeScreen.routeName: (ctx) => AddRecipeScreen(),
+                  EditRecipeScreen.routeName: (ctx) => EditRecipeScreen(),
+                  EditIngredientScreen.routeName: (ctx) =>
+                      EditIngredientScreen(),
+                  AddIngredientScreen.routeName: (ctx) => AddIngredientScreen(),
+                },
+              ),
             );
           }
           return Directionality(

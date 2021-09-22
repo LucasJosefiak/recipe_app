@@ -15,6 +15,7 @@ class _RecipeListState extends State<RecipeList> {
 
   @override
   void didChangeDependencies() {
+    // TODO remove isLoading and put it into Provider
     if (_isInit) {
       setState(() {
         _isLoading = true;
