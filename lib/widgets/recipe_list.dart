@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/screens/recipe_details_screen.dart';
 import 'package:groceries_app/widgets/recipe_list_tile.dart';
 import 'package:provider/provider.dart';
 

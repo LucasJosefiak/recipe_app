@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/models/unit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RecipesProvider with ChangeNotifier {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:provider/provider.dart';
 
 class EditIngredient extends StatelessWidget {
   @override
@@ -13,8 +11,6 @@ class EditIngredient extends StatelessWidget {
         TextEditingController(text: 'Original Name of the Ingredient'
             // text: _originalRecipe.ingredients[index].name,
             );
-    final _ingredientAmountController = TextEditingController();
-    final _ingredientUnitController = TextEditingController();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
