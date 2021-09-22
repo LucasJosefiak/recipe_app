@@ -1,12 +1,18 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
 
 class AddIngredient extends StatefulWidget {
+  final Recipe recipe;
+
+  const AddIngredient({Key key, @required this.recipe}) : super(key: key);
+
   @override
   _AddIngredientState createState() => _AddIngredientState();
 }
@@ -14,9 +20,10 @@ class AddIngredient extends StatefulWidget {
 class _AddIngredientState extends State<AddIngredient> {
   final _form = GlobalKey<FormState>();
 
+  Recipe loadedRecipe;
   String name;
   Unit unit;
-  int amount;
+  String amount;
 
   var _isLoading = false;
 
@@ -33,11 +40,11 @@ class _AddIngredientState extends State<AddIngredient> {
     });
     try {
       await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
-        null,
+        loadedRecipe.id,
         Ingredient(
-          name: null,
-          amount: null,
-          unit: null,
+          name: name,
+          amount: amount,
+          unit: unit,
           createdAt: DateTime.now(),
         ),
       );
@@ -56,6 +63,7 @@ class _AddIngredientState extends State<AddIngredient> {
 
   @override
   Widget build(BuildContext context) {
+    final loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -83,13 +91,8 @@ class _AddIngredientState extends State<AddIngredient> {
                         name = value;
                       },
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Theme.of(context).accentColor),
-                      ),
-                      child: Text('Save'),
-                      onPressed: _saveForm,
+                    SizedBox(
+                      height: 20,
                     ),
                     DropdownSearch<Unit>(
                       hint: 'Select a status',
@@ -99,23 +102,38 @@ class _AddIngredientState extends State<AddIngredient> {
                         unit = value;
                       },
                     ),
-                    //  TextFormField(
-                    //   decoration: InputDecoration(
-                    //     labelText: 'Amount',
-                    //   ),
-                    //   textInputAction: TextInputAction.next,
-                    //   keyboardType: TextInputType.number,
-                    //   numberValidator: (value) {
-                    //     if (value != null && value.isEmpty && value.) {
-                    //       return 'Please provide a value.';
-                    //     }
-                    //     return null;
-                    //     // null means no error (coorect Form)
-                    //   },
-                    //   onSaved: (value) {
-                    //     amount = value;
-                    //   },
-                    // ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Amount',
+                      ),
+                      textInputAction: TextInputAction.next,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value != null && value.isEmpty) {
+                          return 'Please provide a value.';
+                        }
+                        return null;
+                        // null means no error (coorect Form)
+                      },
+                      onSaved: (value) {
+                        amount = value;
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Theme.of(context).accentColor),
+                      ),
+                      child: Text('Add to ${loadedRecipe.title}'),
+                      onPressed: _saveForm,
+                    ),
                   ],
                 ),
               ),

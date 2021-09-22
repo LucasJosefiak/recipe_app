@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/widgets/add_ingredient.dart';
 
 class AddIngredientScreen extends StatelessWidget {
@@ -6,11 +7,14 @@ class AddIngredientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Ingredient'),
       ),
-      body: AddIngredient(),
+      body: AddIngredient(
+        recipe: loadedRecipe,
+      ),
     );
   }
 }

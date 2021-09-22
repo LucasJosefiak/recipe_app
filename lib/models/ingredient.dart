@@ -3,7 +3,7 @@ import 'package:groceries_app/models/unit.dart';
 
 class Ingredient {
   final String id;
-  final int amount;
+  final String amount;
   final Unit unit;
   final String name;
   final DateTime createdAt;
