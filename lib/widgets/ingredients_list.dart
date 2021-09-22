@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/providers/shopping_list_provider.dart';
-import 'package:provider/provider.dart';
 
 class IngredientsList extends StatefulWidget {
   @override
