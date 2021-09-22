@@ -15,11 +15,19 @@ class EditRecipe extends StatefulWidget {
 
 class _EditRecipeState extends State<EditRecipe> {
   final _form = GlobalKey<FormState>();
-
-  Recipe loadedRecipe;
+  TextEditingController nameController;
   String title;
 
   var _isLoading = false;
+
+  @override
+  void initState() {
+    title = widget.recipe.title;
+    nameController = TextEditingController(
+      text: title,
+    );
+    super.initState();
+  }
 
   Future<void> _saveForm() async {
     final isValid = _form.currentState.validate();
@@ -33,8 +41,9 @@ class _EditRecipeState extends State<EditRecipe> {
       _isLoading = true;
     });
     try {
-      await Provider.of<RecipesProvider>(context, listen: false)
-          .updateRecipe(loadedRecipe, loadedRecipe.id);
+      await Provider.of<RecipesProvider>(context, listen: false).updateRecipe(
+        widget.recipe.copyWith(title: title),
+      );
     } catch (error) {
       await showDialog<Null>(
         context: context,
@@ -50,8 +59,6 @@ class _EditRecipeState extends State<EditRecipe> {
 
   @override
   Widget build(BuildContext context) {
-    loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
-
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -68,7 +75,7 @@ class _EditRecipeState extends State<EditRecipe> {
                         labelText: 'Recipe',
                       ),
                       controller:
-                          TextEditingController(text: '${loadedRecipe.title}'),
+                          TextEditingController(text: '${widget.recipe.title}'),
                       textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value != null && value.isEmpty) {
