@@ -63,9 +63,11 @@ class RecipesProvider with ChangeNotifier {
     }
   }
 
-  Future<void> updateRecipe(Recipe recipe, String recipeId) async {
+  Future<void> updateRecipe(
+    Recipe recipe,
+  ) async {
     try {
-      firebaseInstance.doc(recipeId).update({
+      firebaseInstance.doc(recipe.id).update({
         'title': recipe.title,
         // 'ingredients': recipe.ingredients,
       });
