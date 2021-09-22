@@ -11,7 +11,15 @@ class RecipeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
+    // TODO its a bit confusing that a recipe is passed here since the recipe
+    // might change if the user decides to change the name of the recipe
+    // passing the ID and obtaining the recipe via the provider is better
+    // since if the recipe is changed the update can be displayed on this screen.
+    Recipe loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
+    loadedRecipe = context
+        .watch<RecipesProvider>()
+        .recipes
+        .firstWhere((Recipe recipe) => recipe.id == loadedRecipe.id);
     return Scaffold(
       appBar: AppBar(
         title: Text(
