@@ -9,31 +9,11 @@ class RecipeList extends StatefulWidget {
 }
 
 class _RecipeListState extends State<RecipeList> {
-  var _isInit = true;
-  var _isLoading = false;
-
-  @override
-  void didChangeDependencies() {
-    // TODO remove isLoading and put it into Provider
-    if (_isInit) {
-      setState(() {
-        _isLoading = true;
-      });
-      Provider.of<RecipesProvider>(context).loadRecipes().then((value) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
-    }
-    _isInit = false;
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     final recipesData = Provider.of<RecipesProvider>(context, listen: true);
     final recipeList = recipesData.recipes;
-    return _isLoading
+    return recipesData.isLoading
         ? Center(
             child: CircularProgressIndicator(),
           )

@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class RecipesProvider with ChangeNotifier {
   List<Recipe> _recipes = [];
   Recipe deletedRecipe;
+  bool isLoading;
 
   List<Recipe> get recipes {
     return [..._recipes];
@@ -18,10 +19,13 @@ class RecipesProvider with ChangeNotifier {
   var firebaseInstance = FirebaseFirestore.instance.collection('recipes');
 
   Future<void> loadRecipes() async {
+    isLoading = true;
+    notifyListeners();
     firebaseInstance.orderBy('createdAt').snapshots().forEach((element) {
       _recipes = element.docs
           .map((docSnap) => Recipe.fromJson(docSnap.data(), docSnap.id))
           .toList();
+      isLoading = false;
       notifyListeners();
     });
   }

@@ -33,7 +33,7 @@ class _AppState extends State<App> {
             return MultiProvider(
               providers: [
                 ChangeNotifierProvider<RecipesProvider>(
-                  create: (ctx) => RecipesProvider(),
+                  create: (ctx) => RecipesProvider()..loadRecipes(),
                 ),
                 ChangeNotifierProvider<ShoppingListProvider>(
                   create: (ctx) => ShoppingListProvider(),
