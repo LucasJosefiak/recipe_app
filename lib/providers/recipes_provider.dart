@@ -40,10 +40,10 @@ class RecipesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addIngredient(String recipeId, Ingredient ingredient) async {
+  Future<void> addIngredient(Recipe recipe, Ingredient ingredient) async {
     try {
       firebaseInstance
-          .doc(recipeId)
+          .doc(recipe.id)
           .collection('ingredients')
           .add(ingredient.toMap());
     } catch (error) {

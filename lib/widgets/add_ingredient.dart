@@ -40,7 +40,7 @@ class _AddIngredientState extends State<AddIngredient> {
     });
     try {
       await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
-        loadedRecipe.id,
+        loadedRecipe,
         Ingredient(
           name: name,
           amount: amount,
@@ -95,7 +95,7 @@ class _AddIngredientState extends State<AddIngredient> {
                       height: 20,
                     ),
                     DropdownSearch<Unit>(
-                      hint: 'Select a status',
+                      hint: 'Select an unit',
                       items: Unit.values,
                       selectedItem: unit,
                       onChanged: (value) {
