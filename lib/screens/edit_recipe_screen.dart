@@ -7,7 +7,7 @@ class EditRecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
+    final loadedRecipe = ModalRoute.of(context)!.settings.arguments as Recipe;
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Recipe'),

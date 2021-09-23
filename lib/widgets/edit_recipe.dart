@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class EditRecipe extends StatefulWidget {
   final Recipe recipe;
 
-  const EditRecipe({Key key, @required this.recipe}) : super(key: key);
+  const EditRecipe({Key? key, required this.recipe}) : super(key: key);
 
   @override
   _EditRecipeState createState() => _EditRecipeState();
@@ -15,8 +15,8 @@ class EditRecipe extends StatefulWidget {
 
 class _EditRecipeState extends State<EditRecipe> {
   final _form = GlobalKey<FormState>();
-  TextEditingController nameController;
-  String title;
+  late TextEditingController nameController;
+  String? title;
 
   var _isLoading = false;
 
@@ -30,19 +30,19 @@ class _EditRecipeState extends State<EditRecipe> {
   }
 
   Future<void> _saveForm() async {
-    final isValid = _form.currentState.validate();
+    final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
       //if the Form is not valid, the form will not be safed. Code will then
       //stop after return and thus before the form could be saved
     }
-    _form.currentState.save();
+    _form.currentState!.save();
     setState(() {
       _isLoading = true;
     });
     try {
       await Provider.of<RecipesProvider>(context, listen: false).updateRecipe(
-        widget.recipe.copyWith(title: title),
+        widget.recipe.copyWith(title: title!),
       );
     } catch (error) {
       await showDialog<Null>(

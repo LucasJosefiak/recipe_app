@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/widgets/recipe_list_tile.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,8 @@ class _RecipeListState extends State<RecipeList> {
   Widget build(BuildContext context) {
     final recipesData = Provider.of<RecipesProvider>(context, listen: true);
     final recipeList = recipesData.recipes;
-    return recipesData.isLoading
+    return recipesData.loadingState == LoadingState.loading ||
+            recipesData.loadingState == LoadingState.uninitialized
         ? Center(
             child: CircularProgressIndicator(),
           )

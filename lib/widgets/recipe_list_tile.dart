@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class RecipeListTile extends StatelessWidget {
   final Recipe recipe;
 
-  const RecipeListTile({Key key, @required this.recipe}) : super(key: key);
+  const RecipeListTile({Key? key, required this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class RecipeListTile extends StatelessWidget {
         onPressed: () {
           var recipesProvider = context.read<RecipesProvider>();
 
-          recipesProvider.deleteRecipe(recipe.id);
+          recipesProvider.deleteRecipe(recipe.id!);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Recipe was deleted!'),

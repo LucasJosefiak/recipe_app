@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RecipesProvider with ChangeNotifier {
   List<Recipe> _recipes = [];
-  Recipe deletedRecipe;
-  bool isLoading;
+  Recipe? deletedRecipe;
+  LoadingState loadingState = LoadingState.uninitialized;
 
   List<Recipe> get recipes {
     return [..._recipes];
@@ -19,20 +20,23 @@ class RecipesProvider with ChangeNotifier {
   var firebaseInstance = FirebaseFirestore.instance.collection('recipes');
 
   Future<void> loadRecipes() async {
-    isLoading = true;
+    loadingState = LoadingState.loading;
     notifyListeners();
     firebaseInstance.orderBy('createdAt').snapshots().forEach((element) {
-      _recipes = element.docs
-          .map((docSnap) => Recipe.fromJson(docSnap.data(), docSnap.id))
-          .toList();
-      isLoading = false;
+      _recipes = element.docs.map((docSnap) {
+        var jsonData = docSnap.data();
+        jsonData['id'] = docSnap.id;
+        return Recipe.fromJson(jsonData);
+      }).toList();
+
+      loadingState = LoadingState.loaded;
       notifyListeners();
     });
   }
 
   Future<void> addRecipe(Recipe recipe) async {
     try {
-      firebaseInstance.add(recipe.toMap());
+      firebaseInstance.add(recipe.toJson());
     } catch (error) {
       print(error);
       throw error;
@@ -41,15 +45,13 @@ class RecipesProvider with ChangeNotifier {
   }
 
   Future<void> addIngredient(Recipe recipe, Ingredient ingredient) async {
-    try {
-      firebaseInstance
-          .doc(recipe.id)
-          .collection('ingredients')
-          .add(ingredient.toMap());
-    } catch (error) {
-      print(error);
-      throw error;
-    }
+    var ingredients = List<Ingredient>.from(
+      recipe.ingredients,
+      growable: true,
+    );
+    ingredients.add(ingredient);
+    recipe = recipe.copyWith(ingredients: ingredients);
+    updateRecipe(recipe);
     notifyListeners();
   }
 
@@ -59,8 +61,9 @@ class RecipesProvider with ChangeNotifier {
   }
 
   Future<void> undoDelete() async {
-    if (deletedRecipe != null) {
-      await firebaseInstance.doc(deletedRecipe.id).set(deletedRecipe.toMap());
+    var recipe = deletedRecipe;
+    if (recipe != null) {
+      await firebaseInstance.doc(recipe.id).set(recipe.toJson());
       deletedRecipe = null;
       notifyListeners();
     }
@@ -70,10 +73,7 @@ class RecipesProvider with ChangeNotifier {
     Recipe recipe,
   ) async {
     try {
-      firebaseInstance.doc(recipe.id).update({
-        'title': recipe.title,
-        // 'ingredients': recipe.ingredients,
-      });
+      firebaseInstance.doc(recipe.id).update(recipe.toJson());
     } catch (error) {
       print(error);
       throw error;

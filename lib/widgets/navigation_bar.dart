@@ -8,21 +8,11 @@ class NavigationBar extends StatefulWidget {
 }
 
 class _NavigationBarState extends State<NavigationBar> {
-  List<Map<String, Object>> _pages;
+  List<Widget> _pages = [
+    RecipesScreen(),
+    ShoppingListScreen(),
+  ];
   int _selectedPageIndex = 0;
-
-  @override
-  void initState() {
-    _pages = [
-      {
-        'page': RecipesScreen(),
-      },
-      {
-        'page': ShoppingListScreen(),
-      },
-    ];
-    super.initState();
-  }
 
   void _selectPage(int index) {
     setState(() {
@@ -38,7 +28,7 @@ class _NavigationBarState extends State<NavigationBar> {
       // The first scaffold is in this widget.
       // The second scaffold is within _pages.
       // A ButtomNavigationBar must not be used to host screens!
-      body: _pages[_selectedPageIndex]['page'],
+      body: _pages[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
         backgroundColor: Theme.of(context).primaryColor,

@@ -1,53 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:groceries_app/models/ingredient.dart';
 
-class Recipe {
-  final String id;
-  final String title;
-  final DateTime createdAt;
-  final List<Ingredient> ingredients;
+part 'recipe.freezed.dart';
+part 'recipe.g.dart';
 
-  Recipe({
-    this.id,
-    @required this.createdAt,
-    @required this.title,
-    this.ingredients,
-  });
+@freezed
+class Recipe with _$Recipe {
+  factory Recipe({
+    String? id,
+    required String title,
+    required DateTime createdAt,
+    @Default(const <Ingredient>[]) List<Ingredient> ingredients,
+  }) = _Recipe;
 
-  Recipe copyWith({
-    final String id,
-    final String title,
-    final List<Ingredient> ingredients,
-  }) {
-    return Recipe(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      createdAt: createdAt ?? this.createdAt,
-      ingredients: ingredients ?? this.ingredients,
-    );
-  }
-
-  static Recipe fromJson(
-    Map<String, dynamic> data,
-    String id,
-  ) {
-    return Recipe(
-      id: id,
-      title: data['title'],
-      createdAt: DateTime.fromMillisecondsSinceEpoch(
-        data['createdAt'],
-      ),
-      ingredients: data['ingredients'],
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': this.id,
-      'title': this.title,
-      'createdAt': this.createdAt.millisecondsSinceEpoch,
-      'ingredients': this.ingredients,
-      // 'igredients': this.ingredients,
-    };
-  }
+  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
 }

@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class AddIngredient extends StatefulWidget {
   final Recipe recipe;
 
-  const AddIngredient({Key key, @required this.recipe}) : super(key: key);
+  const AddIngredient({Key? key, required this.recipe}) : super(key: key);
 
   @override
   _AddIngredientState createState() => _AddIngredientState();
@@ -20,31 +20,30 @@ class AddIngredient extends StatefulWidget {
 class _AddIngredientState extends State<AddIngredient> {
   final _form = GlobalKey<FormState>();
 
-  Recipe loadedRecipe;
-  String name;
-  Unit unit;
-  String amount;
+  String? name;
+  Unit? unit;
+  int? amount;
 
   var _isLoading = false;
 
   Future<void> _saveForm() async {
-    final isValid = _form.currentState.validate();
+    final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
       //if the Form is not valid, the form will not be safed. Code will then
       //stop after return and thus before the form could be saved
     }
-    _form.currentState.save();
+    _form.currentState!.save();
     setState(() {
       _isLoading = true;
     });
     try {
       await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
-        loadedRecipe,
+        widget.recipe,
         Ingredient(
-          name: name,
-          amount: amount,
-          unit: unit,
+          name: name!,
+          amount: amount!,
+          unit: unit!,
           createdAt: DateTime.now(),
         ),
       );
@@ -63,7 +62,6 @@ class _AddIngredientState extends State<AddIngredient> {
 
   @override
   Widget build(BuildContext context) {
-    final loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -113,14 +111,19 @@ class _AddIngredientState extends State<AddIngredient> {
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       keyboardType: TextInputType.number,
                       validator: (value) {
-                        if (value != null && value.isEmpty) {
+                        if (value != null &&
+                            value.isEmpty &&
+                            int.tryParse(value) != null) {
                           return 'Please provide a value.';
                         }
                         return null;
                         // null means no error (coorect Form)
                       },
                       onSaved: (value) {
-                        amount = value;
+                        if (value != null) {
+                          var intValue = int.parse(value);
+                          amount = intValue;
+                        }
                       },
                     ),
                     SizedBox(
@@ -131,7 +134,7 @@ class _AddIngredientState extends State<AddIngredient> {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             Theme.of(context).accentColor),
                       ),
-                      child: Text('Add to ${loadedRecipe.title}'),
+                      child: Text('Add to ${widget.recipe.title}'),
                       onPressed: _saveForm,
                     ),
                   ],
