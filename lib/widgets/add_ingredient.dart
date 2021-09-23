@@ -20,10 +20,9 @@ class AddIngredient extends StatefulWidget {
 class _AddIngredientState extends State<AddIngredient> {
   final _form = GlobalKey<FormState>();
 
-  Recipe loadedRecipe;
   String name;
   Unit unit;
-  String amount;
+  int amount;
 
   var _isLoading = false;
 
@@ -40,7 +39,7 @@ class _AddIngredientState extends State<AddIngredient> {
     });
     try {
       await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
-        loadedRecipe,
+        widget.recipe,
         Ingredient(
           name: name,
           amount: amount,
@@ -63,7 +62,6 @@ class _AddIngredientState extends State<AddIngredient> {
 
   @override
   Widget build(BuildContext context) {
-    final loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -113,14 +111,17 @@ class _AddIngredientState extends State<AddIngredient> {
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       keyboardType: TextInputType.number,
                       validator: (value) {
-                        if (value != null && value.isEmpty) {
+                        if (value != null &&
+                            value.isEmpty &&
+                            int.tryParse(value) != null) {
                           return 'Please provide a value.';
                         }
                         return null;
                         // null means no error (coorect Form)
                       },
                       onSaved: (value) {
-                        amount = value;
+                        var intValue = int.parse(value);
+                        amount = intValue;
                       },
                     ),
                     SizedBox(
@@ -131,7 +132,7 @@ class _AddIngredientState extends State<AddIngredient> {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             Theme.of(context).accentColor),
                       ),
-                      child: Text('Add to ${loadedRecipe.title}'),
+                      child: Text('Add to ${widget.recipe.title}'),
                       onPressed: _saveForm,
                     ),
                   ],

@@ -41,15 +41,10 @@ class RecipesProvider with ChangeNotifier {
   }
 
   Future<void> addIngredient(Recipe recipe, Ingredient ingredient) async {
-    try {
-      firebaseInstance
-          .doc(recipe.id)
-          .collection('ingredients')
-          .add(ingredient.toMap());
-    } catch (error) {
-      print(error);
-      throw error;
-    }
+    var ingredients = recipe.ingredients;
+    ingredients.add(ingredient);
+    recipe = recipe.copyWith(ingredients: ingredients);
+    updateRecipe(recipe);
     notifyListeners();
   }
 

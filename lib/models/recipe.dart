@@ -11,7 +11,7 @@ class Recipe {
     this.id,
     @required this.createdAt,
     @required this.title,
-    this.ingredients,
+    this.ingredients = const <Ingredient>[],
   });
 
   Recipe copyWith({
