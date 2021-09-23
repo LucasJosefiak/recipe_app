@@ -96,6 +96,7 @@ class _AddIngredientState extends State<AddIngredient> {
                       hint: 'Select an unit',
                       items: Unit.values,
                       selectedItem: unit,
+                      itemAsString: (Unit unit) => unit.toDisplayString(),
                       onChanged: (value) {
                         unit = value;
                       },
