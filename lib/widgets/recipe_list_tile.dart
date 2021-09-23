@@ -28,8 +28,9 @@ class RecipeListTile extends StatelessWidget {
           Icons.delete,
         ),
         onPressed: () {
-          Provider.of<RecipesProvider>(context, listen: false)
-              .deleteRecipe(recipe.id);
+          var recipesProvider = context.read<RecipesProvider>();
+
+          recipesProvider.deleteRecipe(recipe.id);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Recipe was deleted!'),
@@ -37,8 +38,7 @@ class RecipeListTile extends StatelessWidget {
               action: SnackBarAction(
                 label: 'UNDO',
                 onPressed: () {
-                  Provider.of<RecipesProvider>(context, listen: false)
-                      .undoDelete();
+                  recipesProvider.undoDelete();
                 },
               ),
             ),
