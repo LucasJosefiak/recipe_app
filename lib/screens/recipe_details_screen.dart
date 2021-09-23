@@ -47,7 +47,7 @@ class RecipeDetailsScreen extends StatelessWidget {
           );
         },
       ),
-      body: IngredientsList(),
+      body: IngredientsList(recipe: loadedRecipe),
     );
   }
 }

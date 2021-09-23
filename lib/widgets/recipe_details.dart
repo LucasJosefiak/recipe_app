@@ -44,7 +44,9 @@ class RecipeDetailsScreen extends StatelessWidget {
       //     },
       //     child: Icon(Icons.shopping_cart),
       //     backgroundColor: Theme.of(context).accentColor),
-      body: IngredientsList(),
+      body: IngredientsList(
+        recipe: loadedRecipe,
+      ),
     );
   }
 }

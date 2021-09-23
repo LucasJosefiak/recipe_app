@@ -23,11 +23,12 @@ class RecipesProvider with ChangeNotifier {
     loadingState = LoadingState.loading;
     notifyListeners();
     firebaseInstance.orderBy('createdAt').snapshots().forEach((element) {
-      _recipes = element.docs
-          .map((docSnap) => Recipe.fromJson(
-                docSnap.data(),
-              ))
-          .toList();
+      _recipes = element.docs.map((docSnap) {
+        var jsonData = docSnap.data();
+        jsonData['id'] = docSnap.id;
+        return Recipe.fromJson(jsonData);
+      }).toList();
+
       loadingState = LoadingState.loaded;
       notifyListeners();
     });
@@ -72,10 +73,7 @@ class RecipesProvider with ChangeNotifier {
     Recipe recipe,
   ) async {
     try {
-      firebaseInstance.doc(recipe.id).update({
-        'title': recipe.title,
-        // 'ingredients': recipe.ingredients,
-      });
+      firebaseInstance.doc(recipe.id).update(recipe.toJson());
     } catch (error) {
       print(error);
       throw error;
