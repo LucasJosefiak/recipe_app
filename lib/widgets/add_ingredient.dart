@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class AddIngredient extends StatefulWidget {
   final Recipe recipe;
 
-  const AddIngredient({Key key, @required this.recipe}) : super(key: key);
+  const AddIngredient({Key? key, required this.recipe}) : super(key: key);
 
   @override
   _AddIngredientState createState() => _AddIngredientState();
@@ -20,20 +20,20 @@ class AddIngredient extends StatefulWidget {
 class _AddIngredientState extends State<AddIngredient> {
   final _form = GlobalKey<FormState>();
 
-  String name;
-  Unit unit;
-  int amount;
+  String? name;
+  Unit? unit;
+  int? amount;
 
   var _isLoading = false;
 
   Future<void> _saveForm() async {
-    final isValid = _form.currentState.validate();
+    final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
       //if the Form is not valid, the form will not be safed. Code will then
       //stop after return and thus before the form could be saved
     }
-    _form.currentState.save();
+    _form.currentState!.save();
     setState(() {
       _isLoading = true;
     });
@@ -41,9 +41,9 @@ class _AddIngredientState extends State<AddIngredient> {
       await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
         widget.recipe,
         Ingredient(
-          name: name,
-          amount: amount,
-          unit: unit,
+          name: name!,
+          amount: amount!,
+          unit: unit!,
           createdAt: DateTime.now(),
         ),
       );
@@ -120,8 +120,10 @@ class _AddIngredientState extends State<AddIngredient> {
                         // null means no error (coorect Form)
                       },
                       onSaved: (value) {
-                        var intValue = int.parse(value);
-                        amount = intValue;
+                        if (value != null) {
+                          var intValue = int.parse(value);
+                          amount = intValue;
+                        }
                       },
                     ),
                     SizedBox(

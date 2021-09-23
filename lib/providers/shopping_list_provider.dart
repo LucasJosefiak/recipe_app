@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/unit.dart';
 
 class ShoppingListItem {
   final String id;
   final int amount;
-  final String unit;
+  final Unit unit;
   final String name;
   bool isChosen;
   int timesChosen;
 
-  ShoppingListItem(
-      {@required this.id,
-      @required this.amount,
-      @required this.unit,
-      @required this.name,
-      this.isChosen = false,
-      this.timesChosen = 0});
+  ShoppingListItem({
+    required this.id,
+    required this.amount,
+    required this.unit,
+    required this.name,
+    this.isChosen = false,
+    this.timesChosen = 0,
+  });
 }
 
 class ShoppingListProvider with ChangeNotifier {
@@ -26,29 +29,28 @@ class ShoppingListProvider with ChangeNotifier {
   }
 
   void addIngredientToShoppingCart({
-    String ingredientId,
-    int amount,
-    String unit,
-    String name,
-    bool isChosen,
+    required Ingredient ingredient,
   }) {
-    if (_ingredientsInShoppingList.containsKey(ingredientId)) {
+    var id = ingredient.id!;
+    if (_ingredientsInShoppingList.containsKey(id)) {
       _ingredientsInShoppingList.update(
-        ingredientId,
+        id,
         (existingShoppingListItem) => ShoppingListItem(
             id: existingShoppingListItem.id,
             name: existingShoppingListItem.name,
-            amount: existingShoppingListItem.amount + amount,
+            amount: existingShoppingListItem.amount + ingredient.amount,
             unit: existingShoppingListItem.unit),
       );
     } else {
       _ingredientsInShoppingList.putIfAbsent(
-        ingredientId,
+        id,
         () => ShoppingListItem(
+          // TODO One could pass the ingredient into this list item
+          // TODO id is not required
           id: DateTime.now().toString(),
-          amount: amount,
-          unit: unit,
-          name: name,
+          amount: ingredient.amount,
+          unit: ingredient.unit,
+          name: ingredient.name,
         ),
       );
     }
@@ -56,26 +58,20 @@ class ShoppingListProvider with ChangeNotifier {
   }
 
   void deleteIngredientFromShoppingCart({
-    String ingredientId,
-    int amount,
-    String unit,
-    String name,
-    bool isChosen,
+    required Ingredient ingredient,
   }) {
-    // if (!_ingredientsInShoppingList.containsKey(ingredientId)) {
-    //   return;
-    // }
+    var id = ingredient.id!;
     _ingredientsInShoppingList.update(
-      ingredientId,
+      id,
       (existingShoppingListItem) => ShoppingListItem(
           id: existingShoppingListItem.id,
           name: existingShoppingListItem.name,
-          amount: existingShoppingListItem.amount - amount,
+          amount: existingShoppingListItem.amount - ingredient.amount,
           unit: existingShoppingListItem.unit),
     );
-    if (_ingredientsInShoppingList[ingredientId].amount <= 0) {
-      // _ingredientsInShoppingList.remove(ingredientId);
-      _ingredientsInShoppingList.remove(ingredientId);
+
+    if (_ingredientsInShoppingList[id]!.amount <= 0) {
+      _ingredientsInShoppingList.remove(id);
     }
     notifyListeners();
   }

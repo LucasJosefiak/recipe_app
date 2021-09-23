@@ -15,7 +15,7 @@ class RecipeDetailsScreen extends StatelessWidget {
     // might change if the user decides to change the name of the recipe
     // passing the ID and obtaining the recipe via the provider is better
     // since if the recipe is changed the update can be displayed on this screen.
-    Recipe loadedRecipe = ModalRoute.of(context).settings.arguments as Recipe;
+    Recipe loadedRecipe = ModalRoute.of(context)!.settings.arguments as Recipe;
     loadedRecipe = context
         .watch<RecipesProvider>()
         .recipes

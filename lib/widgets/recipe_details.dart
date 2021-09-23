@@ -9,7 +9,7 @@ class RecipeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recipeId = ModalRoute.of(context).settings.arguments
+    final recipeId = ModalRoute.of(context)!.settings.arguments
         as String; //it will give us the id
     final loadedRecipe =
         Provider.of<RecipesProvider>(context, listen: false).findById(recipeId);

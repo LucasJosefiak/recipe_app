@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/providers/firebase_setup_provider.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
@@ -61,6 +62,9 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     var firebaseSetupProvider = context.watch<FirebaseSetupProvider>();
-    return firebaseSetupProvider.isLoading ? _buildLoading() : _buildApp();
+    return firebaseSetupProvider.loadingState == LoadingState.loading ||
+            firebaseSetupProvider.loadingState == LoadingState.uninitialized
+        ? _buildLoading()
+        : _buildApp();
   }
 }

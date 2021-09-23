@@ -7,7 +7,7 @@ class AddIngredientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recipe = ModalRoute.of(context).settings.arguments as Recipe;
+    final recipe = ModalRoute.of(context)!.settings.arguments as Recipe;
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Ingredient'),
