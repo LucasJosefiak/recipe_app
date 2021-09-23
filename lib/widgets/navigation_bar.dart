@@ -33,6 +33,11 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO This is problematic, because
+      // multiple scaffolds are injected into the tree
+      // The first scaffold is in this widget.
+      // The second scaffold is within _pages.
+      // A ButtomNavigationBar must not be used to host screens!
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
