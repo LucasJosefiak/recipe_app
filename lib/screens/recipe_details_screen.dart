@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 class RecipeDetailsScreen extends StatelessWidget {
   static const routeName = '/recipe-details-screen';
 
+  //TODO in Screen und Widget splitten
+
   @override
   Widget build(BuildContext context) {
     // TODO its a bit confusing that a recipe is passed here since the recipe
@@ -18,6 +20,7 @@ class RecipeDetailsScreen extends StatelessWidget {
     Recipe loadedRecipe = ModalRoute.of(context)!.settings.arguments as Recipe;
     loadedRecipe = context
         .watch<RecipesProvider>()
+        //TODO what does "watch" mean?
         .recipes
         .firstWhere((Recipe recipe) => recipe.id == loadedRecipe.id);
     return Scaffold(

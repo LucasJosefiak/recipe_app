@@ -20,6 +20,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   Widget _buildLoading() {
+    //TODO when to use "Widget"?
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Center(
@@ -33,6 +34,7 @@ class _AppState extends State<App> {
       providers: [
         ChangeNotifierProvider<RecipesProvider>(
           create: (ctx) => RecipesProvider()..loadRecipes(),
+          //TODO why should you loadRecipes here already?
         ),
         ChangeNotifierProvider<ShoppingListProvider>(
           create: (ctx) => ShoppingListProvider(),
@@ -62,7 +64,9 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     var firebaseSetupProvider = context.watch<FirebaseSetupProvider>();
+    //TODO what does "watch" do?
     return firebaseSetupProvider.loadingState == LoadingState.loading ||
+            //TODO what does "//" do?
             firebaseSetupProvider.loadingState == LoadingState.uninitialized
         ? _buildLoading()
         : _buildApp();

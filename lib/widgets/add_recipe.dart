@@ -79,7 +79,7 @@ class _AddRecipeState extends State<AddRecipe> {
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            Theme.of(context).accentColor),
+                            Theme.of(context).colorScheme.secondary),
                       ),
                       child: Text('Save'),
                       onPressed: _saveForm,

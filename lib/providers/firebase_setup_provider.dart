@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/loading_state.dart';
 
 class FirebaseSetupProvider with ChangeNotifier {
+  //TODO what does "with" do?
+  //TODO what does ChangeNotifier do?
   LoadingState loadingState = LoadingState.uninitialized;
 
   Future<void> initializeFirebase() async {

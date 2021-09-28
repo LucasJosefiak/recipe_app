@@ -29,6 +29,7 @@ class RecipeListTile extends StatelessWidget {
         ),
         onPressed: () {
           var recipesProvider = context.read<RecipesProvider>();
+          //TODO what does "read" do?
 
           recipesProvider.deleteRecipe(recipe.id!);
           ScaffoldMessenger.of(context).showSnackBar(

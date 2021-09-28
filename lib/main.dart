@@ -10,6 +10,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => FirebaseSetupProvider()..initializeFirebase(),
+          //TODO what does ".." do?
         ),
       ],
       child: App(),
