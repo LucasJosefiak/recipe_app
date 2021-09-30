@@ -133,7 +133,7 @@ class _AddIngredientState extends State<AddIngredient> {
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            Theme.of(context).accentColor),
+                            Theme.of(context).colorScheme.secondary),
                       ),
                       child: Text('Add to ${widget.recipe.title}'),
                       onPressed: _saveForm,

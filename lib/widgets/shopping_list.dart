@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ class ShoppingList extends StatefulWidget {
 class _ShoppingListState extends State<ShoppingList> {
   @override
   Widget build(BuildContext context) {
-    List<ShoppingListItem> shoppingListIngredients =
+    List<Ingredient> shoppingListIngredients =
         Provider.of<ShoppingListProvider>(context)
             .ingredientsInShoppingList
             .values
@@ -21,13 +22,14 @@ class _ShoppingListState extends State<ShoppingList> {
         return ListTile(
           title: Text(shoppingListIngredients[index].name),
           subtitle: Text(
-              '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit}'),
+            '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit}',
+          ),
           leading: Checkbox(
             value: shoppingListIngredients[index].isChosen,
             onChanged: (value) {
               setState(() {
-                shoppingListIngredients[index].isChosen =
-                    !shoppingListIngredients[index].isChosen;
+                // shoppingListIngredients[index].isChosen =
+                !shoppingListIngredients[index].isChosen;
               });
             },
           ),

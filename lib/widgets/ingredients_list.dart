@@ -35,7 +35,7 @@ class _IngredientsListState extends State<IngredientsList> {
                   onPressed: () {
                     cart.addIngredientToShoppingCart(ingredient: ingredient);
                     setState(() {
-                      // loadedRecipe.ingredients[index].timesChosen += 1;
+                      // cart.ingredientsInShoppingList[index]!.timesChosen += 1;
                     });
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -46,6 +46,8 @@ class _IngredientsListState extends State<IngredientsList> {
                           action: SnackBarAction(
                             label: 'UNDO',
                             onPressed: () {
+                              cart.deleteIngredientFromShoppingCart(
+                                  ingredient: ingredient);
                               setState(() {
                                 // cart.deleteIngredientFromShoppingCart(
                                 //   ingredientId:
@@ -68,18 +70,19 @@ class _IngredientsListState extends State<IngredientsList> {
                   top: 3,
                   right: 20,
                   child: Center(
-                    child: Text('test'
-                        // loadedRecipe.ingredients[index].timesChosen.toString(),
-                        ),
+                    child: Text(
+                      ingredient.timesChosen.toString(),
+                    ),
                   ),
                 ),
               ],
             ),
             trailing: IconButton(
               icon: Icon(
-                Icons.edit,
+                Icons.delete,
               ),
               onPressed: () {
+                cart.deleteIngredientFromShoppingCart(ingredient: ingredient);
                 setState(() {
                   // cart.deleteIngredientFromShoppingCart(
                   //   ingredientId: loadedRecipe.ingredients[index].id,
