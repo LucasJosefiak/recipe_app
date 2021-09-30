@@ -20,7 +20,6 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   Widget _buildLoading() {
-    //TODO when to use "Widget"?
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Center(
@@ -43,8 +42,8 @@ class _AppState extends State<App> {
       child: MaterialApp(
         title: 'Shopping my recipes',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          accentColor: Colors.amber,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+              .copyWith(secondary: Colors.amber),
         ),
         initialRoute: '/',
         routes: {
@@ -66,7 +65,7 @@ class _AppState extends State<App> {
     var firebaseSetupProvider = context.watch<FirebaseSetupProvider>();
     //TODO what does "watch" do?
     return firebaseSetupProvider.loadingState == LoadingState.loading ||
-            //TODO what does "//" do?
+            //or
             firebaseSetupProvider.loadingState == LoadingState.uninitialized
         ? _buildLoading()
         : _buildApp();

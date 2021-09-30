@@ -28,7 +28,7 @@ class _IngredientsListState extends State<IngredientsList> {
             title: Text(ingredient.name),
             leading: Stack(
               children: <Widget>[
-                FlatButton(
+                TextButton(
                   child: Icon(
                     Icons.shopping_cart,
                   ),
@@ -37,8 +37,8 @@ class _IngredientsListState extends State<IngredientsList> {
                     setState(() {
                       // loadedRecipe.ingredients[index].timesChosen += 1;
                     });
-                    Scaffold.of(context).hideCurrentSnackBar();
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
                       //Scaffold.of(context) refers to the nearest Scaffold (here: RecipeDetailsScreen)
                       SnackBar(
                           content: Text('Added item to Shopping List!'),
@@ -77,7 +77,7 @@ class _IngredientsListState extends State<IngredientsList> {
             ),
             trailing: IconButton(
               icon: Icon(
-                Icons.delete,
+                Icons.edit,
               ),
               onPressed: () {
                 setState(() {

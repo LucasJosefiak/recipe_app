@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/loading_state.dart';
 
 class FirebaseSetupProvider with ChangeNotifier {
-  //TODO what does "with" do?
-  //TODO what does ChangeNotifier do?
+  //with indicates a mixin. ChangeNotifier is now a subclass of FirebaseSetupProvider
+  //ChangeNotifier allows other parts of the app to listen to the FirebaseSetup Provider
   LoadingState loadingState = LoadingState.uninitialized;
 
   Future<void> initializeFirebase() async {

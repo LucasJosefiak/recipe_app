@@ -20,7 +20,7 @@ class RecipeDetailsScreen extends StatelessWidget {
     Recipe loadedRecipe = ModalRoute.of(context)!.settings.arguments as Recipe;
     loadedRecipe = context
         .watch<RecipesProvider>()
-        //TODO what does "watch" mean?
+        //context.watch<T>() makes the widget listen to changes on T
         .recipes
         .firstWhere((Recipe recipe) => recipe.id == loadedRecipe.id);
     return Scaffold(

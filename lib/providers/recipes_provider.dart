@@ -81,6 +81,23 @@ class RecipesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // Future<void> updateIngredient(
+  //   Recipe recipe,
+  //   Ingredient ingredient,
+  // ) async {
+  //   try {
+  //     firebaseInstance
+  //         .doc(recipe.id)
+  //         .collection('ingredient')
+  //         .doc(ingredient.id)
+  //         .update(ingredient.toJson());
+  //   } catch (error) {
+  //     print(error);
+  //     throw error;
+  //   }
+  //   notifyListeners();
+  // }
+
   // void update(Recipe recipe) {
   //   int index = _recipes.indexOf(recipe);
   //   _recipes[index] = recipe;
