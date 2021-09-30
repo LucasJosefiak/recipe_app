@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:groceries_app/screens/edit_ingredient_screen.dart';
 import 'package:provider/provider.dart';
 
 class IngredientsList extends StatefulWidget {
@@ -25,7 +26,16 @@ class _IngredientsListState extends State<IngredientsList> {
         itemBuilder: (context, index) {
           Ingredient ingredient = widget.recipe.ingredients[index];
           return ListTile(
-            title: Text(ingredient.name),
+            title: TextButton(
+              child: Text(ingredient.name),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  EditIngredientScreen.routeName,
+                  arguments: ingredient,
+                );
+              },
+            ),
             leading: Stack(
               children: <Widget>[
                 TextButton(
