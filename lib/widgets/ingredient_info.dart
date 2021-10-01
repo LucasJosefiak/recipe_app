@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/arguments/edit_ingredient_argument.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:groceries_app/screens/edit_ingredient_screen.dart';
@@ -118,7 +119,7 @@ class _IngredientInfoState extends State<IngredientInfo> {
                         ),
                       ),
                       Text(
-                        widget.ingredient.unit.toString(),
+                        widget.ingredient.unit.toDisplayString(),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,

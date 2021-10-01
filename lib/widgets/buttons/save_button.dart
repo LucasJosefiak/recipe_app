@@ -13,10 +13,16 @@ class SaveButton extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: ElevatedButton(
         onPressed: function,
-        child: Text('Save'),
+        child: Text(
+          'Save',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
               Theme.of(context).colorScheme.secondary),
+          padding: MaterialStateProperty.all(
+            EdgeInsets.all(16.0),
+          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Elevated extends StatelessWidget {
   final void Function()? function;
-  final Text text;
+  final String text;
   const Elevated({
     Key? key,
     required this.function,
@@ -15,10 +15,16 @@ class Elevated extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: ElevatedButton(
         onPressed: function,
-        child: text,
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
               Theme.of(context).colorScheme.secondary),
+          padding: MaterialStateProperty.all(
+            EdgeInsets.all(16.0),
+          ),
         ),
       ),
     );

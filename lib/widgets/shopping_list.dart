@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class _ShoppingListState extends State<ShoppingList> {
         return ListTile(
           title: Text(shoppingListIngredients[index].name),
           subtitle: Text(
-            '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit}',
+            '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit.toDisplayString()}',
           ),
           leading: Checkbox(
             value: shoppingListIngredients[index].isChosen,
