@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/widgets/error_dialog.dart';
@@ -9,8 +10,13 @@ import 'package:provider/provider.dart';
 
 class EditIngredient extends StatefulWidget {
   final Ingredient ingredient;
+  final Recipe recipe;
 
-  const EditIngredient({Key? key, required this.ingredient}) : super(key: key);
+  const EditIngredient({
+    Key? key,
+    required this.ingredient,
+    required this.recipe,
+  }) : super(key: key);
 
   @override
   _EditIngredientState createState() => _EditIngredientState();
@@ -54,7 +60,8 @@ class _EditIngredientState extends State<EditIngredient> {
     try {
       await Provider.of<RecipesProvider>(context, listen: false)
           .updateIngredient(
-        widget.ingredient.copyWith(
+        recipe: widget.recipe,
+        ingredient: widget.ingredient.copyWith(
           name: name!,
           amount: amount!,
           unit: unit!,
