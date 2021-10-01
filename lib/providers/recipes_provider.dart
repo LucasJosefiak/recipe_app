@@ -3,6 +3,7 @@ import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uuid/uuid.dart';
 
 class RecipesProvider with ChangeNotifier {
   List<Recipe> _recipes = [];
@@ -49,6 +50,8 @@ class RecipesProvider with ChangeNotifier {
       recipe.ingredients,
       growable: true,
     );
+
+    ingredient = ingredient.copyWith(id: Uuid().v4());
     ingredients.add(ingredient);
     recipe = recipe.copyWith(ingredients: ingredients);
     updateRecipe(recipe);
@@ -81,11 +84,35 @@ class RecipesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateIngredient(
-    Ingredient ingredient,
-  ) async {
+  Future<void> deleteIngredient({
+    required Recipe recipe,
+    required Ingredient ingredient,
+  }) async {
+    var ingredients = recipe.ingredients;
+    var oldIngredient = ingredients.firstWhere(
+      (element) => element.id == ingredient.id,
+    );
+    var ingredientIndex = ingredients.indexOf(oldIngredient);
+    ingredients.removeAt(ingredientIndex);
+    updateRecipe(
+      recipe.copyWith(ingredients: ingredients),
+    );
+  }
+
+  Future<void> updateIngredient({
+    required Recipe recipe,
+    required Ingredient ingredient,
+  }) async {
     try {
-      firebaseInstance.doc(ingredient.id).update(ingredient.toJson());
+      var ingredients = recipe.ingredients;
+      var oldIngredient = ingredients.firstWhere(
+        (element) => element.id == ingredient.id,
+      );
+      var ingredientIndex = ingredients.indexOf(oldIngredient);
+      ingredients[ingredientIndex] = ingredient;
+      updateRecipe(
+        recipe.copyWith(ingredients: ingredients),
+      );
     } catch (error) {
       print(error);
       throw error;

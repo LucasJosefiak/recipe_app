@@ -100,22 +100,15 @@ class ShoppingListProvider with ChangeNotifier {
     if (_ingredientsInShoppingList.containsKey(id)) {
       _ingredientsInShoppingList.update(
         id,
-        (existingShoppingListItem) => Ingredient(
-            createdAt: existingShoppingListItem.createdAt,
-            name: existingShoppingListItem.name,
-            amount: existingShoppingListItem.amount + ingredient.amount,
-            unit: existingShoppingListItem.unit),
+        (existingIngredient) => existingIngredient.copyWith(
+          amount: existingIngredient.amount + ingredient.amount,
+        ),
       );
     } else {
       _ingredientsInShoppingList.putIfAbsent(
         id,
-        () => Ingredient(
-          // TODO One could pass the ingredient into this list item
-          // TODO id is not required
+        () => ingredient.copyWith(
           createdAt: DateTime.now(),
-          amount: ingredient.amount,
-          unit: ingredient.unit,
-          name: ingredient.name,
         ),
       );
     }
@@ -130,11 +123,9 @@ class ShoppingListProvider with ChangeNotifier {
     if (_ingredientsInShoppingList.containsKey(id)) {
       _ingredientsInShoppingList.update(
         id,
-        (existingShoppingListItem) => Ingredient(
-            createdAt: existingShoppingListItem.createdAt,
-            name: existingShoppingListItem.name,
-            amount: existingShoppingListItem.amount - ingredient.amount,
-            unit: existingShoppingListItem.unit),
+        (existingIngredient) => existingIngredient.copyWith(
+          amount: existingIngredient.amount - ingredient.amount,
+        ),
       );
       if (_ingredientsInShoppingList[id]!.amount <= 0) {
         _ingredientsInShoppingList.remove(id);
