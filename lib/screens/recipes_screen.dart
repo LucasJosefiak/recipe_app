@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/screens/add_recipe_screen.dart';
-import 'package:groceries_app/widgets/recipe_list.dart';
+import 'package:groceries_app/widgets/recipes_list.dart';
 
 class RecipesScreen extends StatelessWidget {
   static const routeName = '/recipes-screen';
@@ -11,13 +11,7 @@ class RecipesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Recipes'),
       ),
-      body: RecipeList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, AddRecipeScreen.routeName);
-        },
-      ),
+      body: RecipesList(),
     );
   }
 }

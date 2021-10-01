@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
+import 'package:groceries_app/widgets/buttons/custom_elevated_button.dart';
 import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
+
+import 'buttons/save_button.dart';
 
 class AddRecipe extends StatefulWidget {
   @override
@@ -76,13 +79,8 @@ class _AddRecipeState extends State<AddRecipe> {
                         title = value;
                       },
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Theme.of(context).colorScheme.secondary),
-                      ),
-                      child: Text('Save'),
-                      onPressed: _saveForm,
+                    SaveButton(
+                      function: _saveForm,
                     ),
                   ],
                 ),

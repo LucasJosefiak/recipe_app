@@ -4,6 +4,8 @@ import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
 
+import 'buttons/save_button.dart';
+
 class EditRecipe extends StatefulWidget {
   final Recipe recipe;
 
@@ -88,13 +90,8 @@ class _EditRecipeState extends State<EditRecipe> {
                         title = value;
                       },
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Theme.of(context).colorScheme.secondary),
-                      ),
-                      child: Text('Save'),
-                      onPressed: _saveForm,
+                    SaveButton(
+                      function: _saveForm,
                     ),
                   ],
                 ),
