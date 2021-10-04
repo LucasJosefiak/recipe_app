@@ -19,10 +19,10 @@ class RecipePlaceholder extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              Image.network(
-                'https://images-na.ssl-images-amazon.com/images/I/71wsjLf-WYL.jpg',
-                height: 220,
-              ),
+              // Image.network(
+              //   'https://images-na.ssl-images-amazon.com/images/I/71wsjLf-WYL.jpg',
+              //   height: 220,
+              // ),
               SizedBox(height: 16),
               Text(
                 'Please add your favorite recipes!',

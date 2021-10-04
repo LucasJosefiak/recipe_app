@@ -10,6 +10,12 @@
             "type": "dart"
         },
         {
+            "name": "Widgetbook",
+            "request": "launch",
+            "type": "dart",
+            "program": "stories/main.dart"
+        },
+        {
             "name": "recipe-app (profile mode)",
             "request": "launch",
             "type": "dart",
