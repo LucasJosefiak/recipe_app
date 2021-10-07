@@ -637,6 +637,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
+  storyboard:
+    dependency: "direct main"
+    description:
+      name: storyboard
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   storybook_flutter:
     dependency: "direct main"
     description:

@@ -22,6 +22,7 @@ dependencies:
   widgetbook: ^0.0.9
   storybook_flutter: ^0.7.0+1
   dashbook: ^0.1.4
+  storyboard: ^1.0.0
   
 
 dev_dependencies:
