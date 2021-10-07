@@ -13,8 +13,8 @@ import 'package:groceries_app/widgets/recipe_placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-class Storybook extends StatelessWidget {
-  const Storybook({Key? key}) : super(key: key);
+class Storyboo extends StatelessWidget {
+  const Storyboo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -20,7 +20,8 @@ dependencies:
   freezed_annotation: ^0.14.3
   uuid: ^3.0.4
   widgetbook: ^0.0.9
-  storybook: 0.0.2
+  storybook_flutter: ^0.7.0+1
+  dashbook: ^0.1.4
   
 
 dev_dependencies:
