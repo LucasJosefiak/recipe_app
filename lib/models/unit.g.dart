@@ -18,6 +18,7 @@ class UnitAdapter extends TypeAdapter<Unit> {
     };
     return Unit(
       name: fields[0] as String,
+      icon: fields[3] as IconData,
       symbol: fields[1] as String?,
       fullSymbol: fields[2] as String?,
     );
@@ -26,13 +27,15 @@ class UnitAdapter extends TypeAdapter<Unit> {
   @override
   void write(BinaryWriter writer, Unit obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.symbol)
       ..writeByte(2)
-      ..write(obj.fullSymbol);
+      ..write(obj.fullSymbol)
+      ..writeByte(3)
+      ..write(obj.icon);
   }
 
   @override

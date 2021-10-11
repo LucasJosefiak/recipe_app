@@ -282,6 +282,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
+  font_awesome:
+    dependency: "direct main"
+    description:
+      name: font_awesome
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.10.1"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "9.1.0"
   freezed_annotation:
     dependency: transitive
     description:

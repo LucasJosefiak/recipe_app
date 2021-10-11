@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/adapters/icon_data_adapter.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   Hive.registerAdapter(RecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
   Hive.registerAdapter(UnitAdapter());
+  Hive.registerAdapter(IconDataAdapter());
 
   await Hive.openBox<Recipe>('recipes');
 
