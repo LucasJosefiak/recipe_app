@@ -36,9 +36,6 @@ class _RecipesListState extends State<RecipesList> {
                         return RecipeInfo(
                           recipe: recipeList[index],
                         );
-                        // return RecipeListTile(
-                        //   recipe: recipeList[index],
-                        // );
                       },
                     ),
                   ),

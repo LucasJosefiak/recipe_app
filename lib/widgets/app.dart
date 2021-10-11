@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/firebase_setup_provider.dart';
@@ -47,8 +49,35 @@ class _AppState extends State<App> {
       child: MaterialApp(
         title: 'Shopping my recipes',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-              .copyWith(secondary: Colors.amber),
+          textTheme: GoogleFonts.nunitoTextTheme().apply(
+            bodyColor: Colors.black,
+            decorationColor: Colors.black,
+            displayColor: Colors.black,
+          ),
+          scaffoldBackgroundColor: Color(0xFFF2F1F5),
+          buttonTheme: ButtonThemeData(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          cardTheme: CardTheme(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: Radii.cardRadius,
+            ),
+          ),
+          appBarTheme: AppBarTheme(
+            centerTitle: false,
+            elevation: 0,
+            color: Colors.transparent,
+            foregroundColor: Colors.black,
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.blue,
+          ).copyWith(
+            secondary: Colors.amber,
+          ),
         ),
         initialRoute: '/',
         routes: {
