@@ -17,30 +17,33 @@ class IngredientAdapter extends TypeAdapter<Ingredient> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Ingredient(
-      unit: fields[0] as Unit,
-      name: fields[1] as String,
-      createdAt: fields[2] as DateTime,
-      amount: fields[5] as int,
-      isChosen: fields[3] as bool,
-      timesChosen: fields[4] as int,
+      identifier: fields[0] as String,
+      unit: fields[1] as Unit,
+      name: fields[2] as String,
+      createdAt: fields[3] as DateTime,
+      amount: fields[6] as int,
+      isChosen: fields[4] as bool,
+      timesChosen: fields[5] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Ingredient obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
-      ..write(obj.unit)
+      ..write(obj.identifier)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.unit)
       ..writeByte(2)
-      ..write(obj.createdAt)
+      ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.isChosen)
+      ..write(obj.createdAt)
       ..writeByte(4)
-      ..write(obj.timesChosen)
+      ..write(obj.isChosen)
       ..writeByte(5)
+      ..write(obj.timesChosen)
+      ..writeByte(6)
       ..write(obj.amount);
   }
 

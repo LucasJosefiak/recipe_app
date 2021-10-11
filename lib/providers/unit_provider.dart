@@ -12,7 +12,7 @@ class UnitProvider with ChangeNotifier {
     ),
     Unit(
       name: 'Volume',
-      symbol: 'l',
+      symbol: 'ml',
       fullSymbol: 'litre',
       icon: FontAwesomeIcons.tint,
     ),

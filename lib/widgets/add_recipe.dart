@@ -28,22 +28,16 @@ class _AddRecipeState extends State<AddRecipe> {
     setState(() {
       _isLoading = true;
     });
-    try {
-      await Provider.of<RecipesProvider>(
-        context,
-        listen: false,
-      ).addRecipeByTitle(title!);
-    } catch (error) {
-      await showDialog<Null>(
-        context: context,
-        builder: (ctx) => ErrorDialog(),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
-    }
+
+    await Provider.of<RecipesProvider>(
+      context,
+      listen: false,
+    ).addRecipeByTitle(title!);
+
+    setState(() {
+      _isLoading = false;
+    });
+    Navigator.of(context).pop();
   }
 
   @override

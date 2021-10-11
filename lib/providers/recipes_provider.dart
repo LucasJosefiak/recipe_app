@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/repositories/repository.dart';
 import 'package:groceries_app/services/id_service.dart';
 
@@ -53,7 +54,25 @@ class RecipesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addIngredient(Recipe recipe, Ingredient ingredient) async {
+  Future<void> addIngredient(
+    Recipe recipe, {
+    required Unit unit,
+    required String name,
+    required int amount,
+  }) async {
+    _addIngredient(
+      recipe,
+      Ingredient(
+        identifier: idService.getId(),
+        unit: unit,
+        name: name,
+        createdAt: DateTime.now(),
+        amount: amount,
+      ),
+    );
+  }
+
+  Future<void> _addIngredient(Recipe recipe, Ingredient ingredient) async {
     var ingredients = List<Ingredient>.from(
       recipe.ingredients,
       growable: true,
@@ -89,7 +108,7 @@ class RecipesProvider with ChangeNotifier {
   }) async {
     var ingredients = recipe.ingredients;
     var oldIngredient = ingredients.firstWhere(
-      (element) => element.name == ingredient.name,
+      (element) => element.id == ingredient.id,
     );
     var ingredientIndex = ingredients.indexOf(oldIngredient);
     ingredients.removeAt(ingredientIndex);
@@ -105,7 +124,7 @@ class RecipesProvider with ChangeNotifier {
     try {
       var ingredients = recipe.ingredients;
       var oldIngredient = ingredients.firstWhere(
-        (element) => element.name == ingredient.name,
+        (element) => element.id == ingredient.id,
       );
       var ingredientIndex = ingredients.indexOf(oldIngredient);
       ingredients[ingredientIndex] = ingredient;

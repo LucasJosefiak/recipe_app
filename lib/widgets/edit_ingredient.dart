@@ -60,27 +60,20 @@ class _EditIngredientState extends State<EditIngredient> {
     setState(() {
       _isLoading = true;
     });
-    try {
-      await Provider.of<RecipesProvider>(context, listen: false)
-          .updateIngredient(
-        recipe: widget.recipe,
-        ingredient: widget.ingredient.copyWith(
-          name: name!,
-          amount: amount!,
-          unit: unit!,
-        ),
-      );
-    } catch (error) {
-      await showDialog<Null>(
-        context: context,
-        builder: (ctx) => ErrorDialog(),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
-    }
+
+    await Provider.of<RecipesProvider>(context, listen: false).updateIngredient(
+      recipe: widget.recipe,
+      ingredient: widget.ingredient.copyWith(
+        name: name!,
+        amount: amount!,
+        unit: unit!,
+      ),
+    );
+
+    setState(() {
+      _isLoading = false;
+    });
+    Navigator.of(context).pop();
   }
 
   @override

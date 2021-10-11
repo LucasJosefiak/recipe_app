@@ -45,7 +45,12 @@ class IngredientInfo extends StatelessWidget {
                 title: ingredient.name,
               ),
               Expanded(child: Container()),
-              Text(ingredient.amount.toString()),
+              Text(
+                ingredient.amount.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               SizedBox(
                 width: 8,
               ),

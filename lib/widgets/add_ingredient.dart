@@ -43,12 +43,9 @@ class _AddIngredientState extends State<AddIngredient> {
     try {
       await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
         widget.recipe,
-        Ingredient(
-          name: name!,
-          amount: amount!,
-          unit: unit!,
-          createdAt: DateTime.now(),
-        ),
+        name: name!,
+        amount: amount!,
+        unit: unit!,
       );
     } catch (error) {
       await showDialog<Null>(
