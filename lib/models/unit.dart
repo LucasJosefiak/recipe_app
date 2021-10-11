@@ -1,13 +1,19 @@
-enum Unit {
-  g,
-  ml,
-  piece,
-  can,
-  glass,
-}
+import 'package:hive/hive.dart';
 
-extension ParseToString on Unit {
-  String toDisplayString() {
-    return this.toString().split('.').last;
-  }
+@HiveType(typeId: 0)
+class Unit {
+  @HiveField(0)
+  final String name;
+
+  @HiveField(1)
+  final String? symbol;
+
+  @HiveField(2)
+  final String? fullSymbol;
+
+  Unit({
+    required this.name,
+    this.symbol,
+    this.fullSymbol,
+  });
 }

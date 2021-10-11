@@ -1,5 +1,4 @@
+// TODO think about removing this whole class
 abstract class Model {
-  final String id;
-
-  Model(this.id);
+  String get id;
 }

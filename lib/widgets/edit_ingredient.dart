@@ -5,6 +5,7 @@ import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
+import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
 
@@ -84,6 +85,7 @@ class _EditIngredientState extends State<EditIngredient> {
 
   @override
   Widget build(BuildContext context) {
+    var units = Provider.of<UnitProvider>(context).units;
     return _isLoading
         ? Center(
             child: CircularProgressIndicator(),
@@ -118,9 +120,9 @@ class _EditIngredientState extends State<EditIngredient> {
                     ),
                     DropdownSearch<Unit>(
                       hint: 'Select an unit',
-                      items: Unit.values,
+                      items: units,
                       selectedItem: unit,
-                      itemAsString: (Unit unit) => unit.toDisplayString(),
+                      itemAsString: (Unit unit) => unit.name,
                       onChanged: (value) {
                         unit = value;
                       },

@@ -1,19 +1,42 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
+
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/model.dart';
 
-part 'recipe.freezed.dart';
 part 'recipe.g.dart';
 
-@freezed
-class Recipe extends Model with _$Recipe {
-  @Implements(Model)
-  factory Recipe({
-    required String id,
-    required String title,
-    required DateTime createdAt,
-    @Default(const <Ingredient>[]) List<Ingredient> ingredients,
-  }) = _Recipe;
+@HiveType(typeId: 0)
+class Recipe extends Model {
+  @HiveField(0)
+  final String identifier;
+  @HiveField(1)
+  final String title;
+  @HiveField(2)
+  final DateTime createdAt;
+  @HiveField(3)
+  final List<Ingredient> ingredients;
 
-  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
+  Recipe({
+    required this.identifier,
+    required this.title,
+    required this.createdAt,
+    List<Ingredient>? ingredients,
+  }) : this.ingredients = ingredients ?? const <Ingredient>[];
+
+  @override
+  String get id => identifier;
+
+  Recipe copyWith({
+    String? identifier,
+    String? title,
+    DateTime? createdAt,
+    List<Ingredient>? ingredients,
+  }) {
+    return Recipe(
+      identifier: identifier ?? this.identifier,
+      title: title ?? this.title,
+      createdAt: createdAt ?? this.createdAt,
+      ingredients: ingredients ?? this.ingredients,
+    );
+  }
 }

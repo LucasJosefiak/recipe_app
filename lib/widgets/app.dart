@@ -4,7 +4,7 @@ import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/firebase_setup_provider.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
-import 'package:groceries_app/repositories/memory_repository.dart';
+import 'package:groceries_app/repositories/database_repository.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/screens/add_recipe_screen.dart';
 import 'package:groceries_app/screens/edit_ingredient_screen.dart';
@@ -34,9 +34,11 @@ class _AppState extends State<App> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<RecipesProvider>(
-          create: (ctx) =>
-              RecipesProvider(recipeRepository: MemoryRepository<Recipe>())
-                ..loadRecipes(),
+          create: (ctx) => RecipesProvider(
+            recipeRepository: DatabaseRepository<Recipe>(
+              'recipes',
+            ),
+          )..loadRecipes(),
         ),
         ChangeNotifierProvider<ShoppingListProvider>(
           create: (ctx) => ShoppingListProvider(),

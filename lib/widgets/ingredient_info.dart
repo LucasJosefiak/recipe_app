@@ -5,6 +5,7 @@ import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/screens/edit_ingredient_screen.dart';
 import 'package:groceries_app/widgets/buttons/custom_icon_button.dart';
 import 'package:provider/src/provider.dart';
@@ -33,6 +34,9 @@ class _IngredientInfoState extends State<IngredientInfo> {
       context,
       listen: false,
     );
+
+    var units = Provider.of<UnitProvider>(context).units;
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -119,7 +123,7 @@ class _IngredientInfoState extends State<IngredientInfo> {
                         ),
                       ),
                       Text(
-                        widget.ingredient.unit.toDisplayString(),
+                        widget.ingredient.unit.name,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,

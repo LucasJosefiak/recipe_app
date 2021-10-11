@@ -11,8 +11,8 @@ class RecipesProvider with ChangeNotifier {
     IdService? idService,
   }) : idService = idService ?? IdService();
 
-  final IdService idService;
   final Repository<Recipe> recipeRepository;
+  final IdService idService;
 
   List<Recipe> _recipes = [];
 
@@ -23,8 +23,8 @@ class RecipesProvider with ChangeNotifier {
     return [..._recipes];
   }
 
-  Recipe findById(String id) {
-    return _recipes.firstWhere((rec) => rec.id == id);
+  Recipe findByTitle(String title) {
+    return _recipes.firstWhere((rec) => rec.title == title);
   }
 
   Future<void> loadRecipes() async {
@@ -41,7 +41,7 @@ class RecipesProvider with ChangeNotifier {
   Future<void> addRecipeByTitle(String title) async {
     addRecipe(
       Recipe(
-        id: idService.getId(),
+        identifier: idService.getId(),
         title: title,
         createdAt: DateTime.now(),
       ),
@@ -59,9 +59,6 @@ class RecipesProvider with ChangeNotifier {
       growable: true,
     );
 
-    ingredient = ingredient.copyWith(
-      id: idService.getId(),
-    );
     ingredients.add(ingredient);
     recipe = recipe.copyWith(ingredients: ingredients);
     updateRecipe(recipe);
@@ -92,7 +89,7 @@ class RecipesProvider with ChangeNotifier {
   }) async {
     var ingredients = recipe.ingredients;
     var oldIngredient = ingredients.firstWhere(
-      (element) => element.id == ingredient.id,
+      (element) => element.name == ingredient.name,
     );
     var ingredientIndex = ingredients.indexOf(oldIngredient);
     ingredients.removeAt(ingredientIndex);
@@ -108,7 +105,7 @@ class RecipesProvider with ChangeNotifier {
     try {
       var ingredients = recipe.ingredients;
       var oldIngredient = ingredients.firstWhere(
-        (element) => element.id == ingredient.id,
+        (element) => element.name == ingredient.name,
       );
       var ingredientIndex = ingredients.indexOf(oldIngredient);
       ingredients[ingredientIndex] = ingredient;
