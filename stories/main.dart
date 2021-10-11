@@ -6,6 +6,8 @@ import 'package:groceries_app/widgets/buttons/custom_elevated_button.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
 import 'package:storyboard/storyboard.dart';
 
+import 'storybook.dart';
+
 void main() {
-  runApp(StoryboardApp([Test()]));
+  runApp(Storyboo());
 }

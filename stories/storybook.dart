@@ -11,154 +11,157 @@ import 'package:groceries_app/widgets/ingredient_info.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
 import 'package:groceries_app/widgets/recipe_placeholder.dart';
 import 'package:provider/provider.dart';
-import 'package:widgetbook/widgetbook.dart';
+// import 'package:widgetbook/widgetbook.dart';
+import 'package:flutterbook/flutterbook.dart';
 
 class Storyboo extends StatelessWidget {
   const Storyboo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Widgetbook(
+    return FlutterBook(
       categories: [
         Category(
-          name: 'Widgets',
-          folders: [
+          categoryName: 'Widgets',
+          organizers: [
             Folder(
-              name: 'Buttons',
-              widgets: [
-                WidgetElement(
-                  name: 'CustomElevatedButton',
-                  stories: [
-                    Story(
-                      name: 'Short text',
-                      builder: (context) => Elevated(
+              folderName: 'Buttons',
+              organizers: [
+                Component(
+                  componentName: 'CustomElevatedButton',
+                  states: [
+                    ComponentState(
+                      stateName: 'Short text',
+                      builder: (context, c) => Elevated(
                         function: null,
                         text: 'Add recipe',
                       ),
                     ),
-                    Story(
-                      name: 'Long text',
-                      builder: (context) => Elevated(
+                    ComponentState(
+                      stateName: 'Short text',
+                      builder: (context, c) => Elevated(
                         function: null,
-                        text: 'Click to add recipe',
+                        text: 'Add recipe to the list',
                       ),
                     ),
                   ],
                 ),
-                WidgetElement(
-                  name: 'CustomIconButton',
-                  stories: [
-                    Story(
-                      name: 'Delete',
-                      builder: (context) => CustomIconButton(
-                        function: null,
-                        icon: Icon(Icons.delete),
-                      ),
-                    ),
-                    Story(
-                      name: 'Edit',
-                      builder: (context) => CustomIconButton(
-                        function: null,
-                        icon: Icon(Icons.edit),
-                      ),
-                    ),
-                  ],
-                ),
-                WidgetElement(
-                  name: 'SaveButton',
-                  stories: [
-                    Story(
-                      name: 'test',
-                      builder: (context) => SaveButton(
-                        function: null,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-          widgets: [
-            WidgetElement(
-              name: 'RecipePlaceholder',
-              stories: [
-                Story(
-                  name: 'test',
-                  builder: (context) => RecipePlaceholder(),
-                ),
-              ],
-            ),
-            WidgetElement(
-              name: 'RecipeInfo',
-              stories: [
-                Story(
-                  name: 'Short title',
-                  builder: (context) => RecipeInfo(
-                    recipe: Recipe(
-                      title: 'Cheese',
-                      createdAt: DateTime.now(),
-                    ),
-                  ),
-                ),
-                Story(
-                  name: 'Long title',
-                  builder: (context) => RecipeInfo(
-                    recipe: Recipe(
-                      title: 'Pizza with mushrooms and cheese',
-                      createdAt: DateTime.now(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            WidgetElement(
-              name: 'IngredientInfo',
-              stories: [
-                Story(
-                  name: 'Short name',
-                  builder: (context) => ChangeNotifierProvider(
-                    create: (context) => RecipesProvider(),
-                    child: ChangeNotifierProvider(
-                      create: (context) => ShoppingListProvider(),
-                      child: IngredientInfo(
+                //           WidgetElement(
+                //             name: 'CustomIconButton',
+                //             stories: [
+                //               Story(
+                //                 name: 'Delete',
+                //                 builder: (context) => CustomIconButton(
+                //                   function: null,
+                //                   icon: Icon(Icons.delete),
+                //                 ),
+                //               ),
+                //               Story(
+                //                 name: 'Edit',
+                //                 builder: (context) => CustomIconButton(
+                //                   function: null,
+                //                   icon: Icon(Icons.edit),
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //           WidgetElement(
+                //             name: 'SaveButton',
+                //             stories: [
+                //               Story(
+                //                 name: 'test',
+                //                 builder: (context) => SaveButton(
+                //                   function: null,
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //     widgets: [
+                //       WidgetElement(
+                //         name: 'RecipePlaceholder',
+                //         stories: [
+                //           Story(
+                //             name: 'test',
+                //             builder: (context) => RecipePlaceholder(),
+                //           ),
+                //         ],
+                //       ),
+                Component(
+                  componentName: 'RecipeInfo',
+                  states: [
+                    ComponentState(
+                      stateName: 'Short title',
+                      builder: (context, c) => RecipeInfo(
                         recipe: Recipe(
                           title: 'Cheese',
                           createdAt: DateTime.now(),
                         ),
-                        ingredient: Ingredient(
-                          name: 'Gouda',
-                          unit: Unit.g,
-                          amount: 200,
+                      ),
+                    ),
+                    ComponentState(
+                      stateName: 'Long title',
+                      builder: (context, c) => RecipeInfo(
+                        recipe: Recipe(
+                          title: 'Cheese and cheese and cheese',
                           createdAt: DateTime.now(),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
+                //       WidgetElement(
+                //         name: 'IngredientInfo',
+                //         stories: [
+                //           Story(
+                //             name: 'Short name',
+                //             builder: (context) => ChangeNotifierProvider(
+                //               create: (context) => RecipesProvider(),
+                //               child: ChangeNotifierProvider(
+                //                 create: (context) => ShoppingListProvider(),
+                //                 child: IngredientInfo(
+                //                   recipe: Recipe(
+                //                     title: 'Cheese',
+                //                     createdAt: DateTime.now(),
+                //                   ),
+                //                   ingredient: Ingredient(
+                //                     name: 'Gouda',
+                //                     unit: Unit.g,
+                //                     amount: 200,
+                //                     createdAt: DateTime.now(),
+                //                   ),
+                //                 ),
+                //               ),
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ],
+                // appInfo: AppInfo(
+                //   name: 'Recipe App',
+                // ),
+                // devices: [
+                //   Apple.iPadAir10Inch,
+                //   Apple.iPadMini,
+                //   Apple.iPhone12pro,
+                //   Samsung.s10,
+                //   Device(
+                //     name: 'Custom',
+                //     type: DeviceType.mobile,
+                //     resolution: Resolution.dimensions(
+                //       width: 500,
+                //       height: 500,
+                //       scaleFactor: 2,
               ],
             ),
           ],
         ),
       ],
-      appInfo: AppInfo(
-        name: 'Recipe App',
-      ),
-      devices: [
-        Apple.iPadAir10Inch,
-        Apple.iPadMini,
-        Apple.iPhone12pro,
-        Samsung.s10,
-        Device(
-          name: 'Custom',
-          type: DeviceType.mobile,
-          resolution: Resolution.dimensions(
-            width: 500,
-            height: 500,
-            scaleFactor: 2,
-          ),
-        ),
-      ],
-      lightTheme: ThemeData.light(),
+      theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
     );
   }
