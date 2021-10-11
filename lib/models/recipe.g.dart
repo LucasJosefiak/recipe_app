@@ -7,7 +7,7 @@ part of 'recipe.dart';
 // **************************************************************************
 
 _$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       title: json['title'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       ingredients: (json['ingredients'] as List<dynamic>?)

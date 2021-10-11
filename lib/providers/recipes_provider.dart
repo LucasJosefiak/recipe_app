@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uuid/uuid.dart';
+import 'package:groceries_app/repositories/repository.dart';
+import 'package:groceries_app/services/id_service.dart';
 
 class RecipesProvider with ChangeNotifier {
+  RecipesProvider({
+    required this.recipeRepository,
+    IdService? idService,
+  }) : idService = idService ?? IdService();
+
+  final IdService idService;
+  final Repository<Recipe> recipeRepository;
+
   List<Recipe> _recipes = [];
+
   Recipe? deletedRecipe;
   LoadingState loadingState = LoadingState.uninitialized;
 
@@ -18,30 +27,29 @@ class RecipesProvider with ChangeNotifier {
     return _recipes.firstWhere((rec) => rec.id == id);
   }
 
-  var firebaseInstance = FirebaseFirestore.instance.collection('recipes');
-
   Future<void> loadRecipes() async {
     loadingState = LoadingState.loading;
     notifyListeners();
-    firebaseInstance.orderBy('createdAt').snapshots().forEach((element) {
-      _recipes = element.docs.map((docSnap) {
-        var jsonData = docSnap.data();
-        jsonData['id'] = docSnap.id;
-        return Recipe.fromJson(jsonData);
-      }).toList();
+    recipeRepository.getStreamOfItems().forEach((recipes) {
+      _recipes = recipes;
 
       loadingState = LoadingState.loaded;
       notifyListeners();
     });
   }
 
+  Future<void> addRecipeByTitle(String title) async {
+    addRecipe(
+      Recipe(
+        id: idService.getId(),
+        title: title,
+        createdAt: DateTime.now(),
+      ),
+    );
+  }
+
   Future<void> addRecipe(Recipe recipe) async {
-    try {
-      firebaseInstance.add(recipe.toJson());
-    } catch (error) {
-      print(error);
-      throw error;
-    }
+    recipeRepository.addItem(recipe);
     notifyListeners();
   }
 
@@ -51,37 +59,31 @@ class RecipesProvider with ChangeNotifier {
       growable: true,
     );
 
-    ingredient = ingredient.copyWith(id: Uuid().v4());
+    ingredient = ingredient.copyWith(
+      id: idService.getId(),
+    );
     ingredients.add(ingredient);
     recipe = recipe.copyWith(ingredients: ingredients);
     updateRecipe(recipe);
     notifyListeners();
   }
 
-  Future<void> deleteRecipe(String id) async {
-    deletedRecipe = _recipes.firstWhere((element) => element.id == id);
-    await firebaseInstance.doc(id).delete();
+  Future<void> deleteRecipe(Recipe recipe) async {
+    recipeRepository.deleteItem(recipe);
   }
 
   Future<void> undoDelete() async {
     var recipe = deletedRecipe;
     if (recipe != null) {
-      await firebaseInstance.doc(recipe.id).set(recipe.toJson());
       deletedRecipe = null;
-      notifyListeners();
+      addRecipe(recipe);
     }
   }
 
   Future<void> updateRecipe(
     Recipe recipe,
   ) async {
-    try {
-      firebaseInstance.doc(recipe.id).update(recipe.toJson());
-    } catch (error) {
-      print(error);
-      throw error;
-    }
-    notifyListeners();
+    recipeRepository.updateItem(recipe);
   }
 
   Future<void> deleteIngredient({

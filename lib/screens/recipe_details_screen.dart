@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/screens/edit_recipe_screen.dart';
 import 'package:groceries_app/widgets/ingredients_list.dart';
 import 'package:provider/provider.dart';

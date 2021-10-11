@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/widgets/buttons/custom_elevated_button.dart';
 import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
 
@@ -31,12 +29,10 @@ class _AddRecipeState extends State<AddRecipe> {
       _isLoading = true;
     });
     try {
-      await Provider.of<RecipesProvider>(context, listen: false).addRecipe(
-        Recipe(
-          title: title!,
-          createdAt: DateTime.now(),
-        ),
-      );
+      await Provider.of<RecipesProvider>(
+        context,
+        listen: false,
+      ).addRecipeByTitle(title!);
     } catch (error) {
       await showDialog<Null>(
         context: context,

@@ -10,7 +10,6 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => FirebaseSetupProvider()..initializeFirebase(),
-          //TODO @Jens: What does ".." do here. I know that it's the cascade operator but in this case I don't get it.
         ),
       ],
       child: App(),

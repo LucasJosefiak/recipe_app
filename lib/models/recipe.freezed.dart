@@ -22,7 +22,7 @@ class _$RecipeTearOff {
   const _$RecipeTearOff();
 
   _Recipe call(
-      {String? id,
+      {required String id,
       required String title,
       required DateTime createdAt,
       List<Ingredient> ingredients = const <Ingredient>[]}) {
@@ -44,7 +44,7 @@ const $Recipe = _$RecipeTearOff();
 
 /// @nodoc
 mixin _$Recipe {
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   List<Ingredient> get ingredients => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $RecipeCopyWith<$Res> {
   factory $RecipeCopyWith(Recipe value, $Res Function(Recipe) then) =
       _$RecipeCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String id,
       String title,
       DateTime createdAt,
       List<Ingredient> ingredients});
@@ -84,7 +84,7 @@ class _$RecipeCopyWithImpl<$Res> implements $RecipeCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
       __$RecipeCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String id,
       String title,
       DateTime createdAt,
       List<Ingredient> ingredients});
@@ -133,7 +133,7 @@ class __$RecipeCopyWithImpl<$Res> extends _$RecipeCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -152,9 +152,10 @@ class __$RecipeCopyWithImpl<$Res> extends _$RecipeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@Implements(Model)
 class _$_Recipe implements _Recipe {
   _$_Recipe(
-      {this.id,
+      {required this.id,
       required this.title,
       required this.createdAt,
       this.ingredients = const <Ingredient>[]});
@@ -163,7 +164,7 @@ class _$_Recipe implements _Recipe {
       _$$_RecipeFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
   final String title;
   @override
@@ -212,9 +213,9 @@ class _$_Recipe implements _Recipe {
   }
 }
 
-abstract class _Recipe implements Recipe {
+abstract class _Recipe implements Recipe, Model {
   factory _Recipe(
-      {String? id,
+      {required String id,
       required String title,
       required DateTime createdAt,
       List<Ingredient> ingredients}) = _$_Recipe;
@@ -222,7 +223,7 @@ abstract class _Recipe implements Recipe {
   factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @override
   String get title => throw _privateConstructorUsedError;
   @override
