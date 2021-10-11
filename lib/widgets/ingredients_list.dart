@@ -25,24 +25,18 @@ class _IngredientsListState extends State<IngredientsList> {
         SizedBox(height: 8),
         Expanded(
           child: ListView.separated(
-              separatorBuilder: (context, index) {
-                return SizedBox(height: 8);
-              },
-              itemCount: widget.recipe.ingredients.length,
-              itemBuilder: (context, index) {
-                Ingredient ingredient = widget.recipe.ingredients[index];
-                return IngredientInfo(
-                  recipe: widget.recipe,
-                  ingredient: ingredient,
-                );
-              }),
-        ),
-        Elevated(
-          function: () {
-            Navigator.pushNamed(context, AddIngredientScreen.routeName,
-                arguments: widget.recipe);
-          },
-          text: 'Add new ingredient',
+            separatorBuilder: (context, index) {
+              return SizedBox(height: 8);
+            },
+            itemCount: widget.recipe.ingredients.length,
+            itemBuilder: (context, index) {
+              Ingredient ingredient = widget.recipe.ingredients[index];
+              return IngredientInfo(
+                recipe: widget.recipe,
+                ingredient: ingredient,
+              );
+            },
+          ),
         ),
       ],
     );

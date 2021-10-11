@@ -1,6 +1,8 @@
 import 'package:hive/hive.dart';
 
-@HiveType(typeId: 0)
+part 'unit.g.dart';
+
+@HiveType(typeId: 2)
 class Unit {
   @HiveField(0)
   final String name;

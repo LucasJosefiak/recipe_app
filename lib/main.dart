@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/firebase_setup_provider.dart';
 import 'package:groceries_app/widgets/app.dart';
 import 'package:hive/hive.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(RecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
+  Hive.registerAdapter(UnitAdapter());
 
   await Hive.openBox<Recipe>('recipes');
 

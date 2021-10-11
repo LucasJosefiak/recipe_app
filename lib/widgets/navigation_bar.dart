@@ -31,9 +31,6 @@ class _NavigationBarState extends State<NavigationBar> {
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
-        backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Theme.of(context).colorScheme.secondary,
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(

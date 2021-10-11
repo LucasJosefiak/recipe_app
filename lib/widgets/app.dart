@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/firebase_setup_provider.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/repositories/database_repository.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/screens/add_recipe_screen.dart';
@@ -45,10 +47,20 @@ class _AppState extends State<App> {
         ChangeNotifierProvider<ShoppingListProvider>(
           create: (ctx) => ShoppingListProvider(),
         ),
+        ChangeNotifierProvider<UnitProvider>(
+          create: (ctx) => UnitProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Shopping my recipes',
         theme: ThemeData(
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            selectedItemColor: ColorConstants.darkGreen,
+            unselectedItemColor: Colors.black,
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            foregroundColor: Colors.black,
+          ),
           textTheme: GoogleFonts.nunitoTextTheme().apply(
             bodyColor: Colors.black,
             decorationColor: Colors.black,
@@ -73,10 +85,11 @@ class _AppState extends State<App> {
             foregroundColor: Colors.black,
             iconTheme: IconThemeData(color: Colors.black),
           ),
+          primaryColor: ColorConstants.darkGreen,
           colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.grey,
           ).copyWith(
-            secondary: Colors.amber,
+            secondary: ColorConstants.green,
           ),
         ),
         initialRoute: '/',

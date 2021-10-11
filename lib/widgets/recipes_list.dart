@@ -39,12 +39,6 @@ class _RecipesListState extends State<RecipesList> {
                       },
                     ),
                   ),
-                  Elevated(
-                    function: () {
-                      Navigator.pushNamed(context, AddRecipeScreen.routeName);
-                    },
-                    text: 'Add new recipe',
-                  ),
                 ],
               )
             : Column(
