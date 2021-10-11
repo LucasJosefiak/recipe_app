@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/widgets/ingredient_info.dart';
+import 'package:groceries_app/widgets/recipe_overview.dart';
 
+// TODO rename required
 class IngredientsList extends StatefulWidget {
   final Recipe recipe;
 
@@ -19,6 +21,7 @@ class _IngredientsListState extends State<IngredientsList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        RecipeOverview(recipe: widget.recipe),
         SizedBox(height: 8),
         Expanded(
           child: ListView.separated(
