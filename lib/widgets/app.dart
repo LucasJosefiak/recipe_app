@@ -12,7 +12,6 @@ import 'package:groceries_app/repositories/database_repository.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/screens/add_recipe_screen.dart';
 import 'package:groceries_app/screens/edit_ingredient_screen.dart';
-import 'package:groceries_app/screens/edit_recipe_screen.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
 import 'package:groceries_app/screens/recipes_screen.dart';
 import 'package:groceries_app/screens/shopping_list_screen.dart';
@@ -99,7 +98,6 @@ class _AppState extends State<App> {
           RecipeDetailsScreen.routeName: (ctx) => RecipeDetailsScreen(),
           ShoppingListScreen.routeName: (ctx) => ShoppingListScreen(),
           AddRecipeScreen.routeName: (ctx) => AddRecipeScreen(),
-          EditRecipeScreen.routeName: (ctx) => EditRecipeScreen(),
           EditIngredientScreen.routeName: (ctx) => EditIngredientScreen(),
           AddIngredientScreen.routeName: (ctx) => AddIngredientScreen(),
         },
