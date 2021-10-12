@@ -15,7 +15,7 @@ class EditIngredientScreen extends StatelessWidget {
       ),
       body: EditIngredient(
         recipe: argument.recipe,
-        ingredient: argument.ingredient,
+        ingredientAmount: argument.ingredientAmount,
       ),
     );
   }

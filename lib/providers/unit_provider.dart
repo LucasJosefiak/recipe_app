@@ -25,6 +25,10 @@ class UnitProvider with ChangeNotifier {
       icon: FontAwesomeIcons.wineBottle,
     ),
     Unit(
+      name: 'Bottle',
+      icon: FontAwesomeIcons.wineBottle,
+    ),
+    Unit(
       name: 'Glass',
       icon: FontAwesomeIcons.wineGlass,
     ),

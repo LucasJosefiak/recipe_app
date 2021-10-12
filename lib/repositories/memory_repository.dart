@@ -22,10 +22,10 @@ class MemoryRepository<Item extends Model> extends Repository<Item> {
     _streamController.add(memory.values.toList());
   }
 
-  String _addItemAndEmitChangesToStream(Item item) {
+  Item _addItemAndEmitChangesToStream(Item item) {
     final id = _addItem(item);
     _emitChangesToStream();
-    return id;
+    return item;
   }
 
   String _addItem(Item item) {
@@ -34,7 +34,7 @@ class MemoryRepository<Item extends Model> extends Repository<Item> {
   }
 
   @override
-  String addItem(Item item) {
+  Item addItem(Item item) {
     return _addItemAndEmitChangesToStream(item);
   }
 

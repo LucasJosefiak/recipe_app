@@ -1,41 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ingredient.dart';
+part of 'ingredient_amount.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class IngredientAdapter extends TypeAdapter<Ingredient> {
+class IngredientAmountAdapter extends TypeAdapter<IngredientAmount> {
   @override
-  final int typeId = 1;
+  final int typeId = 4;
 
   @override
-  Ingredient read(BinaryReader reader) {
+  IngredientAmount read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Ingredient(
-      identifier: fields[0] as String,
-      unit: fields[1] as Unit,
-      name: fields[2] as String,
-      createdAt: fields[3] as DateTime,
+    return IngredientAmount(
+      amount: fields[0] as int,
+      ingredient: fields[1] as Ingredient,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Ingredient obj) {
+  void write(BinaryWriter writer, IngredientAmount obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.identifier)
-      ..writeByte(1)
-      ..write(obj.unit)
       ..writeByte(2)
-      ..write(obj.name)
-      ..writeByte(3)
-      ..write(obj.createdAt);
+      ..writeByte(0)
+      ..write(obj.amount)
+      ..writeByte(1)
+      ..write(obj.ingredient);
   }
 
   @override
@@ -44,7 +38,7 @@ class IngredientAdapter extends TypeAdapter<Ingredient> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is IngredientAdapter &&
+      other is IngredientAmountAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

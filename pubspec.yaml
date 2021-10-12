@@ -14,7 +14,6 @@ dependencies:
 
   cupertino_icons: ^1.0.0
   dropdown_search: ^0.6.3
-  provider: ^5.0.0
   uuid: ^3.0.4
   widgetbook: ^0.0.9
   storybook_flutter: ^0.7.0+1
@@ -27,6 +26,10 @@ dependencies:
   google_fonts: ^2.1.0
   font_awesome: ^5.10.1
   font_awesome_flutter: ^9.1.0
+  flutter_typeahead: ^3.2.1
+  equatable: ^2.0.3
+  flutter_bloc: ^7.1.0
+  bloc: ^7.2.1
   
 
 dev_dependencies:

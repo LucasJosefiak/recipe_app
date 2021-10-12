@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/widgets/tile_icon.dart';
-import 'package:groceries_app/widgets/tile_title.dart';
 
-class Tile extends StatelessWidget {
-  final IconData iconData;
-  final String title;
-  const Tile({
+class UnitInfo extends StatelessWidget {
+  final Unit unit;
+  const UnitInfo({
     Key? key,
-    required this.iconData,
-    required this.title,
+    required this.unit,
   }) : super(key: key);
 
   @override
@@ -17,14 +15,12 @@ class Tile extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         TileIcon(
-          iconData: iconData,
+          iconData: unit.icon,
         ),
         SizedBox(
           width: 24,
         ),
-        TileTitle(
-          title: title,
-        ),
+        Text('${unit.name} (${unit.symbol})'),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:hive/hive.dart';
 
 import 'package:groceries_app/models/ingredient.dart';
@@ -14,14 +15,14 @@ class Recipe extends Model {
   @HiveField(2)
   final DateTime createdAt;
   @HiveField(3)
-  final List<Ingredient> ingredients;
+  final Map<String, IngredientAmount> ingredients;
 
   Recipe({
     required this.identifier,
     required this.title,
     required this.createdAt,
-    List<Ingredient>? ingredients,
-  }) : this.ingredients = ingredients ?? const <Ingredient>[];
+    Map<String, IngredientAmount>? ingredients,
+  }) : this.ingredients = ingredients ?? const <String, IngredientAmount>{};
 
   @override
   String get id => identifier;
@@ -30,7 +31,7 @@ class Recipe extends Model {
     String? identifier,
     String? title,
     DateTime? createdAt,
-    List<Ingredient>? ingredients,
+    Map<String, IngredientAmount>? ingredients,
   }) {
     return Recipe(
       identifier: identifier ?? this.identifier,

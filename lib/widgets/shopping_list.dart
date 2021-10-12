@@ -16,25 +16,26 @@ class _ShoppingListState extends State<ShoppingList> {
             .ingredientsInShoppingList
             .values
             .toList();
-    return ListView.builder(
-      itemCount: shoppingListIngredients.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(shoppingListIngredients[index].name),
-          subtitle: Text(
-            '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit.name}',
-          ),
-          leading: Checkbox(
-            value: shoppingListIngredients[index].isChosen,
-            onChanged: (value) {
-              setState(() {
-                // shoppingListIngredients[index].isChosen =
-                !shoppingListIngredients[index].isChosen;
-              });
-            },
-          ),
-        );
-      },
-    );
+    return Container();
+    // return ListView.builder(
+    //   itemCount: shoppingListIngredients.length,
+    //   itemBuilder: (context, index) {
+    //     return ListTile(
+    //       title: Text(shoppingListIngredients[index].name),
+    //       subtitle: Text(
+    //         '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit.name}',
+    //       ),
+    //       leading: Checkbox(
+    //         value: shoppingListIngredients[index].isChosen,
+    //         onChanged: (value) {
+    //           setState(() {
+    //             // shoppingListIngredients[index].isChosen =
+    //             !shoppingListIngredients[index].isChosen;
+    //           });
+    //         },
+    //       ),
+    //     );
+    //   },
+    // );
   }
 }

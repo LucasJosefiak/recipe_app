@@ -1,15 +1,18 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:groceries_app/constants/colors.dart';
+import 'package:groceries_app/constants/radii.dart';
+import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
+import 'package:groceries_app/providers/ingredients_provider.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
-import 'package:groceries_app/widgets/error_dialog.dart';
+import 'package:groceries_app/widgets/ingredient_info.dart';
+import 'package:groceries_app/widgets/unit_info.dart';
 import 'package:provider/provider.dart';
-
-import 'buttons/save_button.dart';
 
 class AddIngredient extends StatefulWidget {
   final Recipe recipe;
@@ -21,127 +24,148 @@ class AddIngredient extends StatefulWidget {
 }
 
 class _AddIngredientState extends State<AddIngredient> {
-  final _form = GlobalKey<FormState>();
-
-  String? name;
-  Unit? unit;
-  int? amount;
-
-  var _isLoading = false;
-
-  Future<void> _saveForm() async {
-    final isValid = _form.currentState!.validate();
-    if (!isValid) {
-      return;
-      //if the Form is not valid, the form will not be safed. Code will then
-      //stop after return and thus before the form could be saved
-    }
-    _form.currentState!.save();
-    setState(() {
-      _isLoading = true;
-    });
-    try {
-      await Provider.of<RecipesProvider>(context, listen: false).addIngredient(
-        widget.recipe,
-        name: name!,
-        amount: amount!,
-        unit: unit!,
-      );
-    } catch (error) {
-      await showDialog<Null>(
-        context: context,
-        builder: (ctx) => ErrorDialog(),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
-    }
+  late TextEditingController controller;
+  @override
+  void initState() {
+    controller = TextEditingController();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var addIngredientProvider = BlocProvider.of<AddIngredientCubit>(context);
+
+    final border = OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+      borderRadius: Radii.textFieldRadius,
+    );
     var units = Provider.of<UnitProvider>(context).units;
-    return _isLoading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : Padding(
-            padding: const EdgeInsets.all(16),
-            child: Form(
-              key: _form,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
+    var status = addIngredientProvider.state;
+
+    return BlocListener<AddIngredientCubit, AddIngredientState>(
+      listener: (context, state) {
+        controller.text = state.name!;
+      },
+      child: Column(
+        children: [
+          Card(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TypeAheadField<Ingredient?>(
+                    textFieldConfiguration: TextFieldConfiguration(
+                      controller: controller,
                       decoration: InputDecoration(
-                        labelText: 'Ingredient',
+                        hintText: 'ingredient name',
+                        enabledBorder: border,
+                        border: border,
+                        focusedBorder: border,
+                        filled: true,
+                        fillColor: ColorConstants.grey.withOpacity(0.3),
                       ),
-                      textInputAction: TextInputAction.next,
-                      validator: (value) {
-                        if (value != null && value.isEmpty) {
-                          return 'Please provide a value.';
-                        }
-                        return null;
-                        // null means no error (coorect Form)
-                      },
-                      onSaved: (value) {
-                        name = value;
-                      },
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    DropdownSearch<Unit>(
-                      hint: 'Select an unit',
-                      items: units,
-                      selectedItem: unit,
-                      itemAsString: (Unit unit) => unit.name,
-                      onChanged: (value) {
-                        unit = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Amount',
-                      ),
-                      textInputAction: TextInputAction.next,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value != null &&
-                            value.isEmpty &&
-                            int.tryParse(value) != null) {
-                          return 'Please provide a value.';
-                        }
-                        return null;
-                        // null means no error (coorect Form)
-                      },
-                      onSaved: (value) {
-                        if (value != null) {
-                          var intValue = int.parse(value);
-                          amount = intValue;
-                        }
+                    hideOnEmpty: true,
+                    itemBuilder:
+                        (BuildContext context, Ingredient? ingredient) {
+                      return IngredientInfo(ingredient: ingredient!);
+                    },
+                    onSuggestionSelected: (Ingredient? suggestion) {
+                      if (suggestion != null) {
+                        addIngredientProvider.ingredientChanged(suggestion);
+                      }
+                    },
+                    suggestionsCallback: (String pattern) {
+                      addIngredientProvider.nameChanged(pattern);
+                      return Provider.of<IngredientsProvider>(
+                        context,
+                        listen: false,
+                      ).ingredients.where(
+                            (element) => element.name.contains(pattern),
+                          );
+                    },
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: DropdownButton<Unit>(
+                      hint: Text('ingredient unit'),
+                      value: status.unit,
+                      underline: SizedBox(),
+                      items: units.map(
+                        (Unit unit) {
+                          return DropdownMenuItem<Unit>(
+                            value: unit,
+                            child: UnitInfo(
+                              unit: unit,
+                            ),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (Unit? unit) {
+                        setState(
+                          () {
+                            addIngredientProvider.unitChanged(unit);
+                          },
+                        );
                       },
                     ),
-                    SizedBox(
-                      height: 20,
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'amount',
+                      enabledBorder: border,
+                      border: border,
+                      focusedBorder: border,
+                      filled: true,
+                      fillColor: ColorConstants.grey.withOpacity(0.3),
                     ),
-                    SaveButton(
-                      function: _saveForm,
-                    ),
-                  ],
-                ),
+                    onChanged: (amount) {
+                      addIngredientProvider.amountChanged(amount);
+                    },
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO this is a bit scetchy
+                      addIngredientProvider.submit();
+                      var ingredient = Provider.of<IngredientsProvider>(
+                        context,
+                        listen: false,
+                      ).addIngredient(
+                        name: status.name!,
+                        unit: status.unit!,
+                      );
+                      Provider.of<RecipesProvider>(context, listen: false)
+                          .addIngredientToRecipe(
+                        widget.recipe,
+                        ingredient: ingredient,
+                        amount: status.amount!,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: Text('Add'),
+                  ),
+                ],
               ),
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 }
-
 //  final _form = GlobalKey<FormState>();
 
 //   void _saveForm() {

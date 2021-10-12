@@ -6,4 +6,8 @@ class Radii {
       20,
     ),
   );
+
+  static const BorderRadius textFieldRadius = BorderRadius.all(
+    Radius.circular(8),
+  );
 }

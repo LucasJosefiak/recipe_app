@@ -1,6 +1,7 @@
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'dart:collection';
 
-import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/loading_state.dart';
@@ -8,37 +9,35 @@ import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/repositories/repository.dart';
 import 'package:groceries_app/services/id_service.dart';
 
-class RecipesProvider with ChangeNotifier {
-  RecipesProvider({
+part 'recipes_state.dart';
+
+class RecipesCubit extends Cubit<RecipesState> {
+  RecipesCubit({
     required this.recipeRepository,
     IdService? idService,
-  }) : idService = idService ?? IdService();
+  })  : idService = idService ?? IdService(),
+        super(RecipesState());
 
   final Repository<Recipe> recipeRepository;
   final IdService idService;
 
-  List<Recipe> _recipes = [];
-
-  Recipe? deletedRecipe;
-  LoadingState loadingState = LoadingState.uninitialized;
-
-  List<Recipe> get recipes {
-    return [..._recipes];
-  }
-
-  Recipe findByTitle(String title) {
-    return _recipes.firstWhere((rec) => rec.title == title);
-  }
-
   Future<void> loadRecipes() async {
-    loadingState = LoadingState.loading;
-    notifyListeners();
-    recipeRepository.getStreamOfItems().forEach((recipes) {
-      _recipes = recipes;
+    emit(
+      state.copyWith(
+        loadingState: LoadingState.loading,
+      ),
+    );
 
-      loadingState = LoadingState.loaded;
-      notifyListeners();
-    });
+    recipeRepository.getStreamOfItems().forEach(
+      (recipes) {
+        emit(
+          state.copyWith(
+            loadingState: LoadingState.loaded,
+            recipes: recipes,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> addRecipe(String title) async {
@@ -53,7 +52,6 @@ class RecipesProvider with ChangeNotifier {
 
   Future<void> _addRecipe(Recipe recipe) async {
     recipeRepository.addItem(recipe);
-    notifyListeners();
   }
 
   Future<void> addIngredientToRecipe(
@@ -89,9 +87,15 @@ class RecipesProvider with ChangeNotifier {
   }
 
   Future<void> undoDelete() async {
-    var recipe = deletedRecipe;
+    var recipe = state.deletedRecipe;
     if (recipe != null) {
-      deletedRecipe = null;
+      emit(
+        RecipesState(
+          loadingState: state.loadingState,
+          recipes: state.recipes,
+        ),
+      );
+
       _addRecipe(recipe);
     }
   }

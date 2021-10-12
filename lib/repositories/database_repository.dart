@@ -23,9 +23,10 @@ class DatabaseRepository<Item extends Model> extends Repository<Item> {
   }
 
   @override
-  void addItem(Item item) {
+  Item addItem(Item item) {
     box.put(item.id, item);
     _emitChangesToStream();
+    return item;
   }
 
   @override

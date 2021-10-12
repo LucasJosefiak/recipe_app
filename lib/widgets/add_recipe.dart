@@ -32,7 +32,7 @@ class _AddRecipeState extends State<AddRecipe> {
     await Provider.of<RecipesProvider>(
       context,
       listen: false,
-    ).addRecipeByTitle(title!);
+    ).addRecipe(title!);
 
     setState(() {
       _isLoading = false;

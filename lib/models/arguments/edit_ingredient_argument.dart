@@ -1,12 +1,12 @@
-import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 
 class EditIngredientArgument {
   final Recipe recipe;
-  final Ingredient ingredient;
+  final IngredientAmount ingredientAmount;
 
   EditIngredientArgument({
     required this.recipe,
-    required this.ingredient,
+    required this.ingredientAmount,
   });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/adapters/icon_data_adapter.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/firebase_setup_provider.dart';
@@ -16,8 +17,10 @@ Future<void> main() async {
   Hive.registerAdapter(IngredientAdapter());
   Hive.registerAdapter(UnitAdapter());
   Hive.registerAdapter(IconDataAdapter());
+  Hive.registerAdapter(IngredientAmountAdapter());
 
   await Hive.openBox<Recipe>('recipes');
+  await Hive.openBox<Ingredient>('ingredients');
 
   runApp(
     MultiProvider(

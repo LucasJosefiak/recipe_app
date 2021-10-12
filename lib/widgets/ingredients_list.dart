@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/widgets/ingredient_info.dart';
+import 'package:groceries_app/widgets/ingredient_amount_info.dart';
 import 'package:groceries_app/widgets/recipe_overview.dart';
 
 // TODO rename required
@@ -30,10 +31,11 @@ class _IngredientsListState extends State<IngredientsList> {
             },
             itemCount: widget.recipe.ingredients.length,
             itemBuilder: (context, index) {
-              Ingredient ingredient = widget.recipe.ingredients[index];
-              return IngredientInfo(
+              IngredientAmount ingredient =
+                  widget.recipe.ingredients.values.elementAt(index);
+              return IngredientAmountInfo(
                 recipe: widget.recipe,
-                ingredient: ingredient,
+                ingredientAmount: ingredient,
               );
             },
           ),

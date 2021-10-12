@@ -20,7 +20,7 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       identifier: fields[0] as String,
       title: fields[1] as String,
       createdAt: fields[2] as DateTime,
-      ingredients: (fields[3] as List?)?.cast<Ingredient>(),
+      ingredients: (fields[3] as Map?)?.cast<String, IngredientAmount>(),
     );
   }
 

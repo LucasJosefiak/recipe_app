@@ -1,23 +1,22 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
-import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
 
 import 'buttons/save_button.dart';
 
 class EditIngredient extends StatefulWidget {
-  final Ingredient ingredient;
+  final IngredientAmount ingredientAmount;
   final Recipe recipe;
 
   const EditIngredient({
     Key? key,
-    required this.ingredient,
+    required this.ingredientAmount,
     required this.recipe,
   }) : super(key: key);
 
@@ -37,9 +36,9 @@ class _EditIngredientState extends State<EditIngredient> {
 
   @override
   void initState() {
-    name = widget.ingredient.name;
-    amount = widget.ingredient.amount;
-    unit = widget.ingredient.unit;
+    name = widget.ingredientAmount.ingredient.name;
+    amount = widget.ingredientAmount.amount;
+    unit = widget.ingredientAmount.ingredient.unit;
 
     nameController = TextEditingController(
       text: name,
@@ -61,14 +60,15 @@ class _EditIngredientState extends State<EditIngredient> {
       _isLoading = true;
     });
 
-    await Provider.of<RecipesProvider>(context, listen: false).updateIngredient(
-      recipe: widget.recipe,
-      ingredient: widget.ingredient.copyWith(
-        name: name!,
-        amount: amount!,
-        unit: unit!,
-      ),
-    );
+    // TODO put this back in
+    // await Provider.of<RecipesProvider>(context, listen: false).updateIngredientOfRecipe(
+    //   recipe: widget.recipe,
+    //   ingredient: widget.ingredientAmount.copyWith(
+    //     name: name!,
+    //     amount: amount!,
+    //     unit: unit!,
+    //   ),
+    // );
 
     setState(() {
       _isLoading = false;
@@ -95,7 +95,7 @@ class _EditIngredientState extends State<EditIngredient> {
                         labelText: 'Ingredient',
                       ),
                       controller: TextEditingController(
-                          text: '${widget.ingredient.name}'),
+                          text: '${widget.ingredientAmount.ingredient.name}'),
                       textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value != null && value.isEmpty) {
@@ -128,7 +128,7 @@ class _EditIngredientState extends State<EditIngredient> {
                         labelText: 'Amount',
                       ),
                       controller: TextEditingController(
-                          text: '${widget.ingredient.amount}'),
+                          text: '${widget.ingredientAmount.amount}'),
                       textInputAction: TextInputAction.next,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       keyboardType: TextInputType.number,

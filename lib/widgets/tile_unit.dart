@@ -21,7 +21,7 @@ class TileUnit extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              unit.symbol ?? 'pcs',
+              unit.symbol,
             ),
           ),
         ),

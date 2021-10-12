@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/repositories/ingredient_repository.dart';
 import 'package:groceries_app/widgets/add_ingredient.dart';
 
 class AddIngredientScreen extends StatelessWidget {
@@ -12,8 +15,13 @@ class AddIngredientScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Add Ingredient'),
       ),
-      body: AddIngredient(
-        recipe: recipe,
+      body: BlocProvider(
+        create: (context) => AddIngredientCubit(
+          ingredientRepository: IngredientRepository(),
+        ),
+        child: AddIngredient(
+          recipe: recipe,
+        ),
       ),
     );
   }

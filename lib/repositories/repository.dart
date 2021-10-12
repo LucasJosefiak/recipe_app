@@ -2,7 +2,7 @@ import 'package:groceries_app/models/model.dart';
 
 abstract class Repository<Item extends Model> {
   // Item operations
-  void addItem(Item item);
+  Item addItem(Item item);
   void setItem(Item item);
   Item getItem(String id);
   bool doesItemExist(String id);
