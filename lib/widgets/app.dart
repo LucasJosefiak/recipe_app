@@ -52,10 +52,10 @@ class _AppState extends State<App> {
           create: (ctx) => UnitProvider(),
         ),
         ChangeNotifierProvider<IngredientsProvider>(
-            create: (context) => IngredientsProvider(
-                  ingredientRepository:
-                      DatabaseRepository<Ingredient>('ingredients'),
-                )..load()),
+          create: (context) => IngredientsProvider(
+            ingredientRepository: DatabaseRepository<Ingredient>('ingredients'),
+          )..load(),
+        ),
       ],
       child: MaterialApp(
         title: 'Shopping my recipes',

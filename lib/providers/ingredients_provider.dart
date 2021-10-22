@@ -25,14 +25,19 @@ class IngredientsProvider with ChangeNotifier {
     required String name,
     required Unit unit,
   }) {
-    return ingredientRepository.addItem(
-      Ingredient(
-        identifier: idService.getId(),
-        unit: unit,
-        name: name,
-        createdAt: timeService.getNow(),
-      ),
-    );
+    var ingredientsWithName =
+        ingredients.where((element) => element.name == name);
+    if (ingredients.isNotEmpty) {
+      return ingredientRepository.addItem(
+        Ingredient(
+          identifier: idService.getId(),
+          unit: unit,
+          name: name,
+          createdAt: timeService.getNow(),
+        ),
+      );
+    }
+    return ingredientsWithName.first;
   }
 
   void deleteIngredient(Ingredient ingredient) {
