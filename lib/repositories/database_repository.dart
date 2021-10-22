@@ -42,7 +42,7 @@ class DatabaseRepository<Item extends Model> extends Repository<Item> {
 
   @override
   void deleteItem(Item item) {
-    box.delete(item);
+    box.delete(item.id);
     _emitChangesToStream();
   }
 

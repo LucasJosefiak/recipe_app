@@ -27,10 +27,11 @@ class Unit extends Equatable {
         fullSymbol = fullSymbol ?? 'pieces';
 
   @override
-  List<Object?> get props => [
+  List<Object> get props => [
         name,
         symbol,
         fullSymbol,
-        icon,
+        // icondata does not compare to well
+        // icon,
       ];
 }

@@ -42,127 +42,130 @@ class _AddIngredientState extends State<AddIngredient> {
       borderRadius: Radii.textFieldRadius,
     );
     var units = Provider.of<UnitProvider>(context).units;
-    var status = addIngredientProvider.state;
 
-    return BlocListener<AddIngredientCubit, AddIngredientState>(
+    return BlocConsumer<AddIngredientCubit, AddIngredientState>(
+      listenWhen: (oldState, newState) =>
+          oldState != newState && controller.text != newState.name,
       listener: (context, state) {
         controller.text = state.name!;
       },
-      child: Column(
-        children: [
-          Card(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TypeAheadField<Ingredient?>(
-                    textFieldConfiguration: TextFieldConfiguration(
-                      controller: controller,
+      builder: (context, state) {
+        return Column(
+          children: [
+            Card(
+              child: Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TypeAheadField<Ingredient?>(
+                      textFieldConfiguration: TextFieldConfiguration(
+                        controller: controller,
+                        decoration: InputDecoration(
+                          hintText: 'ingredient name',
+                          enabledBorder: border,
+                          border: border,
+                          focusedBorder: border,
+                          filled: true,
+                          fillColor: ColorConstants.grey.withOpacity(0.3),
+                        ),
+                      ),
+                      hideOnEmpty: true,
+                      itemBuilder:
+                          (BuildContext context, Ingredient? ingredient) {
+                        return IngredientInfo(ingredient: ingredient!);
+                      },
+                      onSuggestionSelected: (Ingredient? suggestion) {
+                        if (suggestion != null) {
+                          addIngredientProvider.ingredientChanged(suggestion);
+                        }
+                      },
+                      suggestionsCallback: (String pattern) {
+                        addIngredientProvider.nameChanged(pattern);
+                        return Provider.of<IngredientsProvider>(
+                          context,
+                          listen: false,
+                        ).ingredients.where(
+                              (element) => element.name.contains(pattern),
+                            );
+                      },
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: DropdownButton<Unit>(
+                        hint: Text('ingredient unit'),
+                        value: state.unit,
+                        underline: SizedBox(),
+                        items: units.map(
+                          (Unit unit) {
+                            return DropdownMenuItem<Unit>(
+                              value: unit,
+                              child: UnitInfo(
+                                unit: unit,
+                              ),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (Unit? unit) {
+                          setState(
+                            () {
+                              addIngredientProvider.unitChanged(unit);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: 'ingredient name',
+                        hintText: 'amount',
                         enabledBorder: border,
                         border: border,
                         focusedBorder: border,
                         filled: true,
                         fillColor: ColorConstants.grey.withOpacity(0.3),
                       ),
-                    ),
-                    hideOnEmpty: true,
-                    itemBuilder:
-                        (BuildContext context, Ingredient? ingredient) {
-                      return IngredientInfo(ingredient: ingredient!);
-                    },
-                    onSuggestionSelected: (Ingredient? suggestion) {
-                      if (suggestion != null) {
-                        addIngredientProvider.ingredientChanged(suggestion);
-                      }
-                    },
-                    suggestionsCallback: (String pattern) {
-                      addIngredientProvider.nameChanged(pattern);
-                      return Provider.of<IngredientsProvider>(
-                        context,
-                        listen: false,
-                      ).ingredients.where(
-                            (element) => element.name.contains(pattern),
-                          );
-                    },
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: DropdownButton<Unit>(
-                      hint: Text('ingredient unit'),
-                      value: status.unit,
-                      underline: SizedBox(),
-                      items: units.map(
-                        (Unit unit) {
-                          return DropdownMenuItem<Unit>(
-                            value: unit,
-                            child: UnitInfo(
-                              unit: unit,
-                            ),
-                          );
-                        },
-                      ).toList(),
-                      onChanged: (Unit? unit) {
-                        setState(
-                          () {
-                            addIngredientProvider.unitChanged(unit);
-                          },
-                        );
+                      onChanged: (amount) {
+                        addIngredientProvider.amountChanged(amount);
                       },
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: 'amount',
-                      enabledBorder: border,
-                      border: border,
-                      focusedBorder: border,
-                      filled: true,
-                      fillColor: ColorConstants.grey.withOpacity(0.3),
+                    SizedBox(
+                      height: 16,
                     ),
-                    onChanged: (amount) {
-                      addIngredientProvider.amountChanged(amount);
-                    },
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // TODO this is a bit scetchy
-                      addIngredientProvider.submit();
-                      var ingredient = Provider.of<IngredientsProvider>(
-                        context,
-                        listen: false,
-                      ).addIngredient(
-                        name: status.name!,
-                        unit: status.unit!,
-                      );
-                      Provider.of<RecipesProvider>(context, listen: false)
-                          .addIngredientToRecipe(
-                        widget.recipe,
-                        ingredient: ingredient,
-                        amount: status.amount!,
-                      );
-                      Navigator.pop(context);
-                    },
-                    child: Text('Add'),
-                  ),
-                ],
+                    ElevatedButton(
+                      onPressed: () {
+                        // TODO this is a bit scetchy
+                        addIngredientProvider.submit();
+                        var ingredient = Provider.of<IngredientsProvider>(
+                          context,
+                          listen: false,
+                        ).addIngredient(
+                          name: state.name!,
+                          unit: state.unit!,
+                        );
+                        Provider.of<RecipesProvider>(context, listen: false)
+                            .addIngredientToRecipe(
+                          widget.recipe,
+                          ingredient: ingredient,
+                          amount: state.amount!,
+                        );
+                        Navigator.pop(context);
+                      },
+                      child: Text('Add'),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      },
     );
   }
 }

@@ -28,7 +28,7 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   flutter_typeahead: ^3.2.1
   equatable: ^2.0.3
-  flutter_bloc: ^7.1.0
+  flutter_bloc: ^7.3.0
   bloc: ^7.2.1
   
 

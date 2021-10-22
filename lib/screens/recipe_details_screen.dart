@@ -15,16 +15,25 @@ class RecipeDetailsScreen extends StatelessWidget {
     // passing the ID and obtaining the recipe via the provider is better
     // since if the recipe is changed the update can be displayed on this screen.
     Recipe loadedRecipe = ModalRoute.of(context)!.settings.arguments as Recipe;
-    loadedRecipe = context
-        .watch<RecipesProvider>()
-        //context.watch<T>() makes the widget listen to changes on T
-        .recipes
-        .firstWhere((Recipe recipe) => recipe.id == loadedRecipe.id);
     return Scaffold(
       appBar: AppBar(
         title: Text(
           loadedRecipe.title,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<RecipesProvider>(
+                context,
+                listen: false,
+              ).deleteRecipe(loadedRecipe);
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.delete,
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
