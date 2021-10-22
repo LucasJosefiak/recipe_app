@@ -4,11 +4,11 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
+import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/ingredients_provider.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/widgets/ingredient_info.dart';
 import 'package:groceries_app/widgets/unit_info.dart';
@@ -149,7 +149,7 @@ class _AddIngredientState extends State<AddIngredient> {
                           name: state.name!,
                           unit: state.unit!,
                         );
-                        Provider.of<RecipesProvider>(context, listen: false)
+                        BlocProvider.of<RecipeCubit>(context)
                             .addIngredientToRecipe(
                           widget.recipe,
                           ingredient: ingredient,

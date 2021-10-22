@@ -5,8 +5,6 @@ import 'package:groceries_app/widgets/shopping_list.dart';
 import 'package:provider/provider.dart';
 
 class ShoppingListScreen extends StatelessWidget {
-  static const routeName = '/shopping-list-screen';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

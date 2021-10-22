@@ -17,8 +17,14 @@ class RecipeInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, RecipeDetailsScreen.routeName,
-            arguments: recipe);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecipeDetailsScreen(
+              recipe: recipe,
+            ),
+          ),
+        );
       },
       child: Card(
         child: Container(

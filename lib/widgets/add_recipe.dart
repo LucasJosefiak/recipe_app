@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/widgets/error_dialog.dart';
 import 'package:provider/provider.dart';
 
 import 'buttons/save_button.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/widgets/ingredient_amount_info.dart';

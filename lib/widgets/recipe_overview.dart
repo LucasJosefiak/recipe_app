@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/constants/colors.dart';
+import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:provider/provider.dart';
 
 class RecipeOverview extends StatefulWidget {
   final Recipe recipe;
@@ -37,14 +37,20 @@ class _RecipeOverviewState extends State<RecipeOverview> {
             EditableText(
               backgroundCursorColor: ColorConstants.grey,
               onChanged: (value) {
-                Provider.of<RecipesProvider>(
-                  context,
-                  listen: false,
-                ).updateRecipe(
+                BlocProvider.of<RecipeCubit>(context).updateRecipe(
                   widget.recipe.copyWith(
                     title: value,
                   ),
                 );
+                // TODO delete
+                // Provider.of<RecipesProvider>(
+                //   context,
+                //   listen: false,
+                // ).updateRecipe(
+                //   widget.recipe.copyWith(
+                //     title: value,
+                //   ),
+                // );
               },
               controller: controller,
               cursorColor: ColorConstants.green,

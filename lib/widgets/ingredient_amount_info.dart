@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/models/arguments/edit_ingredient_argument.dart';
-import 'package:groceries_app/models/ingredient.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/screens/edit_ingredient_screen.dart';
 import 'package:groceries_app/widgets/tile.dart';
-import 'package:groceries_app/widgets/tile_icon.dart';
 
-import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:groceries_app/widgets/tile_unit.dart';
 
 class IngredientAmountInfo extends StatelessWidget {
@@ -23,12 +21,16 @@ class IngredientAmountInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
+        Navigator.push(
           context,
-          EditIngredientScreen.routeName,
-          arguments: EditIngredientArgument(
-            recipe: recipe,
-            ingredientAmount: ingredientAmount,
+          MaterialPageRoute(
+            builder: (ctx) => BlocProvider.value(
+              value: BlocProvider.of<RecipeCubit>(context),
+              child: EditIngredientScreen(
+                recipe: recipe,
+                ingredientAmount: ingredientAmount,
+              ),
+            ),
           ),
         );
       },

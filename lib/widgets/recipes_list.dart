@@ -48,7 +48,12 @@ class _RecipesListState extends State<RecipesList> {
                   SizedBox(height: 96),
                   Elevated(
                     function: () {
-                      Navigator.pushNamed(context, AddRecipeScreen.routeName);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => AddRecipeScreen(),
+                        ),
+                      );
                     },
                     text: 'Add new recipe',
                   ),

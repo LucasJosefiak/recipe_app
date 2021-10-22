@@ -1,8 +1,4 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:groceries_app/models/ingredient.dart';
-import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/repositories/repository.dart';
@@ -56,33 +52,33 @@ class RecipesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addIngredientToRecipe(
-    Recipe recipe, {
-    required Ingredient ingredient,
-    required int amount,
-  }) async {
-    _addIngredient(
-      recipe,
-      IngredientAmount(
-        ingredient: ingredient,
-        amount: amount,
-      ),
-    );
-  }
+  // Future<void> addIngredientToRecipe(
+  //   Recipe recipe, {
+  //   required Ingredient ingredient,
+  //   required int amount,
+  // }) async {
+  //   _addIngredient(
+  //     recipe,
+  //     IngredientAmount(
+  //       ingredient: ingredient,
+  //       amount: amount,
+  //     ),
+  //   );
+  // }
 
-  Future<void> _addIngredient(
-      Recipe recipe, IngredientAmount ingredient) async {
-    var ingredients = HashMap<String, IngredientAmount>.from(
-      recipe.ingredients,
-    );
-    ingredients.putIfAbsent(
-      ingredient.id,
-      () => ingredient,
-    );
+  // Future<void> _addIngredient(
+  //     Recipe recipe, IngredientAmount ingredient) async {
+  //   var ingredients = HashMap<String, IngredientAmount>.from(
+  //     recipe.ingredients,
+  //   );
+  //   ingredients.putIfAbsent(
+  //     ingredient.id,
+  //     () => ingredient,
+  //   );
 
-    recipe = recipe.copyWith(ingredients: ingredients);
-    updateRecipe(recipe);
-  }
+  //   recipe = recipe.copyWith(ingredients: ingredients);
+  //   updateRecipe(recipe);
+  // }
 
   Future<void> deleteRecipe(Recipe recipe) async {
     recipeRepository.deleteItem(recipe);
@@ -102,31 +98,31 @@ class RecipesProvider with ChangeNotifier {
     recipeRepository.updateItem(recipe);
   }
 
-  Future<void> removeIngredientFromRecipe({
-    required Recipe recipe,
-    required IngredientAmount ingredient,
-  }) async {
-    var ingredients = HashMap<String, IngredientAmount>.from(
-      recipe.ingredients,
-    );
-    ingredients.remove(ingredient.id);
+  // Future<void> removeIngredientFromRecipe({
+  //   required Recipe recipe,
+  //   required IngredientAmount ingredient,
+  // }) async {
+  //   var ingredients = HashMap<String, IngredientAmount>.from(
+  //     recipe.ingredients,
+  //   );
+  //   ingredients.remove(ingredient.id);
 
-    updateRecipe(
-      recipe.copyWith(ingredients: ingredients),
-    );
-  }
+  //   updateRecipe(
+  //     recipe.copyWith(ingredients: ingredients),
+  //   );
+  // }
 
-  Future<void> updateIngredientOfRecipe({
-    required Recipe recipe,
-    required IngredientAmount ingredient,
-  }) async {
-    var ingredients = HashMap<String, IngredientAmount>.from(
-      recipe.ingredients,
-    );
-    ingredients[ingredient.id] = ingredient;
+  // Future<void> updateIngredientOfRecipe({
+  //   required Recipe recipe,
+  //   required IngredientAmount ingredient,
+  // }) async {
+  //   var ingredients = HashMap<String, IngredientAmount>.from(
+  //     recipe.ingredients,
+  //   );
+  //   ingredients[ingredient.id] = ingredient;
 
-    updateRecipe(
-      recipe.copyWith(ingredients: ingredients),
-    );
-  }
+  //   updateRecipe(
+  //     recipe.copyWith(ingredients: ingredients),
+  //   );
+  // }
 }

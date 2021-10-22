@@ -3,8 +3,6 @@ import 'package:groceries_app/screens/add_recipe_screen.dart';
 import 'package:groceries_app/widgets/recipes_list.dart';
 
 class RecipesScreen extends StatelessWidget {
-  static const routeName = '/recipes-screen';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,9 +11,11 @@ class RecipesScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(
+          Navigator.push(
             context,
-            AddRecipeScreen.routeName,
+            MaterialPageRoute(
+              builder: (ctx) => AddRecipeScreen(),
+            ),
           );
         },
         label: Text(

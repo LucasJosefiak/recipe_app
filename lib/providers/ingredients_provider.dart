@@ -27,7 +27,7 @@ class IngredientsProvider with ChangeNotifier {
   }) {
     var ingredientsWithName =
         ingredients.where((element) => element.name == name);
-    if (ingredients.isNotEmpty) {
+    if (ingredientsWithName.isEmpty) {
       return ingredientRepository.addItem(
         Ingredient(
           identifier: idService.getId(),

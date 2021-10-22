@@ -6,11 +6,15 @@ import 'package:groceries_app/repositories/ingredient_repository.dart';
 import 'package:groceries_app/widgets/add_ingredient.dart';
 
 class AddIngredientScreen extends StatelessWidget {
-  static const routeName = '/add-ingredient-screen';
+  final Recipe recipe;
+
+  const AddIngredientScreen({
+    Key? key,
+    required this.recipe,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final recipe = ModalRoute.of(context)!.settings.arguments as Recipe;
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Ingredient'),

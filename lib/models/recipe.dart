@@ -1,7 +1,6 @@
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:hive/hive.dart';
 
-import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/model.dart';
 
 part 'recipe.g.dart';

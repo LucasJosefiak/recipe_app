@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/constants/colors.dart' as consts;
 
 class TileTitle extends StatelessWidget {
   final String title;

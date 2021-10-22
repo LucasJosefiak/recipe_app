@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/models/ingredient.dart';
-import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/firebase_setup_provider.dart';
 import 'package:groceries_app/providers/ingredients_provider.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/repositories/database_repository.dart';
-import 'package:groceries_app/screens/add_ingredient_screen.dart';
-import 'package:groceries_app/screens/add_recipe_screen.dart';
-import 'package:groceries_app/screens/edit_ingredient_screen.dart';
-import 'package:groceries_app/screens/recipe_details_screen.dart';
-import 'package:groceries_app/screens/recipes_screen.dart';
-import 'package:groceries_app/screens/shopping_list_screen.dart';
 import 'package:groceries_app/widgets/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -26,23 +19,13 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  Widget _buildLoading() {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Center(
-        child: Text('Loading'),
-      ),
-    );
-  }
-
   Widget _buildApp() {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<RecipesProvider>(
           create: (ctx) => RecipesProvider(
-            recipeRepository: DatabaseRepository<Recipe>(
-              'recipes',
-            ),
+            recipeRepository:
+                RepositoryProvider.of<DatabaseRepository<Recipe>>(context),
           )..loadRecipes(),
         ),
         ChangeNotifierProvider<ShoppingListProvider>(
@@ -53,7 +36,8 @@ class _AppState extends State<App> {
         ),
         ChangeNotifierProvider<IngredientsProvider>(
           create: (context) => IngredientsProvider(
-            ingredientRepository: DatabaseRepository<Ingredient>('ingredients'),
+            ingredientRepository:
+                RepositoryProvider.of<DatabaseRepository<Ingredient>>(context),
           )..load(),
         ),
       ],
@@ -104,27 +88,13 @@ class _AppState extends State<App> {
             secondary: ColorConstants.green,
           ),
         ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => NavigationBar(),
-          RecipesScreen.routeName: (ctx) => RecipesScreen(),
-          RecipeDetailsScreen.routeName: (ctx) => RecipeDetailsScreen(),
-          ShoppingListScreen.routeName: (ctx) => ShoppingListScreen(),
-          AddRecipeScreen.routeName: (ctx) => AddRecipeScreen(),
-          EditIngredientScreen.routeName: (ctx) => EditIngredientScreen(),
-          AddIngredientScreen.routeName: (ctx) => AddIngredientScreen(),
-        },
+        home: NavigationBar(),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    var firebaseSetupProvider = context.watch<FirebaseSetupProvider>();
-    return firebaseSetupProvider.loadingState == LoadingState.loading ||
-            //or
-            firebaseSetupProvider.loadingState == LoadingState.uninitialized
-        ? _buildLoading()
-        : _buildApp();
+    return _buildApp();
   }
 }
