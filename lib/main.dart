@@ -9,7 +9,6 @@ import 'package:groceries_app/repositories/database_repository.dart';
 import 'package:groceries_app/widgets/app.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 Future<void> main() async {
   // TODO Put into different class

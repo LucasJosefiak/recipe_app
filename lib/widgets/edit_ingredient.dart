@@ -1,16 +1,12 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/widgets/ingredient_overview.dart';
 import 'package:provider/provider.dart';
-
-import 'buttons/save_button.dart';
 
 class EditIngredient extends StatefulWidget {
   final IngredientAmount ingredientAmount;

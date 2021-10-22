@@ -3,15 +3,19 @@ import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/repositories/repository.dart';
 import 'package:groceries_app/services/id_service.dart';
+import 'package:groceries_app/services/time_service.dart';
 
 class RecipesProvider with ChangeNotifier {
-  RecipesProvider({
-    required this.recipeRepository,
-    IdService? idService,
-  }) : idService = idService ?? IdService();
+  RecipesProvider(
+      {required this.recipeRepository,
+      IdService? idService,
+      TimeService? timeService})
+      : idService = idService ?? IdService(),
+        timeService = timeService ?? TimeService();
 
   final Repository<Recipe> recipeRepository;
   final IdService idService;
+  final TimeService timeService;
 
   List<Recipe> _recipes = [];
 
@@ -42,7 +46,7 @@ class RecipesProvider with ChangeNotifier {
       Recipe(
         identifier: idService.getId(),
         title: title,
-        createdAt: DateTime.now(),
+        createdAt: timeService.getNow(),
       ),
     );
   }
@@ -51,34 +55,6 @@ class RecipesProvider with ChangeNotifier {
     recipeRepository.addItem(recipe);
     notifyListeners();
   }
-
-  // Future<void> addIngredientToRecipe(
-  //   Recipe recipe, {
-  //   required Ingredient ingredient,
-  //   required int amount,
-  // }) async {
-  //   _addIngredient(
-  //     recipe,
-  //     IngredientAmount(
-  //       ingredient: ingredient,
-  //       amount: amount,
-  //     ),
-  //   );
-  // }
-
-  // Future<void> _addIngredient(
-  //     Recipe recipe, IngredientAmount ingredient) async {
-  //   var ingredients = HashMap<String, IngredientAmount>.from(
-  //     recipe.ingredients,
-  //   );
-  //   ingredients.putIfAbsent(
-  //     ingredient.id,
-  //     () => ingredient,
-  //   );
-
-  //   recipe = recipe.copyWith(ingredients: ingredients);
-  //   updateRecipe(recipe);
-  // }
 
   Future<void> deleteRecipe(Recipe recipe) async {
     recipeRepository.deleteItem(recipe);
@@ -97,32 +73,4 @@ class RecipesProvider with ChangeNotifier {
   ) async {
     recipeRepository.updateItem(recipe);
   }
-
-  // Future<void> removeIngredientFromRecipe({
-  //   required Recipe recipe,
-  //   required IngredientAmount ingredient,
-  // }) async {
-  //   var ingredients = HashMap<String, IngredientAmount>.from(
-  //     recipe.ingredients,
-  //   );
-  //   ingredients.remove(ingredient.id);
-
-  //   updateRecipe(
-  //     recipe.copyWith(ingredients: ingredients),
-  //   );
-  // }
-
-  // Future<void> updateIngredientOfRecipe({
-  //   required Recipe recipe,
-  //   required IngredientAmount ingredient,
-  // }) async {
-  //   var ingredients = HashMap<String, IngredientAmount>.from(
-  //     recipe.ingredients,
-  //   );
-  //   ingredients[ingredient.id] = ingredient;
-
-  //   updateRecipe(
-  //     recipe.copyWith(ingredients: ingredients),
-  //   );
-  // }
 }

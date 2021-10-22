@@ -8,6 +8,7 @@ import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/repositories/repository.dart';
 import 'package:groceries_app/services/id_service.dart';
+import 'package:groceries_app/services/time_service.dart';
 
 part 'recipes_state.dart';
 
@@ -15,11 +16,14 @@ class RecipesCubit extends Cubit<RecipesState> {
   RecipesCubit({
     required this.recipeRepository,
     IdService? idService,
+    TimeService? timeService,
   })  : idService = idService ?? IdService(),
+        timeService = timeService ?? TimeService(),
         super(RecipesState());
 
   final Repository<Recipe> recipeRepository;
   final IdService idService;
+  final TimeService timeService;
 
   Future<void> loadRecipes() async {
     emit(
@@ -43,10 +47,9 @@ class RecipesCubit extends Cubit<RecipesState> {
   Future<void> addRecipe(String title) async {
     _addRecipe(
       Recipe(
-        identifier: idService.getId(),
-        title: title,
-        createdAt: DateTime.now(),
-      ),
+          identifier: idService.getId(),
+          title: title,
+          createdAt: timeService.getNow()),
     );
   }
 
