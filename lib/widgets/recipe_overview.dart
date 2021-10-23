@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
 
 class RecipeOverview extends StatefulWidget {
   final Recipe recipe;
@@ -28,44 +29,41 @@ class _RecipeOverviewState extends State<RecipeOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            EditableText(
-              backgroundCursorColor: ColorConstants.grey,
-              onChanged: (value) {
-                BlocProvider.of<RecipeCubit>(context).updateRecipe(
-                  widget.recipe.copyWith(
-                    title: value,
-                  ),
-                );
-                // TODO delete
-                // Provider.of<RecipesProvider>(
-                //   context,
-                //   listen: false,
-                // ).updateRecipe(
-                //   widget.recipe.copyWith(
-                //     title: value,
-                //   ),
-                // );
-              },
-              controller: controller,
-              cursorColor: ColorConstants.green,
-              focusNode: FocusNode(),
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Text('${widget.recipe.ingredients.length} ingredients')
-          ],
-        ),
+    return PaddedCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          EditableText(
+            backgroundCursorColor: ColorConstants.grey,
+            onChanged: (value) {
+              BlocProvider.of<RecipeCubit>(context).updateRecipe(
+                widget.recipe.copyWith(
+                  title: value,
+                ),
+              );
+              // TODO delete
+              // Provider.of<RecipesProvider>(
+              //   context,
+              //   listen: false,
+              // ).updateRecipe(
+              //   widget.recipe.copyWith(
+              //     title: value,
+              //   ),
+              // );
+            },
+            controller: controller,
+            cursorColor: ColorConstants.green,
+            focusNode: FocusNode(),
+            style: Theme.of(context)
+                .textTheme
+                .headline5!
+                .copyWith(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Text('${widget.recipe.ingredients.length} ingredients')
+        ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:provider/provider.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
@@ -38,30 +39,27 @@ class RecipeInfo extends StatelessWidget {
           ),
         );
       },
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: [
-              TileTitle(
-                title: recipe.title,
+      child: PaddedCard(
+        child: Row(
+          children: [
+            TileTitle(
+              title: recipe.title,
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            IconButton(
+              onPressed: () {
+                Provider.of<ShoppingListProvider>(
+                  context,
+                  listen: false,
+                ).addRecipe(recipe);
+              },
+              icon: Icon(
+                FontAwesomeIcons.cartPlus,
               ),
-              Expanded(
-                child: Container(),
-              ),
-              IconButton(
-                onPressed: () {
-                  Provider.of<ShoppingListProvider>(
-                    context,
-                    listen: false,
-                  ).addRecipe(recipe);
-                },
-                icon: Icon(
-                  FontAwesomeIcons.cartPlus,
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

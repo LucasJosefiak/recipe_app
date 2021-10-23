@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile_icon.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 
@@ -12,20 +13,17 @@ class IngredientInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(16),
-        child: Row(
-          children: [
-            TileIcon(iconData: ingredient.unit.icon),
-            SizedBox(
-              width: 24,
-            ),
-            TileTitle(
-              title: ingredient.name,
-            ),
-          ],
-        ),
+    return PaddedCard(
+      child: Row(
+        children: [
+          TileIcon(iconData: ingredient.unit.icon),
+          SizedBox(
+            width: 24,
+          ),
+          TileTitle(
+            title: ingredient.name,
+          ),
+        ],
       ),
     );
   }

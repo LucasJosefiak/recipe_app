@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
 
 class IngredientOverview extends StatefulWidget {
   final Ingredient ingredient;
@@ -20,31 +21,28 @@ class _IngredientOverviewState extends State<IngredientOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.ingredient.name,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Unit: ${widget.ingredient.unit.fullSymbol}',
-                )
-              ],
-            ),
-          ],
-        ),
+    return PaddedCard(
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.ingredient.name,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                'Unit: ${widget.ingredient.unit.fullSymbol}',
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

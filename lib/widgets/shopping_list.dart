@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:provider/provider.dart';
@@ -19,31 +20,28 @@ class _ShoppingListState extends State<ShoppingList> {
     return ListView.separated(
         itemBuilder: (context, index) {
           var entry = ingredients[index];
-          return Card(
-            child: Container(
-              padding: EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  TileTitle(
-                    title: entry.key.name,
+          return PaddedCard(
+            child: Row(
+              children: [
+                TileTitle(
+                  title: entry.key.name,
+                ),
+                Expanded(
+                  child: Container(),
+                ),
+                Text(
+                  entry.value.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
-                  Expanded(
-                    child: Container(),
-                  ),
-                  Text(
-                    entry.value.toString(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  TileUnit(
-                    unit: entry.key.unit,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                TileUnit(
+                  unit: entry.key.unit,
+                ),
+              ],
             ),
           );
         },
