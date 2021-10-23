@@ -48,25 +48,5 @@ class _ShoppingListState extends State<ShoppingList> {
       },
       itemCount: ingredients.length,
     );
-    // return ListView.builder(
-    //   itemCount: shoppingListIngredients.length,
-    //   itemBuilder: (context, index) {
-    //     return ListTile(
-    //       title: Text(shoppingListIngredients[index].name),
-    //       subtitle: Text(
-    //         '${shoppingListIngredients[index].amount}\ ${shoppingListIngredients[index].unit.name}',
-    //       ),
-    //       leading: Checkbox(
-    //         value: shoppingListIngredients[index].isChosen,
-    //         onChanged: (value) {
-    //           setState(() {
-    //             // shoppingListIngredients[index].isChosen =
-    //             !shoppingListIngredients[index].isChosen;
-    //           });
-    //         },
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }

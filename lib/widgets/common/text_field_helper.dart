@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 
 class TextFieldHelper {
@@ -21,7 +20,7 @@ class TextFieldHelper {
       border: border,
       focusedBorder: border,
       filled: true,
-      fillColor: ColorConstants.grey.withOpacity(0.3),
+      fillColor: Colors.white,
     );
   }
 
