@@ -9,7 +9,9 @@ import 'package:groceries_app/repositories/database_repository.dart';
 import 'package:groceries_app/widgets/app.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+@WidgetbookApp(name: 'Recipe App')
 Future<void> main() async {
   // TODO Put into different class
   await Hive.initFlutter();
@@ -22,17 +24,19 @@ Future<void> main() async {
   await Hive.openBox<Recipe>('recipes');
   await Hive.openBox<Ingredient>('ingredients');
 
-  runApp(MultiRepositoryProvider(
-    providers: [
-      RepositoryProvider(
-        create: (context) => DatabaseRepository<Recipe>(
-          'recipes',
+  runApp(
+    MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => DatabaseRepository<Recipe>(
+            'recipes',
+          ),
         ),
-      ),
-      RepositoryProvider(
-        create: (context) => DatabaseRepository<Ingredient>('ingredients'),
-      ),
-    ],
-    child: App(),
-  ));
+        RepositoryProvider(
+          create: (context) => DatabaseRepository<Ingredient>('ingredients'),
+        ),
+      ],
+      child: App(),
+    ),
+  );
 }

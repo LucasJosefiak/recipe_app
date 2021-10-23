@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'buttons/save_button.dart';
-
 class AddRecipe extends StatefulWidget {
   @override
   State<AddRecipe> createState() => _AddRecipeState();
@@ -68,9 +66,12 @@ class _AddRecipeState extends State<AddRecipe> {
                         title = value;
                       },
                     ),
-                    SaveButton(
-                      function: _saveForm,
-                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        _saveForm();
+                      },
+                      child: Text('Save'),
+                    )
                   ],
                 ),
               ),

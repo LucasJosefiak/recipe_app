@@ -5,6 +5,18 @@ import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:provider/provider.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+@WidgetbookStory(name: 'Default', type: RecipeInfo)
+Widget defaultStory(BuildContext context) {
+  return RecipeInfo(
+    recipe: Recipe(
+      identifier: '1',
+      title: 'Tomato Lasagna',
+      createdAt: DateTime.now(),
+    ),
+  );
+}
 
 class RecipeInfo extends StatelessWidget {
   final Recipe recipe;

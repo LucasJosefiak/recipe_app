@@ -13,7 +13,7 @@
             "name": "Widgetbook",
             "request": "launch",
             "type": "dart",
-            "program": "stories/main.dart"
+            "program": "lib/main.widgetbook.dart"
         },
         {
             "name": "recipe-app (profile mode)",

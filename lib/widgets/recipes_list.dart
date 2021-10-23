@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/screens/add_recipe_screen.dart';
-import 'package:groceries_app/widgets/buttons/custom_elevated_button.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
 import 'package:groceries_app/widgets/recipe_placeholder.dart';
 import 'package:provider/provider.dart';
@@ -45,18 +43,6 @@ class _RecipesListState extends State<RecipesList> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RecipePlaceholder(),
-                  SizedBox(height: 96),
-                  Elevated(
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => AddRecipeScreen(),
-                        ),
-                      );
-                    },
-                    text: 'Add new recipe',
-                  ),
                 ],
               );
   }
