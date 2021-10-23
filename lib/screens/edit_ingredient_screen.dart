@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
@@ -34,7 +33,7 @@ class EditIngredientScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(
-              FontAwesomeIcons.trash,
+              Icons.delete,
             ),
           )
         ],

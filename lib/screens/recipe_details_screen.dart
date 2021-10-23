@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/repositories/database_repository.dart';
+import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/ingredients_list.dart';
@@ -23,8 +22,7 @@ class RecipeDetailsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => RecipeCubit(
         recipe: recipe,
-        recipeRepository:
-            RepositoryProvider.of<DatabaseRepository<Recipe>>(context),
+        recipeRepository: RepositoryProvider.of<RecipeRepository>(context),
       ),
       child: BlocBuilder<RecipeCubit, RecipeState>(
         builder: (context, state) {
@@ -43,7 +41,7 @@ class RecipeDetailsScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   icon: Icon(
-                    FontAwesomeIcons.trash,
+                    Icons.delete,
                   ),
                 ),
               ],

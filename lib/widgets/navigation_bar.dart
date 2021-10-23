@@ -38,7 +38,9 @@ class _NavigationBarState extends State<NavigationBar> {
             label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(
+              Icons.shopping_cart,
+            ),
             label: 'Shopping List',
           ),
         ],

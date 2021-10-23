@@ -1,36 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/unit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UnitProvider with ChangeNotifier {
   List<Unit> units = [
     Unit(
-      name: 'Gram',
-      symbol: 'g',
-      fullSymbol: 'grams',
-      icon: FontAwesomeIcons.weightHanging,
-    ),
+        name: 'Gram',
+        symbol: 'g',
+        fullSymbol: 'grams',
+        icon: Icons.fitness_center),
     Unit(
       name: 'Volume',
       symbol: 'ml',
       fullSymbol: 'litre',
-      icon: FontAwesomeIcons.tint,
+      icon: Icons.water,
     ),
     Unit(
       name: 'Piece',
-      icon: FontAwesomeIcons.pizzaSlice,
+      icon: Icons.extension,
     ),
     Unit(
       name: 'Can',
-      icon: FontAwesomeIcons.wineBottle,
+      icon: Icons.liquor,
     ),
     Unit(
       name: 'Bottle',
-      icon: FontAwesomeIcons.wineBottle,
+      icon: Icons.liquor,
     ),
     Unit(
       name: 'Glass',
-      icon: FontAwesomeIcons.wineGlass,
+      icon: Icons.wine_bar,
     ),
   ];
 }

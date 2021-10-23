@@ -24,7 +24,6 @@ dependencies:
   hive: ^2.0.4
   hive_flutter: ^1.1.0
   google_fonts: ^2.1.0
-  font_awesome_flutter: ^9.1.0
   flutter_typeahead: ^3.2.1
   equatable: ^2.0.3
   flutter_bloc: ^7.3.0

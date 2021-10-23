@@ -22,20 +22,13 @@ class _RecipesListState extends State<RecipesList> {
             child: CircularProgressIndicator(),
           )
         : recipeList.isNotEmpty
-            ? Column(
-                children: [
-                  SizedBox(height: 8),
-                  Expanded(
-                    child: SeparatedListView(
-                      itemCount: recipeList.length,
-                      itemBuilder: (context, index) {
-                        return RecipeInfo(
-                          recipe: recipeList[index],
-                        );
-                      },
-                    ),
-                  ),
-                ],
+            ? SeparatedListView(
+                itemCount: recipeList.length,
+                itemBuilder: (context, index) {
+                  return RecipeInfo(
+                    recipe: recipeList[index],
+                  );
+                },
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,

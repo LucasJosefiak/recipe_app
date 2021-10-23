@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
@@ -49,6 +48,9 @@ class RecipeInfo extends StatelessWidget {
               child: Container(),
             ),
             IconButton(
+              iconSize: 20,
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
               onPressed: () {
                 Provider.of<ShoppingListProvider>(
                   context,
@@ -56,8 +58,11 @@ class RecipeInfo extends StatelessWidget {
                 ).addRecipe(recipe);
               },
               icon: Icon(
-                FontAwesomeIcons.cartPlus,
+                Icons.add_shopping_cart,
               ),
+            ),
+            SizedBox(
+              width: 8,
             )
           ],
         ),

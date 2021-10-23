@@ -15,7 +15,7 @@ class SeparatedListView extends StatelessWidget {
       itemBuilder: itemBuilder,
       separatorBuilder: (_, __) {
         return SizedBox(
-          height: 6,
+          height: 8,
         );
       },
       itemCount: itemCount,

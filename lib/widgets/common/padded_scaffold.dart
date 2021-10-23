@@ -15,7 +15,7 @@ class PaddedScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12),
         child: body,
       ),
       floatingActionButton: floatingActionButton,

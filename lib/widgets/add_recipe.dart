@@ -44,33 +44,32 @@ class _AddRecipeState extends State<AddRecipe> {
         ? Center(
             child: CircularProgressIndicator(),
           )
-        : Padding(
-            padding: const EdgeInsets.all(16),
-            child: Form(
-              key: _form,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    TextFieldHelper.buildTextField(
-                      label: 'recipe',
-                      validator: (value) {
-                        if (value != null && value.isEmpty) {
-                          return 'Please provide a value.';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        title = value;
-                      },
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _saveForm();
-                      },
-                      child: Text('Save'),
-                    )
-                  ],
-                ),
+        : Form(
+            key: _form,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  TextFieldHelper.buildTextField(
+                    label: 'name',
+                    hintText: 'potatoe soup',
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return 'Please provide a value.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      title = value;
+                    },
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _saveForm();
+                    },
+                    child: Text('Save'),
+                  )
+                ],
               ),
             ),
           );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/constants/colors.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TileIcon extends StatelessWidget {
   final IconData iconData;
@@ -16,7 +15,7 @@ class TileIcon extends StatelessWidget {
     return CircleAvatar(
       radius: this.size / 2 + 8,
       backgroundColor: ColorConstants.green,
-      child: FaIcon(
+      child: Icon(
         iconData,
         size: 20,
         color: Colors.white,
