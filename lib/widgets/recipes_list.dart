@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
+import 'package:groceries_app/widgets/common/separated_list_view.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
 import 'package:groceries_app/widgets/recipe_placeholder.dart';
 import 'package:provider/provider.dart';
@@ -25,10 +26,7 @@ class _RecipesListState extends State<RecipesList> {
                 children: [
                   SizedBox(height: 8),
                   Expanded(
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) {
-                        return SizedBox(height: 8);
-                      },
+                    child: SeparatedListView(
                       itemCount: recipeList.length,
                       itemBuilder: (context, index) {
                         return RecipeInfo(
