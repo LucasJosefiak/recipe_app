@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/providers/recipes_provider.dart';
+import 'package:groceries_app/widgets/common/text_field_helper.dart';
 import 'package:provider/provider.dart';
 
 class AddRecipe extends StatefulWidget {
@@ -50,17 +51,13 @@ class _AddRecipeState extends State<AddRecipe> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Recipe',
-                      ),
-                      textInputAction: TextInputAction.next,
+                    TextFieldHelper.buildTextField(
+                      label: 'recipe',
                       validator: (value) {
                         if (value != null && value.isEmpty) {
                           return 'Please provide a value.';
                         }
                         return null;
-                        // null means no error (coorect Form)
                       },
                       onSaved: (value) {
                         title = value;

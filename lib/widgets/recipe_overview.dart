@@ -41,15 +41,6 @@ class _RecipeOverviewState extends State<RecipeOverview> {
                   title: value,
                 ),
               );
-              // TODO delete
-              // Provider.of<RecipesProvider>(
-              //   context,
-              //   listen: false,
-              // ).updateRecipe(
-              //   widget.recipe.copyWith(
-              //     title: value,
-              //   ),
-              // );
             },
             controller: controller,
             cursorColor: ColorConstants.green,

@@ -11,6 +11,7 @@ import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/ingredients_provider.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
+import 'package:groceries_app/widgets/common/text_field_helper.dart';
 import 'package:groceries_app/widgets/ingredient_info.dart';
 import 'package:groceries_app/widgets/unit_info.dart';
 import 'package:provider/provider.dart';
@@ -120,16 +121,8 @@ class _AddIngredientState extends State<AddIngredient> {
                   SizedBox(
                     height: 16,
                   ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: 'amount',
-                      enabledBorder: border,
-                      border: border,
-                      focusedBorder: border,
-                      filled: true,
-                      fillColor: ColorConstants.grey.withOpacity(0.3),
-                    ),
+                  TextFieldHelper.buildTextField(
+                    hintText: 'amount',
                     onChanged: (amount) {
                       addIngredientProvider.amountChanged(amount);
                     },

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/unit_provider.dart';
+import 'package:groceries_app/widgets/common/text_field_helper.dart';
 import 'package:groceries_app/widgets/ingredient_overview.dart';
-import 'package:provider/provider.dart';
 
 class EditIngredient extends StatefulWidget {
   final IngredientAmount ingredientAmount;
@@ -25,7 +23,6 @@ class EditIngredient extends StatefulWidget {
 class _EditIngredientState extends State<EditIngredient> {
   @override
   Widget build(BuildContext context) {
-    var units = Provider.of<UnitProvider>(context).units;
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
@@ -35,26 +32,12 @@ class _EditIngredientState extends State<EditIngredient> {
           SizedBox(
             height: 20,
           ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Amount',
-            ),
+          TextFieldHelper.buildTextField(
             controller: TextEditingController(
-                text: '${widget.ingredientAmount.amount}'),
-            textInputAction: TextInputAction.next,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            keyboardType: TextInputType.number,
-            validator: (value) {
-              if (value != null &&
-                  value.isEmpty &&
-                  int.tryParse(value) != null) {
-                return 'Please provide a value.';
-              }
-              return null;
-              // null means no error (coorect Form)
-            },
+              text: widget.ingredientAmount.amount.toString(),
+            ),
+            hintText: 'e.g. 500',
+            label: 'amount',
             onChanged: (value) {
               var intValue = int.tryParse(value);
               if (intValue != null) {
@@ -65,6 +48,14 @@ class _EditIngredientState extends State<EditIngredient> {
                   ),
                 );
               }
+            },
+            validator: (value) {
+              if (value != null &&
+                  value.isEmpty &&
+                  int.tryParse(value) != null) {
+                return 'Please provide a value.';
+              }
+              return null;
             },
           ),
         ],
