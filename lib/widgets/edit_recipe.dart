@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/widgets/error_dialog.dart';
-import 'package:provider/provider.dart';
 
 class EditRecipe extends StatefulWidget {
   final Recipe recipe;
@@ -27,34 +24,6 @@ class _EditRecipeState extends State<EditRecipe> {
       text: title,
     );
     super.initState();
-  }
-
-  Future<void> _saveForm() async {
-    final isValid = _form.currentState!.validate();
-    if (!isValid) {
-      return;
-      //if the Form is not valid, the form will not be safed. Code will then
-      //stop after return and thus before the form could be saved
-    }
-    _form.currentState!.save();
-    setState(() {
-      _isLoading = true;
-    });
-    try {
-      await Provider.of<RecipesProvider>(context, listen: false).updateRecipe(
-        widget.recipe.copyWith(title: title!),
-      );
-    } catch (error) {
-      await showDialog<Null>(
-        context: context,
-        builder: (ctx) => ErrorDialog(),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
-    }
   }
 
   @override

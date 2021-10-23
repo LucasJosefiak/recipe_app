@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
@@ -10,9 +9,7 @@ import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/providers/ingredients_provider.dart';
 import 'package:groceries_app/providers/unit_provider.dart';
-import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/common/text_field_helper.dart';
-import 'package:groceries_app/widgets/ingredient_info.dart';
 import 'package:groceries_app/widgets/ingredient_prediction.dart';
 import 'package:groceries_app/widgets/unit_info.dart';
 import 'package:provider/provider.dart';
@@ -38,12 +35,6 @@ class _AddIngredientState extends State<AddIngredient> {
   Widget build(BuildContext context) {
     var addIngredientProvider = BlocProvider.of<AddIngredientCubit>(context);
 
-    final border = OutlineInputBorder(
-      borderSide: BorderSide(
-        color: Colors.transparent,
-      ),
-      borderRadius: Radii.textFieldRadius,
-    );
     var units = Provider.of<UnitProvider>(context).units;
 
     return BlocConsumer<AddIngredientCubit, AddIngredientState>(
