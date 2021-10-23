@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/shopping_list.dart';
 import 'package:provider/provider.dart';
 
 class ShoppingListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PaddedScaffold(
       appBar: AppBar(
         title: Text('Shopping List'),
       ),

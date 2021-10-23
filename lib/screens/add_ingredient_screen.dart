@@ -4,6 +4,7 @@ import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/repositories/ingredient_repository.dart';
 import 'package:groceries_app/widgets/add_ingredient.dart';
+import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 
 class AddIngredientScreen extends StatelessWidget {
   final Recipe recipe;
@@ -15,7 +16,7 @@ class AddIngredientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PaddedScaffold(
       appBar: AppBar(
         title: Text('Add Ingredient'),
       ),
