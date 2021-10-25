@@ -3,10 +3,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/cubit/recipes_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipe_detail.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+@WidgetbookStory(name: 'Default', type: RecipeDetailsScreen)
+Widget recipeDetailsScreenStory(BuildContext context) {
+  return MultiRepositoryProvider(
+    providers: [
+      RepositoryProvider(
+        create: (context) => RecipeRepository(),
+      )
+    ],
+    child: RecipeDetailsScreen(
+      recipe: getTestRecipe(),
+    ),
+  );
+}
 
 class RecipeDetailsScreen extends StatelessWidget {
   final Recipe recipe;

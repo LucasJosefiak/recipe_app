@@ -63,6 +63,9 @@ class _AddRecipeState extends State<AddRecipe> {
                       title = value;
                     },
                   ),
+                  SizedBox(
+                    height: 8,
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       _saveForm();

@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/shopping_list_cubit.dart';
+import 'package:groceries_app/repositories/shopping_list_repository.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/shopping_list.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+@WidgetbookStory(name: 'Default', type: ShoppingListScreen)
+Widget shoppingListScreen(BuildContext context) {
+  return MultiRepositoryProvider(
+    providers: [
+      RepositoryProvider(
+        create: (context) => ShoppingListRepository(),
+      )
+    ],
+    child: MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ShoppingListCubit(
+            shoppingListRepository:
+                RepositoryProvider.of<ShoppingListRepository>(context),
+          ),
+        ),
+      ],
+      child: ShoppingListScreen(),
+    ),
+  );
+}
 
 class ShoppingListScreen extends StatelessWidget {
   @override
