@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-class IngredientOverview extends StatefulWidget {
+@WidgetbookStory(name: 'Default', type: IngredientOverview)
+Widget ingredientOverviewStory(BuildContext context) {
+  return Column(
+    children: [
+      IngredientOverview(
+        ingredient: getTestIngredient(),
+      ),
+    ],
+  );
+}
+
+class IngredientOverview extends StatelessWidget {
   final Ingredient ingredient;
   const IngredientOverview({
     Key? key,
     required this.ingredient,
   }) : super(key: key);
-
-  @override
-  State<IngredientOverview> createState() => _IngredientOverviewState();
-}
-
-class _IngredientOverviewState extends State<IngredientOverview> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class _IngredientOverviewState extends State<IngredientOverview> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.ingredient.name,
+                ingredient.name,
                 style: Theme.of(context)
                     .textTheme
                     .headline5!
@@ -38,7 +41,7 @@ class _IngredientOverviewState extends State<IngredientOverview> {
                 height: 16,
               ),
               Text(
-                'Unit: ${widget.ingredient.unit.fullSymbol}',
+                'Unit: ${ingredient.unit.fullSymbol}',
               )
             ],
           ),
