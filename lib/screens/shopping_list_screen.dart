@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/shopping_list_cubit.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/shopping_list.dart';
-import 'package:provider/provider.dart';
 
 class ShoppingListScreen extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class ShoppingListScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Provider.of<ShoppingListProvider>(
+          BlocProvider.of<ShoppingListCubit>(
             context,
             listen: false,
           ).clearCart();

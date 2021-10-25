@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/shopping_list_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/shopping_list_provider.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
-import 'package:provider/provider.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @WidgetbookStory(name: 'Default', type: RecipeInfo)
@@ -52,7 +52,7 @@ class RecipeInfo extends StatelessWidget {
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
               onPressed: () {
-                Provider.of<ShoppingListProvider>(
+                BlocProvider.of<ShoppingListCubit>(
                   context,
                   listen: false,
                 ).addRecipe(recipe);

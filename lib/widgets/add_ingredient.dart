@@ -3,16 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
+import 'package:groceries_app/cubit/ingredients_cubit.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
+import 'package:groceries_app/cubit/unit_cubit.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
-import 'package:groceries_app/providers/ingredients_provider.dart';
-import 'package:groceries_app/providers/unit_provider.dart';
 import 'package:groceries_app/widgets/common/text_field_helper.dart';
 import 'package:groceries_app/widgets/ingredient_prediction.dart';
 import 'package:groceries_app/widgets/unit_info.dart';
-import 'package:provider/provider.dart';
 
 class AddIngredient extends StatefulWidget {
   final Recipe recipe;
@@ -35,7 +34,7 @@ class _AddIngredientState extends State<AddIngredient> {
   Widget build(BuildContext context) {
     var addIngredientProvider = BlocProvider.of<AddIngredientCubit>(context);
 
-    var units = Provider.of<UnitProvider>(context).units;
+    var units = BlocProvider.of<UnitCubit>(context).state.units;
 
     return BlocConsumer<AddIngredientCubit, AddIngredientState>(
       listenWhen: (oldState, newState) =>
@@ -74,10 +73,10 @@ class _AddIngredientState extends State<AddIngredient> {
                   },
                   suggestionsCallback: (String pattern) {
                     addIngredientProvider.nameChanged(pattern);
-                    return Provider.of<IngredientsProvider>(
+                    return BlocProvider.of<IngredientsCubit>(
                       context,
                       listen: false,
-                    ).ingredients.where(
+                    ).state.ingredients.where(
                           (element) => element.name.contains(pattern),
                         );
                   },
@@ -126,7 +125,7 @@ class _AddIngredientState extends State<AddIngredient> {
                   onPressed: () {
                     // TODO this is a bit scetchy
                     addIngredientProvider.submit();
-                    var ingredient = Provider.of<IngredientsProvider>(
+                    var ingredient = BlocProvider.of<IngredientsCubit>(
                       context,
                       listen: false,
                     ).addIngredient(

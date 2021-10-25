@@ -25,7 +25,7 @@ class RecipesCubit extends Cubit<RecipesState> {
   final IdService idService;
   final TimeService timeService;
 
-  Future<void> loadRecipes() async {
+  Future<void> load() async {
     emit(
       state.copyWith(
         loadingState: LoadingState.loading,
@@ -47,9 +47,10 @@ class RecipesCubit extends Cubit<RecipesState> {
   Future<void> addRecipe(String title) async {
     _addRecipe(
       Recipe(
-          identifier: idService.getId(),
-          title: title,
-          createdAt: timeService.getNow()),
+        identifier: idService.getId(),
+        title: title,
+        createdAt: timeService.getNow(),
+      ),
     );
   }
 

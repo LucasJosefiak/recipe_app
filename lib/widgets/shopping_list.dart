@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/providers/shopping_list_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/shopping_list_cubit.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/common/separated_list_view.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:groceries_app/widgets/tile_unit.dart';
-import 'package:provider/provider.dart';
 
 class ShoppingList extends StatefulWidget {
   @override
@@ -14,10 +14,10 @@ class ShoppingList extends StatefulWidget {
 class _ShoppingListState extends State<ShoppingList> {
   @override
   Widget build(BuildContext context) {
-    final ingredients = Provider.of<ShoppingListProvider>(
+    final ingredients = BlocProvider.of<ShoppingListCubit>(
       context,
       listen: true,
-    ).ingredients.entries.toList();
+    ).state.ingredients.entries.toList();
     return SeparatedListView(
       itemBuilder: (context, index) {
         var entry = ingredients[index];

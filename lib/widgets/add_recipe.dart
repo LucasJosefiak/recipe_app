@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/recipes_cubit.dart';
 import 'package:groceries_app/widgets/common/text_field_helper.dart';
-import 'package:provider/provider.dart';
 
 class AddRecipe extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _AddRecipeState extends State<AddRecipe> {
       _isLoading = true;
     });
 
-    await Provider.of<RecipesProvider>(
+    await BlocProvider.of<RecipesCubit>(
       context,
       listen: false,
     ).addRecipe(title!);

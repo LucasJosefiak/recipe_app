@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:groceries_app/models/unit.dart';
+part of 'unit_cubit.dart';
 
-class UnitProvider with ChangeNotifier {
-  List<Unit> units = [
+class UnitState extends Equatable {
+  final List<Unit> units = [
     Unit(
         name: 'Gram',
         symbol: 'g',
@@ -31,4 +30,11 @@ class UnitProvider with ChangeNotifier {
       icon: Icons.wine_bar,
     ),
   ];
+
+  UnitState();
+
+  @override
+  List<Object> get props => [
+        units,
+      ];
 }
