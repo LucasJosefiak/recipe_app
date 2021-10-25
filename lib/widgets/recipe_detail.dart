@@ -1,37 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/widgets/common/separated_list_view.dart';
 import 'package:groceries_app/widgets/ingredient_amount_info.dart';
 import 'package:groceries_app/widgets/recipe_overview.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-// TODO rename required
-class IngredientsList extends StatefulWidget {
+@WidgetbookStory(name: 'Default', type: RecipeDetail)
+Widget recipeDetailStory(BuildContext context) {
+  return RecipeDetail(
+    recipe: getTestRecipe(),
+  );
+}
+
+class RecipeDetail extends StatelessWidget {
   final Recipe recipe;
-
-  const IngredientsList({
+  const RecipeDetail({
     Key? key,
     required this.recipe,
   }) : super(key: key);
-  @override
-  _IngredientsListState createState() => _IngredientsListState();
-}
 
-class _IngredientsListState extends State<IngredientsList> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        RecipeOverview(recipe: widget.recipe),
+        RecipeOverview(recipe: recipe),
         SizedBox(height: 8),
         Expanded(
           child: SeparatedListView(
-            itemCount: widget.recipe.ingredients.length,
+            itemCount: recipe.ingredients.length,
             itemBuilder: (context, index) {
               IngredientAmount ingredient =
-                  widget.recipe.ingredients.values.elementAt(index);
+                  recipe.ingredients.values.elementAt(index);
               return IngredientAmountInfo(
-                recipe: widget.recipe,
+                recipe: recipe,
                 ingredientAmount: ingredient,
               );
             },

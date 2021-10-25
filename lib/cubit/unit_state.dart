@@ -3,10 +3,11 @@ part of 'unit_cubit.dart';
 class UnitState extends Equatable {
   final List<Unit> units = [
     Unit(
-        name: 'Gram',
-        symbol: 'g',
-        fullSymbol: 'grams',
-        icon: Icons.fitness_center),
+      name: 'Gram',
+      symbol: 'g',
+      fullSymbol: 'grams',
+      icon: Icons.fitness_center,
+    ),
     Unit(
       name: 'Volume',
       symbol: 'ml',

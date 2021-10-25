@@ -9,12 +9,16 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @WidgetbookStory(name: 'Default', type: RecipeInfo)
 Widget defaultStory(BuildContext context) {
-  return RecipeInfo(
-    recipe: Recipe(
-      identifier: '1',
-      title: 'Tomato Lasagna',
-      createdAt: DateTime.now(),
-    ),
+  return Column(
+    children: [
+      RecipeInfo(
+        recipe: Recipe(
+          identifier: '1',
+          title: 'Tomato Lasagna',
+          createdAt: DateTime.now(),
+        ),
+      ),
+    ],
   );
 }
 
@@ -27,44 +31,46 @@ class RecipeInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => RecipeDetailsScreen(
-              recipe: recipe,
-            ),
-          ),
-        );
-      },
-      child: PaddedCard(
-        child: Row(
-          children: [
-            TileTitle(
-              title: recipe.title,
-            ),
-            Expanded(
-              child: Container(),
-            ),
-            IconButton(
-              iconSize: 20,
-              padding: EdgeInsets.zero,
-              constraints: BoxConstraints(),
-              onPressed: () {
-                BlocProvider.of<ShoppingListCubit>(
-                  context,
-                  listen: false,
-                ).addRecipe(recipe);
-              },
-              icon: Icon(
-                Icons.add_shopping_cart,
+    return SizedBox(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RecipeDetailsScreen(
+                recipe: recipe,
               ),
             ),
-            SizedBox(
-              width: 8,
-            )
-          ],
+          );
+        },
+        child: PaddedCard(
+          child: Row(
+            children: [
+              TileTitle(
+                title: recipe.title,
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              IconButton(
+                iconSize: 20,
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(),
+                onPressed: () {
+                  BlocProvider.of<ShoppingListCubit>(
+                    context,
+                    listen: false,
+                  ).addRecipe(recipe);
+                },
+                icon: Icon(
+                  Icons.add_shopping_cart,
+                ),
+              ),
+              SizedBox(
+                width: 8,
+              )
+            ],
+          ),
         ),
       ),
     );

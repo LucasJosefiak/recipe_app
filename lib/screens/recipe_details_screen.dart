@@ -6,7 +6,7 @@ import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
-import 'package:groceries_app/widgets/ingredients_list.dart';
+import 'package:groceries_app/widgets/recipe_detail.dart';
 
 class RecipeDetailsScreen extends StatelessWidget {
   final Recipe recipe;
@@ -25,6 +25,7 @@ class RecipeDetailsScreen extends StatelessWidget {
       ),
       child: BlocBuilder<RecipeCubit, RecipeState>(
         builder: (context, state) {
+          var recipe = state.recipe;
           return PaddedScaffold(
             appBar: AppBar(
               title: Text(
@@ -66,7 +67,9 @@ class RecipeDetailsScreen extends StatelessWidget {
                 Icons.add,
               ),
             ),
-            body: IngredientsList(recipe: state.recipe),
+            body: RecipeDetail(
+              recipe: recipe,
+            ),
           );
         },
       ),
