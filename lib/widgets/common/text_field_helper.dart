@@ -9,21 +9,6 @@ class TextFieldHelper {
     borderRadius: Radii.textFieldRadius,
   );
 
-  static InputDecoration getInputDecoration({
-    String? hintText,
-    String? label,
-  }) {
-    return InputDecoration(
-      hintText: hintText,
-      label: label == null ? null : Text(label),
-      enabledBorder: border,
-      border: border,
-      focusedBorder: border,
-      filled: true,
-      fillColor: Colors.white,
-    );
-  }
-
   static Widget buildTextField({
     TextEditingController? controller,
     void Function(String)? onChanged,
@@ -35,7 +20,10 @@ class TextFieldHelper {
     return TextFormField(
       controller: controller,
       keyboardType: TextInputType.number,
-      decoration: getInputDecoration(hintText: hintText, label: label),
+      decoration: InputDecoration(
+        hintText: hintText,
+        label: label == null ? null : Text(label),
+      ),
       onChanged: (value) => onChanged?.call(value),
       validator: validator == null ? null : (value) => validator(value),
       onSaved: (value) => onSaved?.call(value),

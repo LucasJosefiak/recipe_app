@@ -14,7 +14,9 @@ class TileIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: this.size / 2 + 8,
-      backgroundColor: ColorConstants.green,
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? ColorConstants.green
+          : ColorConstants.darkGreen,
       child: Icon(
         iconData,
         size: 20,

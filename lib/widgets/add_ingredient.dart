@@ -55,7 +55,7 @@ class _AddIngredientState extends State<AddIngredient> {
                   ),
                   textFieldConfiguration: TextFieldConfiguration(
                     controller: controller,
-                    decoration: TextFieldHelper.getInputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'ingredient name',
                     ),
                   ),

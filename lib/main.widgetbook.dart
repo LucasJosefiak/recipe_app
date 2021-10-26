@@ -11,6 +11,7 @@ import 'package:groceries_app/constants/radii.dart';
 import 'dart:core';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:groceries_app/constants/colors.dart';
+import 'package:groceries_app/themes/dark_theme.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/repositories/ingredient_repository.dart';
 import 'package:groceries_app/cubit/unit_cubit.dart';
@@ -22,8 +23,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
 import 'package:groceries_app/screens/recipes_screen.dart';
 import 'package:groceries_app/cubit/recipes_cubit.dart';
-import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/screens/add_recipe_screen.dart';
+import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/repositories/memory_repository.dart';
 import 'package:groceries_app/widgets/recipes_list.dart';
 import 'package:groceries_app/widgets/add_recipe.dart';
@@ -62,7 +63,7 @@ class HotReload extends StatelessWidget {
     return Widgetbook(
       appInfo: AppInfo(name: 'Recipe App'),
       lightTheme: getLightTheme(),
-      darkTheme: null,
+      darkTheme: getDarkTheme(),
       categories: [
         Category(
           name: 'stories',

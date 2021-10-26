@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:groceries_app/constants/borders.dart';
 import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
@@ -32,6 +33,13 @@ ThemeData getLightTheme() => ThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: Borders.inputBorder,
+        focusedBorder: Borders.inputBorder,
+        enabledBorder: Borders.inputBorder,
+        filled: true,
+        fillColor: Colors.white,
       ),
       cardTheme: CardTheme(
         elevation: 0,

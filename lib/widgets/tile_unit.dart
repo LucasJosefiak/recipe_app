@@ -16,9 +16,10 @@ class TileUnit extends StatelessWidget {
         Container(
           width: 30,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: ColorConstants.grey,
-          ),
+              borderRadius: BorderRadius.circular(4),
+              color: Theme.of(context).brightness == Brightness.light
+                  ? ColorConstants.grey
+                  : ColorConstants.darkGreen),
           child: Center(
             child: Text(
               unit.symbol,
