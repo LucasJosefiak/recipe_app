@@ -13,7 +13,13 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookApp(name: 'Recipe App')
+@WidgetbookApp(
+  name: 'Recipe App',
+  devices: [
+    Apple.iPhone11,
+    Samsung.s21ultra,
+  ],
+)
 Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(RecipeAdapter());
