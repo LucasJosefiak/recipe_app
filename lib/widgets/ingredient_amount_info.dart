@@ -11,13 +11,25 @@ import 'package:groceries_app/widgets/tile.dart';
 import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: IngredientAmountInfo)
+@WidgetbookStory(name: 'Short title', type: IngredientAmountInfo)
 Widget ingredientAmountInfoStory(BuildContext context) {
   return Column(
     children: [
       IngredientAmountInfo(
         recipe: getTestRecipe(),
         ingredientAmount: getTestIngredientAmount(),
+      ),
+    ],
+  );
+}
+
+@WidgetbookStory(name: 'Long title', type: IngredientAmountInfo)
+Widget ingredientAmountInfoAlternativeStory(BuildContext context) {
+  return Column(
+    children: [
+      IngredientAmountInfo(
+        recipe: getTestRecipe(),
+        ingredientAmount: getTestIngredientAmountAlternative(),
       ),
     ],
   );

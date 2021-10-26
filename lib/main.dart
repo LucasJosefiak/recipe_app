@@ -15,7 +15,6 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @WidgetbookApp(name: 'Recipe App')
 Future<void> main() async {
-  // TODO Put into different class
   await Hive.initFlutter();
   Hive.registerAdapter(RecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
