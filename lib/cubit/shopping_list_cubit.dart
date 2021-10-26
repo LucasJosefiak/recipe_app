@@ -66,7 +66,7 @@ class ShoppingListCubit extends Cubit<ShoppingListState> {
     state.ingredients.remove(ingredient);
   }
 
-  void clearCart() {
-    shoppingListRepository.deleteAll();
+  Future<void> clearCart() async {
+    await shoppingListRepository.deleteAll();
   }
 }

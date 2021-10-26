@@ -35,8 +35,8 @@ class DatabaseRepository<Item extends Model> extends Repository<Item> {
   }
 
   @override
-  void deleteAll() {
-    box.clear();
+  Future<void> deleteAll() async {
+    await box.clear();
     _emitChangesToStream();
   }
 
