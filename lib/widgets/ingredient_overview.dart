@@ -41,7 +41,7 @@ class IngredientOverview extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                'Unit: ${ingredient.unit.fullSymbol}',
+                'Unit: ${ingredient.unit.name}',
               )
             ],
           ),
