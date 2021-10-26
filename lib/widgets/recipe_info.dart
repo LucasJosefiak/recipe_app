@@ -1,60 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/shopping_list_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/screens/edit_ingredient_screen.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
-import 'package:groceries_app/widgets/buttons/custom_icon_button.dart';
-import 'package:provider/src/provider.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
+import 'package:groceries_app/widgets/tile_title.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-import 'custom_card.dart';
+@WidgetbookStory(name: 'Default', type: RecipeInfo)
+Widget defaultStory(BuildContext context) {
+  return Column(
+    children: [
+      RecipeInfo(
+        recipe: Recipe(
+          identifier: '1',
+          title: 'Tomato Lasagna',
+          createdAt: DateTime.now(),
+        ),
+      ),
+    ],
+  );
+}
 
 class RecipeInfo extends StatelessWidget {
   final Recipe recipe;
-  const RecipeInfo({Key? key, required this.recipe}) : super(key: key);
+  const RecipeInfo({
+    Key? key,
+    required this.recipe,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, RecipeDetailsScreen.routeName,
-            arguments: recipe);
-      },
-      child: CustomCard(
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                recipe.title,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
+    return SizedBox(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RecipeDetailsScreen(
+                recipe: recipe,
               ),
             ),
-            SizedBox(
-              width: 16,
-            ),
-            CustomIconButton(
-              function: () {
-                var recipesProvider = context.read<RecipesProvider>();
-                //context.read<T>() returns T without listening to it
-                recipesProvider.deleteRecipe(recipe.id!);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Recipe was deleted!'),
-                    duration: Duration(seconds: 3),
-                    action: SnackBarAction(
-                      label: 'UNDO',
-                      onPressed: () {
-                        recipesProvider.undoDelete();
-                      },
-                    ),
-                  ),
-                );
-              },
-              icon: Icon(Icons.delete),
-            ),
-          ],
+          );
+        },
+        child: PaddedCard(
+          child: Row(
+            children: [
+              TileTitle(
+                title: recipe.title,
+              ),
+              Expanded(
+                child: Container(),
+              ),
+              IconButton(
+                iconSize: 20,
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(),
+                onPressed: () {
+                  BlocProvider.of<ShoppingListCubit>(
+                    context,
+                    listen: false,
+                  ).addRecipe(recipe);
+                },
+                icon: Icon(
+                  Icons.add_shopping_cart,
+                ),
+              ),
+              SizedBox(
+                width: 8,
+              )
+            ],
+          ),
         ),
       ),
     );

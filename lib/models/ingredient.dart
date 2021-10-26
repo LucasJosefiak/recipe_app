@@ -1,21 +1,42 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
+
+import 'package:groceries_app/models/model.dart';
 import 'package:groceries_app/models/unit.dart';
 
-part 'ingredient.freezed.dart';
 part 'ingredient.g.dart';
 
-@freezed
-class Ingredient with _$Ingredient {
-  factory Ingredient({
-    String? id,
-    required int amount,
-    required Unit unit,
-    required String name,
-    required DateTime createdAt,
-    @Default(false) bool isChosen,
-    @Default(0) int timesChosen,
-  }) = _Ingredient;
+@HiveType(typeId: 1)
+class Ingredient extends Model {
+  @HiveField(0)
+  final String identifier;
+  @HiveField(1)
+  final Unit unit;
+  @HiveField(2)
+  final String name;
+  @HiveField(3)
+  final DateTime createdAt;
 
-  factory Ingredient.fromJson(Map<String, dynamic> json) =>
-      _$IngredientFromJson(json);
+  Ingredient({
+    required this.identifier,
+    required this.unit,
+    required this.name,
+    required this.createdAt,
+  });
+
+  @override
+  String get id => identifier;
+
+  Ingredient copyWith({
+    String? identifier,
+    Unit? unit,
+    String? name,
+    DateTime? createdAt,
+  }) {
+    return Ingredient(
+      identifier: identifier ?? this.identifier,
+      unit: unit ?? this.unit,
+      name: name ?? this.name,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
 }

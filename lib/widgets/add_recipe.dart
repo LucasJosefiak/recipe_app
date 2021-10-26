@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/providers/recipes_provider.dart';
-import 'package:groceries_app/widgets/buttons/custom_elevated_button.dart';
-import 'package:groceries_app/widgets/error_dialog.dart';
-import 'package:provider/provider.dart';
-
-import 'buttons/save_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groceries_app/cubit/recipes_cubit.dart';
+import 'package:groceries_app/widgets/common/text_field_helper.dart';
 
 class AddRecipe extends StatefulWidget {
   @override
@@ -30,24 +26,16 @@ class _AddRecipeState extends State<AddRecipe> {
     setState(() {
       _isLoading = true;
     });
-    try {
-      await Provider.of<RecipesProvider>(context, listen: false).addRecipe(
-        Recipe(
-          title: title!,
-          createdAt: DateTime.now(),
-        ),
-      );
-    } catch (error) {
-      await showDialog<Null>(
-        context: context,
-        builder: (ctx) => ErrorDialog(),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
-    }
+
+    await BlocProvider.of<RecipesCubit>(
+      context,
+      listen: false,
+    ).addRecipe(title!);
+
+    setState(() {
+      _isLoading = false;
+    });
+    Navigator.of(context).pop();
   }
 
   @override
@@ -56,34 +44,35 @@ class _AddRecipeState extends State<AddRecipe> {
         ? Center(
             child: CircularProgressIndicator(),
           )
-        : Padding(
-            padding: const EdgeInsets.all(16),
-            child: Form(
-              key: _form,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Recipe',
-                      ),
-                      textInputAction: TextInputAction.next,
-                      validator: (value) {
-                        if (value != null && value.isEmpty) {
-                          return 'Please provide a value.';
-                        }
-                        return null;
-                        // null means no error (coorect Form)
-                      },
-                      onSaved: (value) {
-                        title = value;
-                      },
-                    ),
-                    SaveButton(
-                      function: _saveForm,
-                    ),
-                  ],
-                ),
+        : Form(
+            key: _form,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  TextFieldHelper.buildTextField(
+                    label: 'name',
+                    hintText: 'potatoe soup',
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return 'Please provide a value.';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      title = value;
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _saveForm();
+                    },
+                    child: Text('Save'),
+                  )
+                ],
               ),
             ),
           );

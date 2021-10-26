@@ -31,9 +31,6 @@ class _NavigationBarState extends State<NavigationBar> {
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
-        backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Theme.of(context).colorScheme.secondary,
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(
@@ -41,7 +38,9 @@ class _NavigationBarState extends State<NavigationBar> {
             label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(
+              Icons.shopping_cart,
+            ),
             label: 'Shopping List',
           ),
         ],

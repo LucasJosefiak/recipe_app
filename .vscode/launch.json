@@ -7,13 +7,14 @@
         {
             "name": "recipe-app",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "lib/main.dart"
         },
         {
             "name": "Widgetbook",
             "request": "launch",
             "type": "dart",
-            "program": "stories/main.dart"
+            "program": "lib/main.widgetbook.dart"
         },
         {
             "name": "recipe-app (profile mode)",
