@@ -29,6 +29,9 @@ ThemeData getDarkTheme() {
         ),
       ),
     ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+    ),
     scaffoldBackgroundColor: ColorConstants.darkScaffold,
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
@@ -42,6 +45,9 @@ ThemeData getDarkTheme() {
       filled: true,
       fillColor: ColorConstants.darkGrey,
       hintStyle: TextStyle(
+        color: Colors.grey[500],
+      ),
+      labelStyle: TextStyle(
         color: Colors.grey[500],
       ),
     ),
