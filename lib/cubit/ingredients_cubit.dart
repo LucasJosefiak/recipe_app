@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/loading_state.dart';
 import 'package:groceries_app/models/unit.dart';
-import 'package:groceries_app/repositories/ingredient_repository.dart';
+import 'package:groceries_app/repositories/repository.dart';
 import 'package:groceries_app/services/id_service.dart';
 import 'package:groceries_app/services/time_service.dart';
 
@@ -20,7 +20,7 @@ class IngredientsCubit extends Cubit<IngredientsState> {
           IngredientsState.uninitialized(),
         );
 
-  final IngredientRepository ingredientRepository;
+  final Repository<Ingredient> ingredientRepository;
   final IdService idService;
   final TimeService timeService;
 
