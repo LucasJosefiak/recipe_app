@@ -4,7 +4,7 @@ import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: IngredientOverview)
+@WidgetbookUseCase(name: 'Default', type: IngredientOverview)
 Widget ingredientOverviewStory(BuildContext context) {
   return Column(
     children: [

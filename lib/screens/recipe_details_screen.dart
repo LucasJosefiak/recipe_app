@@ -10,7 +10,7 @@ import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipe_detail.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: RecipeDetailsScreen)
+@WidgetbookUseCase(name: 'Default', type: RecipeDetailsScreen)
 Widget recipeDetailsScreenStory(BuildContext context) {
   return MultiRepositoryProvider(
     providers: [

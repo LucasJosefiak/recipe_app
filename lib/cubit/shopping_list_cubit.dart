@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/shopping_list_ingredient.dart';
 import 'package:groceries_app/repositories/shopping_list_repository.dart';
 
 part 'shopping_list_state.dart';
@@ -23,10 +24,10 @@ class ShoppingListCubit extends Cubit<ShoppingListState> {
       (elements) {
         emit(
           ShoppingListState(
-            ingredients: Map<Ingredient, int>.fromIterable(
+            ingredients: Map<Ingredient, ShoppingListIngredient>.fromIterable(
               elements,
               key: (k) => k.ingredient,
-              value: (v) => v.amount,
+              value: (v) => v,
             ),
           ),
         );
@@ -42,22 +43,27 @@ class ShoppingListCubit extends Cubit<ShoppingListState> {
 
   void _addIngredient(IngredientAmount ingredientAmount) {
     var ingredients = state.ingredients;
-    if (!ingredients.containsKey(ingredientAmount)) {
-      ingredients.putIfAbsent(
-        ingredientAmount.ingredient,
-        () => 0,
-      );
 
-      shoppingListRepository.addItem(ingredientAmount);
+    late ShoppingListIngredient shoppingListIngredient;
+    if (!ingredients.containsKey(ingredientAmount.ingredient)) {
+      shoppingListIngredient = ShoppingListIngredient(
+        ingredient: ingredientAmount.ingredient,
+        amount: 0,
+        isChecked: false,
+      );
+      ingredients.putIfAbsent(
+          ingredientAmount.ingredient, () => shoppingListIngredient);
+
+      shoppingListRepository.addItem(shoppingListIngredient);
     }
 
-    ingredients[ingredientAmount.ingredient] =
-        ingredients[ingredientAmount.ingredient]! + ingredientAmount.amount;
+    shoppingListIngredient = ingredients[ingredientAmount.ingredient]!;
+    ingredients[ingredientAmount.ingredient] = shoppingListIngredient.copyWith(
+      amount: shoppingListIngredient.amount + ingredientAmount.amount,
+    );
 
     shoppingListRepository.updateItem(
-      ingredientAmount.copyWith(
-        amount: ingredients[ingredientAmount.ingredient],
-      ),
+      ingredients[ingredientAmount.ingredient]!,
     );
   }
 
@@ -68,5 +74,12 @@ class ShoppingListCubit extends Cubit<ShoppingListState> {
 
   Future<void> clearCart() async {
     await shoppingListRepository.deleteAll();
+  }
+
+  void checkIngredient(Ingredient ingredient) {
+    final listIngredient = state.ingredients[ingredient]!;
+    final newListIngredient = state.ingredients[ingredient]!
+        .copyWith(isChecked: !listIngredient.isChecked);
+    shoppingListRepository.updateItem(newListIngredient);
   }
 }

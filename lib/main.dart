@@ -4,6 +4,7 @@ import 'package:groceries_app/adapters/icon_data_adapter.dart';
 import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/shopping_list_ingredient.dart';
 import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/app.dart';
 import 'package:groceries_app/repositories/ingredient_repository.dart';
@@ -27,10 +28,12 @@ Future<void> main() async {
   Hive.registerAdapter(UnitAdapter());
   Hive.registerAdapter(IconDataAdapter());
   Hive.registerAdapter(IngredientAmountAdapter());
+  Hive.registerAdapter(ShoppingListIngredientAdapter());
 
   await Hive.openBox<Recipe>(RecipeRepository.collectionName);
   await Hive.openBox<Ingredient>(IngredientRepository.collectionName);
-  await Hive.openBox<IngredientAmount>(ShoppingListRepository.collectionName);
+  await Hive.openBox<ShoppingListIngredient>(
+      ShoppingListRepository.collectionName);
 
   runApp(
     MultiRepositoryProvider(

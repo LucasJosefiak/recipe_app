@@ -7,7 +7,7 @@ import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: RecipeInfo)
+@WidgetbookUseCase(name: 'Default', type: RecipeInfo)
 Widget defaultStory(BuildContext context) {
   return Column(
     children: [

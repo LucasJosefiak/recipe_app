@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   dropdown_search: ^0.6.3
   uuid: ^3.0.4
-  widgetbook: ^0.0.13
+  widgetbook: ^1.0.1-beta.1
   storybook_flutter: ^0.7.0+1
   dashbook: ^0.1.4
   storyboard: ^1.0.0
@@ -27,7 +27,7 @@ dependencies:
   equatable: ^2.0.3
   flutter_bloc: ^7.3.0
   bloc: ^7.2.1
-  widgetbook_annotation: ^0.0.3
+  widgetbook_annotation: ^1.0.0-beta.3
   
 
 dev_dependencies:
@@ -36,7 +36,7 @@ dev_dependencies:
     sdk: flutter
   hive_generator: ^1.1.1
   json_serializable: ^5.0.2
-  widgetbook_generator: ^0.0.3
+  widgetbook_generator: ^1.0.1-beta.2
   very_good_analysis: ^2.3.0
 
 flutter:

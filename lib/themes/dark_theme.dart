@@ -7,7 +7,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @WidgetbookTheme.dark()
 ThemeData getDarkTheme() {
-  return ThemeData(
+  return ThemeData.dark().copyWith(
+    brightness: Brightness.dark,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: ColorConstants.darkGreen,
       unselectedItemColor: Colors.black,

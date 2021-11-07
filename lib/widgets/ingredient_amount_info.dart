@@ -11,7 +11,7 @@ import 'package:groceries_app/widgets/tile.dart';
 import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Short title', type: IngredientAmountInfo)
+@WidgetbookUseCase(name: 'Short title', type: IngredientAmountInfo)
 Widget ingredientAmountInfoStory(BuildContext context) {
   return Column(
     children: [
@@ -23,7 +23,7 @@ Widget ingredientAmountInfoStory(BuildContext context) {
   );
 }
 
-@WidgetbookStory(name: 'Long title', type: IngredientAmountInfo)
+@WidgetbookUseCase(name: 'Long title', type: IngredientAmountInfo)
 Widget ingredientAmountInfoAlternativeStory(BuildContext context) {
   return Column(
     children: [

@@ -3,7 +3,7 @@ import 'package:groceries_app/widgets/add_recipe.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: AddRecipeScreen)
+@WidgetbookUseCase(name: 'Default', type: AddRecipeScreen)
 Widget addRecipeScreenStory(BuildContext context) {
   return AddRecipeScreen();
 }

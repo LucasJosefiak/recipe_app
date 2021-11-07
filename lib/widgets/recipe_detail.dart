@@ -7,7 +7,7 @@ import 'package:groceries_app/widgets/ingredient_amount_info.dart';
 import 'package:groceries_app/widgets/recipe_overview.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: RecipeDetail)
+@WidgetbookUseCase(name: 'Default', type: RecipeDetail)
 Widget recipeDetailStory(BuildContext context) {
   return RecipeDetail(
     recipe: getTestRecipe(),

@@ -7,6 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @WidgetbookTheme.light()
 ThemeData getLightTheme() => ThemeData(
+      brightness: Brightness.light,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedItemColor: ColorConstants.darkGreen,
         unselectedItemColor: Colors.black,
