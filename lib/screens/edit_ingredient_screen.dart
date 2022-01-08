@@ -8,7 +8,7 @@ import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/edit_ingredient.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: EditIngredientScreen)
+@WidgetbookUseCase(name: 'Default', type: EditIngredientScreen)
 Widget editIngredientScreenStory(BuildContext context) {
   return EditIngredientScreen(
     recipe: getTestRecipe(),

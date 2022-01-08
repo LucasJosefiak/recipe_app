@@ -6,7 +6,7 @@ import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/shopping_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: ShoppingListScreen)
+@WidgetbookUseCase(name: 'Default', type: ShoppingListScreen)
 Widget shoppingListScreen(BuildContext context) {
   return MultiRepositoryProvider(
     providers: [

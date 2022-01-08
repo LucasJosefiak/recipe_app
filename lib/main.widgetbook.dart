@@ -11,7 +11,6 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:groceries_app/constants/colors.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:groceries_app/themes/dark_theme.dart';
 import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/repositories/ingredient_repository.dart';
@@ -60,182 +59,191 @@ void main() {
 }
 
 class HotReload extends StatelessWidget {
+  const HotReload({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Widgetbook(
-      appInfo: AppInfo(name: 'Recipe App'),
+      appInfo: AppInfo(
+        name: 'Recipe App',
+      ),
       lightTheme: getLightTheme(),
       darkTheme: getDarkTheme(),
+      devices: [
+        Device(
+          name: 'iPhone 11',
+          resolution: Resolution(
+            nativeSize: DeviceSize(
+              height: 1792.0,
+              width: 828.0,
+            ),
+            scaleFactor: 2.0,
+          ),
+          type: DeviceType.mobile,
+        ),
+        Device(
+          name: 'S21 Ultra',
+          resolution: Resolution(
+            nativeSize: DeviceSize(
+              height: 3200.0,
+              width: 1440.0,
+            ),
+            scaleFactor: 3.75,
+          ),
+          type: DeviceType.mobile,
+        ),
+      ],
       categories: [
-        Category(
-          name: 'stories',
+        WidgetbookCategory(
+          name: 'use cases',
           folders: [
-            Folder(
+            WidgetbookFolder(
               name: 'widgets',
               widgets: [
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'IngredientAmountInfo',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Short title',
                       builder: (context) => ingredientAmountInfoStory(context),
                     ),
-                    Story(
+                    WidgetbookUseCase(
                       name: 'Long title',
                       builder: (context) =>
                           ingredientAmountInfoAlternativeStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'IngredientInfo',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => ingredientInfoStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'IngredientPrediction',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => ingredientPredictionStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'IngredientOverview',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => ingredientOverviewStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'RecipeOverview',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => recipeOverviewStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'RecipeDetail',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => recipeDetailStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'RecipeInfo',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => defaultStory(context),
                     ),
                   ],
                 ),
               ],
+              folders: [],
             ),
-            Folder(
+            WidgetbookFolder(
               name: 'screens',
               widgets: [
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'AddRecipeScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => addRecipeScreenStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'EditIngredientScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => editIngredientScreenStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'RecipeDetailsScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => recipeDetailsScreenStory(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'RecipesScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Unloaded',
                       builder: (context) => recipesScreenStoryUnloaded(context),
                     ),
-                    Story(
+                    WidgetbookUseCase(
                       name: 'Loaded (Empty)',
                       builder: (context) =>
                           recipesScreenStoryLoadedEmpty(context),
                     ),
-                    Story(
+                    WidgetbookUseCase(
                       name: 'Loaded (Filled)',
                       builder: (context) =>
                           recipesScreenStoryLoadedFilled(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'ShoppingListScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => shoppingListScreen(context),
                     ),
                   ],
                 ),
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'AddIngredientScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => addIngredientScreenStory(context),
                     ),
                   ],
                 ),
               ],
-            )
+              folders: [],
+            ),
           ],
+          widgets: [],
         ),
-      ],
-      devices: [
-        Device(
-            name: 'iPhone 11',
-            resolution: Resolution(
-              nativeSize: DeviceSize(
-                width: 828.0,
-                height: 1792.0,
-              ),
-              scaleFactor: 2.0,
-            ),
-            type: DeviceType.mobile),
-        Device(
-            name: 'S21 Ultra',
-            resolution: Resolution(
-              nativeSize: DeviceSize(
-                width: 1440.0,
-                height: 3200.0,
-              ),
-              scaleFactor: 3.75,
-            ),
-            type: DeviceType.mobile),
       ],
     );
   }

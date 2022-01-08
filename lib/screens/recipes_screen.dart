@@ -9,7 +9,7 @@ import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipes_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Unloaded', type: RecipesScreen)
+@WidgetbookUseCase(name: 'Unloaded', type: RecipesScreen)
 Widget recipesScreenStoryUnloaded(BuildContext context) {
   return MultiRepositoryProvider(
     providers: [
@@ -31,7 +31,7 @@ Widget recipesScreenStoryUnloaded(BuildContext context) {
   );
 }
 
-@WidgetbookStory(name: 'Loaded (Empty)', type: RecipesScreen)
+@WidgetbookUseCase(name: 'Loaded (Empty)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
   return MultiRepositoryProvider(
     providers: [
@@ -53,7 +53,7 @@ Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
   );
 }
 
-@WidgetbookStory(name: 'Loaded (Filled)', type: RecipesScreen)
+@WidgetbookUseCase(name: 'Loaded (Filled)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedFilled(BuildContext context) {
   final recipe = getTestRecipe();
   return MultiRepositoryProvider(

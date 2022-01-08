@@ -12,7 +12,7 @@ import 'package:groceries_app/widgets/add_ingredient.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: AddIngredientScreen)
+@WidgetbookUseCase(name: 'Default', type: AddIngredientScreen)
 Widget addIngredientScreenStory(BuildContext context) {
   return MultiBlocProvider(
       providers: [

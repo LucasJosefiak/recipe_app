@@ -27,16 +27,16 @@ class HotReload extends StatelessWidget {
         Samsung.s21ultra,
       ],
       categories: [
-        Category(
-          name: 'stories',
+        WidgetbookCategory(
+          name: 'use cases',
           folders: [
-            Folder(
+            WidgetbookFolder(
               name: 'widgets',
               widgets: [
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'RecipeInfo',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'Short name',
                       builder: (context) => Column(
                         children: [
@@ -50,7 +50,7 @@ class HotReload extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Story(
+                    WidgetbookUseCase(
                       name: 'Long name',
                       builder: (context) => Column(
                         children: [
@@ -68,13 +68,13 @@ class HotReload extends StatelessWidget {
                 ),
               ],
             ),
-            Folder(
+            WidgetbookFolder(
               name: 'screens',
               widgets: [
-                WidgetElement(
+                WidgetbookWidget(
                   name: 'AddIngredientScreen',
-                  stories: [
-                    Story(
+                  useCases: [
+                    WidgetbookUseCase(
                       name: 'theme example',
                       builder: (context) => MultiBlocProvider(
                         providers: [

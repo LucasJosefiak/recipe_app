@@ -5,7 +5,7 @@ import 'package:groceries_app/widgets/tile_icon.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookStory(name: 'Default', type: IngredientPrediction)
+@WidgetbookUseCase(name: 'Default', type: IngredientPrediction)
 Widget ingredientPredictionStory(BuildContext context) {
   return Column(
     children: [
