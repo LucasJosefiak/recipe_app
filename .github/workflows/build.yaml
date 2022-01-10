@@ -1,0 +1,22 @@
+name: Build 
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+
+      - name: Build Website
+        run: flutter build web -t lib/main.widgetbook.dart
+
+      - name: Upload Widgetbook
+        uses: widgetbook/widgetbook-hosting@0.0.10
+        with:
+          path: 'build/web'
+          api_key: 'zdxq_FZVcLYJpiHFFniHkncic4T4oFSdOjL6jo3kkstCpwR0wgxTWOhzEe24Wq-bGr0NntE8oK6QzThwsjkhXA=='
