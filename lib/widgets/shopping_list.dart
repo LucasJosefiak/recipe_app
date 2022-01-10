@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/shopping_list_cubit.dart';
+import 'package:groceries_app/widgets/checkmark.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/common/separated_list_view.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
@@ -24,6 +25,16 @@ class _ShoppingListState extends State<ShoppingList> {
         return PaddedCard(
           child: Row(
             children: [
+              Checkmark(
+                isChecked: entry.value.isChecked,
+                onPressed: () {
+                  BlocProvider.of<ShoppingListCubit>(context)
+                      .checkIngredient(entry.key);
+                },
+              ),
+              SizedBox(
+                width: 16,
+              ),
               TileTitle(
                 title: entry.key.name,
               ),
@@ -31,7 +42,7 @@ class _ShoppingListState extends State<ShoppingList> {
                 child: Container(),
               ),
               Text(
-                entry.value.toString(),
+                entry.value.amount.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

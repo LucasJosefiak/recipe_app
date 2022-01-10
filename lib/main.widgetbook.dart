@@ -104,11 +104,11 @@ class HotReload extends StatelessWidget {
                   name: 'IngredientAmountInfo',
                   useCases: [
                     WidgetbookUseCase(
-                      name: 'Randale',
+                      name: 'Short title',
                       builder: (context) => ingredientAmountInfoStory(context),
                     ),
                     WidgetbookUseCase(
-                      name: 'Skandale',
+                      name: 'Long title',
                       builder: (context) =>
                           ingredientAmountInfoAlternativeStory(context),
                     ),

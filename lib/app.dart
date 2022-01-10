@@ -7,6 +7,7 @@ import 'package:groceries_app/cubit/unit_cubit.dart';
 import 'package:groceries_app/repositories/ingredient_repository.dart';
 import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/repositories/shopping_list_repository.dart';
+import 'package:groceries_app/themes/dark_theme.dart';
 import 'package:groceries_app/themes/light_theme.dart';
 import 'package:groceries_app/widgets/navigation_bar.dart';
 
@@ -43,6 +44,7 @@ class _AppState extends State<App> {
       child: MaterialApp(
         title: 'Shopping my recipes',
         theme: getLightTheme(),
+        darkTheme: getDarkTheme(),
         home: NavigationBar(),
       ),
     );
