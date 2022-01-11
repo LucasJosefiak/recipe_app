@@ -16,7 +16,7 @@ jobs:
         run: flutter build web -t lib/main.widgetbook.dart
 
       - name: Upload Widgetbook
-        uses: widgetbook/widgetbook-hosting@0.0.10
+        uses: widgetbook/widgetbook-hosting@0.0.14
         with:
           path: 'build/web'
           api_key: 'e5OwqJ3-2bPhV1mRdYW-0d2IIPSN0VcqN7FRg4AV_lHSB6S3S2H3hjirHcm6qPm3oghyovMHlphnFbpJIHfIcQ=='
