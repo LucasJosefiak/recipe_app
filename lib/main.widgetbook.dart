@@ -4,9 +4,14 @@
 // WidgetbookGenerator
 // **************************************************************************
 
+import 'package:groceries_app/adapters/icon_data_adapter.dart';
+import 'package:groceries_app/app.dart';
+import 'package:groceries_app/models/shopping_list_ingredient.dart';
+import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/themes/light_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries_app/constants/borders.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:groceries_app/constants/radii.dart';
@@ -52,9 +57,22 @@ import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:groceries_app/widgets/tile.dart';
 import 'package:groceries_app/widgets/ingredient_prediction.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
+import 'package:hive/hive.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(RecipeAdapter());
+  Hive.registerAdapter(IngredientAdapter());
+  Hive.registerAdapter(UnitAdapter());
+  Hive.registerAdapter(IconDataAdapter());
+  Hive.registerAdapter(IngredientAmountAdapter());
+  Hive.registerAdapter(ShoppingListIngredientAdapter());
+
+  await Hive.openBox<Recipe>(RecipeRepository.collectionName);
+  await Hive.openBox<Ingredient>(IngredientRepository.collectionName);
+  await Hive.openBox<ShoppingListIngredient>(
+      ShoppingListRepository.collectionName);
   runApp(HotReload());
 }
 
@@ -95,154 +113,33 @@ class HotReload extends StatelessWidget {
       ],
       categories: [
         WidgetbookCategory(
-          name: 'use cases',
-          folders: [
-            WidgetbookFolder(
-              name: 'widgets',
-              widgets: [
-                WidgetbookWidget(
-                  name: 'IngredientAmountInfo',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Short title',
-                      builder: (context) => ingredientAmountInfoStory(context),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Long title',
-                      builder: (context) =>
-                          ingredientAmountInfoAlternativeStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'IngredientInfo',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => ingredientInfoStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'IngredientPrediction',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => ingredientPredictionStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'IngredientOverview',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => ingredientOverviewStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'RecipeOverview',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => recipeOverviewStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'RecipeDetail',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => recipeDetailStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'RecipeInfo',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => defaultStory(context),
-                    ),
-                  ],
+          name: 'Implementation',
+          widgets: [
+            WidgetbookWidget(
+              name: 'App',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Showcase',
+                  builder: (context) {
+                    return MultiRepositoryProvider(
+                      providers: [
+                        RepositoryProvider(
+                          create: (context) => RecipeRepository(),
+                        ),
+                        RepositoryProvider(
+                          create: (context) => IngredientRepository(),
+                        ),
+                        RepositoryProvider(
+                          create: (context) => ShoppingListRepository(),
+                        )
+                      ],
+                      child: App(),
+                    );
+                  },
                 ),
               ],
-              folders: [],
-            ),
-            WidgetbookFolder(
-              name: 'screens',
-              widgets: [
-                WidgetbookWidget(
-                  name: 'AddRecipeScreen',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => addRecipeScreenStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'EditIngredientScreen',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => editIngredientScreenStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'RecipeDetailsScreen',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => recipeDetailsScreenStory(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'RecipesScreen',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Unloaded',
-                      builder: (context) => recipesScreenStoryUnloaded(context),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Loaded (Empty)',
-                      builder: (context) =>
-                          recipesScreenStoryLoadedEmpty(context),
-                    ),
-                    WidgetbookUseCase(
-                      name: 'Loaded (Filled)',
-                      builder: (context) =>
-                          recipesScreenStoryLoadedFilled(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'ShoppingListScreen',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => shoppingListScreen(context),
-                    ),
-                  ],
-                ),
-                WidgetbookWidget(
-                  name: 'AddIngredientScreen',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: 'Default',
-                      builder: (context) => addIngredientScreenStory(context),
-                    ),
-                  ],
-                ),
-              ],
-              folders: [],
-            ),
+            )
           ],
-          widgets: [],
         ),
       ],
     );
