@@ -9,7 +9,7 @@ import 'package:groceries_app/repositories/recipe_repository.dart';
 import 'package:groceries_app/repositories/shopping_list_repository.dart';
 import 'package:groceries_app/themes/dark_theme.dart';
 import 'package:groceries_app/themes/light_theme.dart';
-import 'package:groceries_app/widgets/navigation_bar.dart';
+import 'package:groceries_app/widgets/navigation_bar.dart' as nav;
 
 class App extends StatefulWidget {
   @override
@@ -45,7 +45,7 @@ class _AppState extends State<App> {
         title: 'Shopping my recipes',
         theme: getLightTheme(),
         darkTheme: getDarkTheme(),
-        home: NavigationBar(),
+        home: nav.NavigationBar(),
       ),
     );
   }
