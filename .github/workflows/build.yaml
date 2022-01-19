@@ -19,4 +19,4 @@ jobs:
         uses: widgetbook/widgetbook-hosting@0.0.14
         with:
           path: 'build/web'
-          api_key: 'miP1svHGcHDoNSMGPzj-sEoxSIlPd6umzDfru076WEeLkmHQxVvrj8TftiwTCJUMfbVeTq-qcLmUX3ROIGNwtQ=='
+          api_key: 'HHz_3q7-bXzhW62MxSfBPRMxxSuiqJE-vJhag-QPWG-w0c1nmNUoTbpbBuUh0SZfrK-AoucaoiKN3wLCb7xbRw=='
