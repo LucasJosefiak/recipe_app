@@ -21,5 +21,5 @@ jobs:
       - name: Upload Widgetbook
         uses: widgetbook/widgetbook-hosting@0.0.14
         with:
-          path: 'apps/test_app/build/web'
+          path: 'apps/test_app/build/web12'
           api_key: 'HHz_3q7-bXzhW62MxSfBPRMxxSuiqJE-vJhag-QPWG-w0c1nmNUoTbpbBuUh0SZfrK-AoucaoiKN3wLCb7xbRw=='
