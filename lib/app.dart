@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:groceries_app/cubit/ingredients_cubit.dart';
 import 'package:groceries_app/cubit/recipes_cubit.dart';
 import 'package:groceries_app/cubit/shopping_list_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:groceries_app/repositories/shopping_list_repository.dart';
 import 'package:groceries_app/themes/dark_theme.dart';
 import 'package:groceries_app/themes/light_theme.dart';
 import 'package:groceries_app/widgets/navigation_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatefulWidget {
   @override
@@ -45,7 +47,18 @@ class _AppState extends State<App> {
         title: 'Shopping my recipes',
         theme: getLightTheme(),
         darkTheme: getDarkTheme(),
-        home: NavigationBar(),
+        localizationsDelegates: [
+          AppLocalizations.delegate, // Add this line
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('en'),
+          Locale('de'),
+          Locale('fr'),
+        ],
+        home: MyNavigationBar(),
       ),
     );
   }

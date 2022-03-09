@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:groceries_app/screens/recipes_screen.dart';
 import 'package:groceries_app/screens/shopping_list_screen.dart';
 
-class NavigationBar extends StatefulWidget {
+class MyNavigationBar extends StatefulWidget {
   @override
   _NavigationBarState createState() => _NavigationBarState();
 }
 
-class _NavigationBarState extends State<NavigationBar> {
+class _NavigationBarState extends State<MyNavigationBar> {
   List<Widget> _pages = [
     RecipesScreen(),
     ShoppingListScreen(),
