@@ -5,6 +5,7 @@ import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/widgets/common/text_field_helper.dart';
 import 'package:groceries_app/widgets/ingredient_overview.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditIngredient extends StatefulWidget {
   final IngredientAmount ingredientAmount;
@@ -37,7 +38,7 @@ class _EditIngredientState extends State<EditIngredient> {
               text: widget.ingredientAmount.amount.toString(),
             ),
             hintText: 'e.g. 500',
-            label: 'amount',
+            label: AppLocalizations.of(context)!.amount,
             onChanged: (value) {
               var intValue = int.tryParse(value);
               if (intValue != null) {

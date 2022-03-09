@@ -43,7 +43,7 @@ class ShoppingListScreen extends StatelessWidget {
             listen: false,
           ).clearCart();
         },
-        label: Text('Clear'),
+        label: Text(AppLocalizations.of(context)!.clear),
         icon: Icon(Icons.shopping_cart),
       ),
       body: ShoppingList(),
