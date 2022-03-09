@@ -46,23 +46,6 @@ class HotReload extends StatelessWidget {
           child: widget,
         );
       },
-      deviceFrameBuilder: (context, device, renderMode, child) {
-        if (renderMode == WidgetbookFrame.defaultFrame()) {
-          return WidgetbookDeviceFrame(
-            device: device,
-            child: child,
-          );
-        }
-
-        if (renderMode == WidgetbookFrame.deviceFrame()) {
-          return frame.DeviceFrame(
-            device: frame.Devices.ios.iPhone12,
-            screen: child,
-          );
-        }
-
-        return child;
-      },
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -14,11 +14,15 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookApp(
+@WidgetbookApp.material(
   name: 'Recipe App',
   devices: [
     Apple.iPhone11,
     Samsung.s21ultra,
+  ],
+  textScaleFactors: [
+    1,
+    2,
   ],
 )
 Future<void> main() async {

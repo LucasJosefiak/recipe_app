@@ -5,7 +5,7 @@ import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookTheme.dark()
+@WidgetbookTheme(name: 'Dark')
 ThemeData getDarkTheme() {
   return ThemeData.dark().copyWith(
     brightness: Brightness.dark,

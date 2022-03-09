@@ -12,11 +12,27 @@ import 'package:groceries_app/themes/dark_theme.dart';
 import 'package:groceries_app/themes/light_theme.dart';
 import 'package:groceries_app/widgets/navigation_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 class App extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
 }
+
+@WidgetbookLocalizationDelegates()
+final localizationsDelegates = [
+  AppLocalizations.delegate, // Add this line
+  GlobalMaterialLocalizations.delegate,
+  GlobalWidgetsLocalizations.delegate,
+  GlobalCupertinoLocalizations.delegate,
+];
+
+@WidgetbookLocales()
+final supportedLocales = [
+  Locale('en'),
+  Locale('de'),
+  Locale('fr'),
+];
 
 class _AppState extends State<App> {
   Widget _buildApp() {
@@ -47,17 +63,8 @@ class _AppState extends State<App> {
         title: 'Shopping my recipes',
         theme: getLightTheme(),
         darkTheme: getDarkTheme(),
-        localizationsDelegates: [
-          AppLocalizations.delegate, // Add this line
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale('en'),
-          Locale('de'),
-          Locale('fr'),
-        ],
+        localizationsDelegates: localizationsDelegates,
+        supportedLocales: supportedLocales,
         home: MyNavigationBar(),
       ),
     );
