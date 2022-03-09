@@ -7,6 +7,7 @@ import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/edit_ingredient.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: EditIngredientScreen)
 Widget editIngredientScreenStory(BuildContext context) {
@@ -30,7 +31,7 @@ class EditIngredientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaddedScaffold(
       appBar: AppBar(
-        title: Text('Edit Ingredient'),
+        title: Text(AppLocalizations.of(context)!.editIngredient),
         actions: [
           IconButton(
             onPressed: () {

@@ -1,3 +1,17 @@
 {
-    "newTag": "Neu"
+    "newTag": "Neu",
+    "ingredients": "Zutaten",
+    "newRecipe": "Neues Rezept",
+    "nameRecipe": "Name",
+    "save": "Speichern",
+    "editIngredient": "Zutat ändern",
+    "recipes": "Rezepte",
+    "add": "Hinzufügen",
+    "recipePlaceholder": "Bitte füg deine Lieblingsrezepte hinzu!",
+    "shoppingList": "Einkaufsliste",
+    "clear": "Löschen",
+    "addIngredient": "Zutat hinzufügen",
+    "ingredientName": "Zutat",
+    "ingredientUnit": "Einheit",
+    "amount": "Menge"
 }

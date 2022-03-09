@@ -12,6 +12,7 @@ import 'package:groceries_app/models/unit.dart';
 import 'package:groceries_app/widgets/common/text_field_helper.dart';
 import 'package:groceries_app/widgets/ingredient_prediction.dart';
 import 'package:groceries_app/widgets/unit_info.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddIngredient extends StatefulWidget {
   final Recipe recipe;
@@ -56,7 +57,7 @@ class _AddIngredientState extends State<AddIngredient> {
                   textFieldConfiguration: TextFieldConfiguration(
                     controller: controller,
                     decoration: InputDecoration(
-                      hintText: 'ingredient name',
+                      hintText: AppLocalizations.of(context)!.ingredientName,
                     ),
                   ),
                   getImmediateSuggestions: true,
@@ -87,7 +88,7 @@ class _AddIngredientState extends State<AddIngredient> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: DropdownButton<Unit>(
-                    hint: Text('ingredient unit'),
+                    hint: Text(AppLocalizations.of(context)!.ingredientUnit),
                     value: state.unit,
                     underline: SizedBox(),
                     items: units.map(
@@ -113,7 +114,7 @@ class _AddIngredientState extends State<AddIngredient> {
                   height: 16,
                 ),
                 TextFieldHelper.buildTextField(
-                  hintText: 'amount',
+                  hintText: AppLocalizations.of(context)!.amount,
                   onChanged: (amount) {
                     addIngredientProvider.amountChanged(amount);
                   },
@@ -139,7 +140,7 @@ class _AddIngredientState extends State<AddIngredient> {
                     );
                     Navigator.pop(context);
                   },
-                  child: Text('Add'),
+                  child: Text(AppLocalizations.of(context)!.add),
                 ),
               ],
             ),

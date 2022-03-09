@@ -5,6 +5,7 @@ import 'package:groceries_app/repositories/shopping_list_repository.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/shopping_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: ShoppingListScreen)
 Widget shoppingListScreen(BuildContext context) {
@@ -33,7 +34,7 @@ class ShoppingListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaddedScaffold(
       appBar: AppBar(
-        title: Text('Shopping List'),
+        title: Text(AppLocalizations.of(context)!.shoppingList),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

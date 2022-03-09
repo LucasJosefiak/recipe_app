@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:vector_math/vector_math.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RecipePlaceholder extends StatelessWidget {
   const RecipePlaceholder({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class RecipePlaceholder extends StatelessWidget {
             //   height: 16,
             // ),
             Text(
-          'Please add your favorite recipes!',
+          AppLocalizations.of(context)!.recipePlaceholder,
           style: Theme.of(context).textTheme.headline6,
         ),
       ),

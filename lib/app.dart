@@ -31,7 +31,7 @@ final localizationsDelegates = [
 final supportedLocales = [
   Locale('en'),
   Locale('de'),
-  Locale('fr'),
+  Locale('es'),
 ];
 
 class _AppState extends State<App> {
