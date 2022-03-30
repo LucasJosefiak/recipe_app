@@ -14,6 +14,7 @@ import 'package:groceries_app/widgets/navigation_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+
 class App extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
@@ -63,6 +64,7 @@ class _AppState extends State<App> {
         title: 'Shopping my recipes',
         theme: getLightTheme(),
         darkTheme: getDarkTheme(),
+
         localizationsDelegates: localizationsDelegates,
         supportedLocales: supportedLocales,
         home: MyNavigationBar(),
