@@ -1,7 +1,7 @@
-import 'package:device_frame/device_frame.dart' as frame;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:groceries_app/cubit/ingredients_cubit.dart';
 import 'package:groceries_app/cubit/unit_cubit.dart';
 import 'package:groceries_app/models/ingredient.dart';
@@ -13,8 +13,6 @@ import 'package:groceries_app/themes/light_theme.dart';
 import 'package:groceries_app/widgets/new_tag.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
 import 'package:widgetbook/widgetbook.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HotReload extends StatelessWidget {
   @override
@@ -64,7 +62,7 @@ class HotReload extends StatelessWidget {
             WidgetbookFolder(
               name: 'widgets',
               widgets: [
-                WidgetbookWidget(
+                WidgetbookComponent(
                   name: 'RecipeInfo',
                   useCases: [
                     WidgetbookUseCase(
@@ -97,7 +95,7 @@ class HotReload extends StatelessWidget {
                     ),
                   ],
                 ),
-                WidgetbookWidget(
+                WidgetbookComponent(
                   name: 'New tag',
                   useCases: [
                     WidgetbookUseCase(
@@ -111,7 +109,7 @@ class HotReload extends StatelessWidget {
             WidgetbookFolder(
               name: 'screens',
               widgets: [
-                WidgetbookWidget(
+                WidgetbookComponent(
                   name: 'AddIngredientScreen',
                   useCases: [
                     WidgetbookUseCase(
