@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:groceries_app/cubit/recipes_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/test_models.dart';
@@ -8,11 +11,11 @@ import 'package:groceries_app/screens/add_recipe_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipes_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Unloaded', type: RecipesScreen)
 Widget recipesScreenStoryUnloaded(BuildContext context) {
   return MultiRepositoryProvider(
+    key: ValueKey(Random().nextInt(10000000)),
     providers: [
       RepositoryProvider(
         create: (context) => MemoryRepository<Recipe>(),
@@ -21,6 +24,7 @@ Widget recipesScreenStoryUnloaded(BuildContext context) {
     child: MultiBlocProvider(
       providers: [
         BlocProvider(
+          key: ValueKey(Random().nextInt(10000000)),
           create: (context) => RecipesCubit(
             recipeRepository:
                 RepositoryProvider.of<MemoryRepository<Recipe>>(context),
@@ -35,6 +39,7 @@ Widget recipesScreenStoryUnloaded(BuildContext context) {
 @WidgetbookUseCase(name: 'Loaded (Empty)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
   return MultiRepositoryProvider(
+    key: ValueKey(Random().nextInt(10000000)),
     providers: [
       RepositoryProvider(
         create: (context) => MemoryRepository<Recipe>(),
@@ -43,6 +48,7 @@ Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
     child: MultiBlocProvider(
       providers: [
         BlocProvider(
+          key: ValueKey(context),
           create: (context) => RecipesCubit(
             recipeRepository:
                 RepositoryProvider.of<MemoryRepository<Recipe>>(context),
@@ -56,8 +62,9 @@ Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
 
 @WidgetbookUseCase(name: 'Loaded (Filled)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedFilled(BuildContext context) {
-  final recipe = getTestRecipe();
+  final recipe = getTestRecipe(context);
   return MultiRepositoryProvider(
+    key: ValueKey(Random().nextInt(10000000)),
     providers: [
       RepositoryProvider(
         create: (context) => MemoryRepository<Recipe>(
@@ -70,6 +77,7 @@ Widget recipesScreenStoryLoadedFilled(BuildContext context) {
     child: MultiBlocProvider(
       providers: [
         BlocProvider(
+          key: ValueKey(Random().nextInt(10000000)),
           create: (context) => RecipesCubit(
             recipeRepository:
                 RepositoryProvider.of<MemoryRepository<Recipe>>(context),

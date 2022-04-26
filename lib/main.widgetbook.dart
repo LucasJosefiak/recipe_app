@@ -53,6 +53,29 @@ import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:groceries_app/widgets/tile.dart';
 import 'package:groceries_app/widgets/ingredient_prediction.dart';
 import 'package:groceries_app/widgets/recipe_info.dart';
+import 'package:groceries_app/components.dart';
+import 'package:flutter/src/material/theme.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/src/material/floating_action_button_theme.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/src/material/theme_data.dart';
+import 'package:flutter/src/material/tooltip.dart';
+import 'dart:math';
+import 'package:flutter/src/material/button.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/src/material/scaffold.dart';
+import 'dart:ui';
+import 'package:flutter/src/material/color_scheme.dart';
+import 'package:flutter/src/material/material_state.dart';
+import 'package:flutter/src/material/ink_well.dart';
+import 'package:flutter/src/material/button_style.dart';
+import 'package:flutter/src/material/button_style_button.dart';
+import 'package:flutter/src/material/ink_ripple.dart';
+import 'package:flutter/src/material/constants.dart';
+import 'package:flutter/src/material/elevated_button_theme.dart';
+import 'package:flutter/src/material/outlined_button_theme.dart';
+import 'package:flutter/src/material/colors.dart';
+import 'package:flutter/src/material/text_button_theme.dart';
 import 'package:groceries_app/app.dart';
 import 'package:widgetbook/widgetbook.dart';
 
@@ -83,13 +106,13 @@ class HotReload extends StatelessWidget {
       ],
       devices: [
         Device(
-          name: 'iPhone 11',
+          name: 'iPhone 12',
           resolution: Resolution(
             nativeSize: DeviceSize(
-              height: 1792.0,
-              width: 828.0,
+              height: 2532.0,
+              width: 1170.0,
             ),
-            scaleFactor: 2.0,
+            scaleFactor: 3.0,
           ),
           type: DeviceType.mobile,
         ),
@@ -251,6 +274,65 @@ class HotReload extends StatelessWidget {
                     WidgetbookUseCase(
                       name: 'Default',
                       builder: (context) => addIngredientScreenStory(context),
+                    ),
+                  ],
+                ),
+              ],
+              folders: [],
+            ),
+            WidgetbookFolder(
+              name: 'material',
+              widgets: [
+                WidgetbookComponent(
+                  name: 'FloatingActionButton',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: 'Icon',
+                      builder: (context) => floatingActionButton(context),
+                    ),
+                    WidgetbookUseCase(
+                      name: 'Extended',
+                      builder: (context) =>
+                          floatingActionButtonExtended(context),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'ElevatedButton',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: 'Text',
+                      builder: (context) => elevatedButtonText(context),
+                    ),
+                    WidgetbookUseCase(
+                      name: 'Icon',
+                      builder: (context) => elevatedButtonIcon(context),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'TextButton',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: 'Text',
+                      builder: (context) => textButton(context),
+                    ),
+                    WidgetbookUseCase(
+                      name: 'Icon',
+                      builder: (context) => textButtonIcon(context),
+                    ),
+                  ],
+                ),
+                WidgetbookComponent(
+                  name: 'OutlinedButton',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: 'Text',
+                      builder: (context) => outlineButton(context),
+                    ),
+                    WidgetbookUseCase(
+                      name: 'Icon',
+                      builder: (context) => outlineButtonIcon(context),
                     ),
                   ],
                 ),

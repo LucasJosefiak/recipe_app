@@ -14,8 +14,7 @@ class RecipesList extends StatefulWidget {
 class _RecipesListState extends State<RecipesList> {
   @override
   Widget build(BuildContext context) {
-    final recipesData =
-        BlocProvider.of<RecipesCubit>(context, listen: true).state;
+    final recipesData = context.watch<RecipesCubit>().state;
     final recipeList = recipesData.recipes;
     return recipesData.loadingState == LoadingState.loading ||
             recipesData.loadingState == LoadingState.uninitialized

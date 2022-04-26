@@ -7,7 +7,6 @@ import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/screens/edit_ingredient_screen.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile.dart';
-
 import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
@@ -16,7 +15,7 @@ Widget ingredientAmountInfoStory(BuildContext context) {
   return Column(
     children: [
       IngredientAmountInfo(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
         ingredientAmount: getTestIngredientAmount(),
       ),
     ],
@@ -28,7 +27,7 @@ Widget ingredientAmountInfoAlternativeStory(BuildContext context) {
   return Column(
     children: [
       IngredientAmountInfo(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
         ingredientAmount: getTestIngredientAmountAlternative(),
       ),
     ],

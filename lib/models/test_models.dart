@@ -3,6 +3,7 @@ import 'package:groceries_app/models/ingredient.dart';
 import 'package:groceries_app/models/ingredient_amount.dart';
 import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/unit.dart';
+import 'package:widgetbook/widgetbook.dart';
 
 Unit getTestUnit() {
   return Unit(
@@ -50,11 +51,14 @@ IngredientAmount getTestIngredientAmountAlternative() {
   );
 }
 
-Recipe getTestRecipe() {
+Recipe getTestRecipe(BuildContext context) {
   final ingredientAmount = getTestIngredientAmount();
   return Recipe(
     identifier: '1',
-    title: 'Tomato Lasagna',
+    title: context.knobs.text(
+      label: 'Title',
+      initialValue: 'Tomato Sauce',
+    ),
     createdAt: DateTime.now(),
     ingredients: {
       ingredientAmount.ingredient.name: ingredientAmount,

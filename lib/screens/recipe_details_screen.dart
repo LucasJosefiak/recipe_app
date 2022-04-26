@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:groceries_app/cubit/recipe_cubit.dart';
 import 'package:groceries_app/cubit/recipes_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
@@ -9,7 +10,6 @@ import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipe_detail.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: RecipeDetailsScreen)
 Widget recipeDetailsScreenStory(BuildContext context) {
@@ -20,7 +20,7 @@ Widget recipeDetailsScreenStory(BuildContext context) {
       )
     ],
     child: RecipeDetailsScreen(
-      recipe: getTestRecipe(),
+      recipe: getTestRecipe(context),
     ),
   );
 }

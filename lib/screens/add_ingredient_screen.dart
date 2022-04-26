@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
 import 'package:groceries_app/cubit/ingredients_cubit.dart';
 import 'package:groceries_app/cubit/unit_cubit.dart';
@@ -11,7 +12,6 @@ import 'package:groceries_app/repositories/memory_repository.dart';
 import 'package:groceries_app/widgets/add_ingredient.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: AddIngredientScreen)
 Widget addIngredientScreenStory(BuildContext context) {
@@ -30,7 +30,7 @@ Widget addIngredientScreenStory(BuildContext context) {
         )
       ],
       child: AddIngredientScreen(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
       ));
 }
 
