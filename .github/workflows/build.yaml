@@ -19,4 +19,5 @@ jobs:
         uses: widgetbook/widgetbook-hosting@0.0.24
         with:
           path: 'build/web'
-          api_key: ${{ secrets.WIDGETBOOK_CLOUD_API_KEY }}
+          ## api_key: ${{ secrets.WIDGETBOOK_CLOUD_API_KEY }}
+          api_key: lbzvezFbdVabqtg8gBe0EAIwA5Y7GWgf
