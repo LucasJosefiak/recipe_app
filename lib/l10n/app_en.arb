@@ -1,0 +1,17 @@
+{
+    "newTag": "New",
+    "ingredients": "ingredients",
+    "newRecipe": "New Recipe",
+    "nameRecipe": "Name",
+    "save": "Save",
+    "editIngredient": "Edit Ingredient",
+    "recipes": "Recipes",
+    "add": "Add",
+    "recipePlaceholder": "Please add your favorite recipes!",
+    "shoppingList": "Shopping List",
+    "clear": "Clear",
+    "addIngredient": "Add Ingredient",
+    "ingredientName": "Ingredient",
+    "ingredientUnit": "Unit",
+    "amount": "Amount"
+}

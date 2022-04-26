@@ -9,6 +9,7 @@ import 'package:groceries_app/screens/add_ingredient_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipe_detail.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: RecipeDetailsScreen)
 Widget recipeDetailsScreenStory(BuildContext context) {
@@ -19,7 +20,7 @@ Widget recipeDetailsScreenStory(BuildContext context) {
       )
     ],
     child: RecipeDetailsScreen(
-      recipe: getTestRecipe(),
+      recipe: getTestRecipe(context),
     ),
   );
 }
@@ -77,7 +78,7 @@ class RecipeDetailsScreen extends StatelessWidget {
                 );
               },
               label: Text(
-                'Add',
+                AppLocalizations.of(context)!.add,
               ),
               icon: Icon(
                 Icons.add,

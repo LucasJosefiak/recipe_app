@@ -5,7 +5,7 @@ import 'package:groceries_app/constants/colors.dart';
 import 'package:groceries_app/constants/radii.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookTheme.light()
+@WidgetbookTheme(name: 'Light')
 ThemeData getLightTheme() => ThemeData(
       brightness: Brightness.light,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(

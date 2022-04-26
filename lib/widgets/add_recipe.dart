@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/recipes_cubit.dart';
 import 'package:groceries_app/widgets/common/text_field_helper.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddRecipe extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _AddRecipeState extends State<AddRecipe> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   TextFieldHelper.buildTextField(
-                    label: 'name',
+                    label: AppLocalizations.of(context)!.nameRecipe,
                     hintText: 'potatoe soup',
                     validator: (value) {
                       if (value != null && value.isEmpty) {
@@ -70,7 +71,7 @@ class _AddRecipeState extends State<AddRecipe> {
                     onPressed: () {
                       _saveForm();
                     },
-                    child: Text('Save'),
+                    child: Text(AppLocalizations.of(context)!.save),
                   )
                 ],
               ),

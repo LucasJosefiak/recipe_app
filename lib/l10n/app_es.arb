@@ -1,0 +1,17 @@
+{
+    "newTag": "Nuevo",
+    "ingredients": "ingredientes",
+    "newRecipe": "Nueva Receta",
+    "nameRecipe": "Nombre",
+    "save": "Guardar",
+    "editIngredient": "Editar el ingrediente",
+    "recipes": "Recetas",
+    "add": "Agregar",
+    "recipePlaceholder": "Por favor, añada sus recetas favoritas!",
+    "shoppingList": "Lista de la compra",
+    "clear": "Borrar",
+    "addIngredient": "Agregar el Ingrediente",
+    "ingredientName": "Ingrediente",
+    "ingredientUnit": "Unidad",
+    "amount": "Monton"
+}

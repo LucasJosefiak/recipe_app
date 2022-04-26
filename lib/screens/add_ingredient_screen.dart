@@ -11,6 +11,7 @@ import 'package:groceries_app/repositories/memory_repository.dart';
 import 'package:groceries_app/widgets/add_ingredient.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: AddIngredientScreen)
 Widget addIngredientScreenStory(BuildContext context) {
@@ -29,7 +30,7 @@ Widget addIngredientScreenStory(BuildContext context) {
         )
       ],
       child: AddIngredientScreen(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
       ));
 }
 
@@ -45,7 +46,7 @@ class AddIngredientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaddedScaffold(
       appBar: AppBar(
-        title: Text('Add Ingredient'),
+        title: Text(AppLocalizations.of(context)!.addIngredient),
       ),
       body: BlocProvider(
         create: (context) => AddIngredientCubit(

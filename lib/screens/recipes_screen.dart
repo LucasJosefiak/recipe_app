@@ -8,6 +8,7 @@ import 'package:groceries_app/screens/add_recipe_screen.dart';
 import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipes_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Unloaded', type: RecipesScreen)
 Widget recipesScreenStoryUnloaded(BuildContext context) {
@@ -55,7 +56,7 @@ Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
 
 @WidgetbookUseCase(name: 'Loaded (Filled)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedFilled(BuildContext context) {
-  final recipe = getTestRecipe();
+  final recipe = getTestRecipe(context);
   return MultiRepositoryProvider(
     providers: [
       RepositoryProvider(
@@ -85,7 +86,7 @@ class RecipesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaddedScaffold(
       appBar: AppBar(
-        title: Text('Recipes'),
+        title: Text(AppLocalizations.of(context)!.recipes),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -96,9 +97,7 @@ class RecipesScreen extends StatelessWidget {
             ),
           );
         },
-        label: Text(
-          'Add',
-        ),
+        label: Text(AppLocalizations.of(context)!.add),
         icon: Icon(
           Icons.add,
         ),

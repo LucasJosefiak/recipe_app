@@ -10,7 +10,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 @WidgetbookUseCase(name: 'Default', type: RecipeDetail)
 Widget recipeDetailStory(BuildContext context) {
   return RecipeDetail(
-    recipe: getTestRecipe(),
+    recipe: getTestRecipe(context),
   );
 }
 

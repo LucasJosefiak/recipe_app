@@ -6,13 +6,14 @@ import 'package:groceries_app/models/recipe.dart';
 import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @WidgetbookUseCase(name: 'Default', type: RecipeOverview)
 Widget recipeOverviewStory(BuildContext context) {
   return Column(
     children: [
       RecipeOverview(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
       ),
     ],
   );
@@ -66,7 +67,8 @@ class _RecipeOverviewState extends State<RecipeOverview> {
           SizedBox(
             height: 16,
           ),
-          Text('${widget.recipe.ingredients.length} ingredients')
+          Text(
+              '${widget.recipe.ingredients.length} ${AppLocalizations.of(context)!.ingredients}')
         ],
       ),
     );

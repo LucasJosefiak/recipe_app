@@ -11,10 +11,16 @@
             "program": "lib/main.dart"
         },
         {
-            "name": "Widgetbook",
+            "name": "Widgetbook (generator)",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.widgetbook.dart"
+        },
+        {
+            "name": "Widgetbook (manual)",
+            "request": "launch",
+            "type": "dart",
+            "program": "widgetbook/main.dart"
         },
         {
             "name": "recipe-app (profile mode)",
