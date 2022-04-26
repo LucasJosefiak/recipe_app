@@ -20,7 +20,7 @@ Widget recipeDetailsScreenStory(BuildContext context) {
       )
     ],
     child: RecipeDetailsScreen(
-      recipe: getTestRecipe(),
+      recipe: getTestRecipe(context),
     ),
   );
 }

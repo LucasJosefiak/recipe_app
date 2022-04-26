@@ -30,7 +30,7 @@ Widget addIngredientScreenStory(BuildContext context) {
         )
       ],
       child: AddIngredientScreen(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
       ));
 }
 

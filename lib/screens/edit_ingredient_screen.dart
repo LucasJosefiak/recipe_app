@@ -12,7 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 @WidgetbookUseCase(name: 'Default', type: EditIngredientScreen)
 Widget editIngredientScreenStory(BuildContext context) {
   return EditIngredientScreen(
-    recipe: getTestRecipe(),
+    recipe: getTestRecipe(context),
     ingredientAmount: getTestIngredientAmount(),
   );
 }

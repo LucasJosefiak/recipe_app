@@ -16,7 +16,7 @@ Widget ingredientAmountInfoStory(BuildContext context) {
   return Column(
     children: [
       IngredientAmountInfo(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
         ingredientAmount: getTestIngredientAmount(),
       ),
     ],
@@ -28,7 +28,7 @@ Widget ingredientAmountInfoAlternativeStory(BuildContext context) {
   return Column(
     children: [
       IngredientAmountInfo(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
         ingredientAmount: getTestIngredientAmountAlternative(),
       ),
     ],

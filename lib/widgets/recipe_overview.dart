@@ -13,7 +13,7 @@ Widget recipeOverviewStory(BuildContext context) {
   return Column(
     children: [
       RecipeOverview(
-        recipe: getTestRecipe(),
+        recipe: getTestRecipe(context),
       ),
     ],
   );

@@ -56,7 +56,7 @@ Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
 
 @WidgetbookUseCase(name: 'Loaded (Filled)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedFilled(BuildContext context) {
-  final recipe = getTestRecipe();
+  final recipe = getTestRecipe(context);
   return MultiRepositoryProvider(
     providers: [
       RepositoryProvider(
