@@ -7,11 +7,11 @@ import 'package:groceries_app/widgets/tile_title.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @WidgetbookUseCase(name: 'Default', type: IngredientInfo)
-Widget ingredientInfoStory(BuildContext buildContext) {
+Widget ingredientInfoStory(BuildContext context) {
   return Column(
     children: [
       IngredientInfo(
-        ingredient: getTestIngredient(),
+        ingredient: getTestIngredient(context),
       ),
     ],
   );

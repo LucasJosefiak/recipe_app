@@ -16,7 +16,7 @@ Widget ingredientAmountInfoStory(BuildContext context) {
     children: [
       IngredientAmountInfo(
         recipe: getTestRecipe(context),
-        ingredientAmount: getTestIngredientAmount(),
+        ingredientAmount: getTestIngredientAmount(context),
       ),
     ],
   );

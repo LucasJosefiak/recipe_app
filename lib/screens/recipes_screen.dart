@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,10 +10,9 @@ import 'package:groceries_app/widgets/common/padded_scaffold.dart';
 import 'package:groceries_app/widgets/recipes_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@WidgetbookUseCase(name: 'Unloaded', type: RecipesScreen)
+@WidgetbookUseCase(name: 'Loading', type: RecipesScreen)
 Widget recipesScreenStoryUnloaded(BuildContext context) {
   return MultiRepositoryProvider(
-    key: ValueKey(Random().nextInt(10000000)),
     providers: [
       RepositoryProvider(
         create: (context) => MemoryRepository<Recipe>(),
@@ -24,7 +21,6 @@ Widget recipesScreenStoryUnloaded(BuildContext context) {
     child: MultiBlocProvider(
       providers: [
         BlocProvider(
-          key: ValueKey(Random().nextInt(10000000)),
           create: (context) => RecipesCubit(
             recipeRepository:
                 RepositoryProvider.of<MemoryRepository<Recipe>>(context),
@@ -39,7 +35,6 @@ Widget recipesScreenStoryUnloaded(BuildContext context) {
 @WidgetbookUseCase(name: 'Loaded (Empty)', type: RecipesScreen)
 Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
   return MultiRepositoryProvider(
-    key: ValueKey(Random().nextInt(10000000)),
     providers: [
       RepositoryProvider(
         create: (context) => MemoryRepository<Recipe>(),
@@ -64,7 +59,6 @@ Widget recipesScreenStoryLoadedEmpty(BuildContext context) {
 Widget recipesScreenStoryLoadedFilled(BuildContext context) {
   final recipe = getTestRecipe(context);
   return MultiRepositoryProvider(
-    key: ValueKey(Random().nextInt(10000000)),
     providers: [
       RepositoryProvider(
         create: (context) => MemoryRepository<Recipe>(
@@ -77,7 +71,6 @@ Widget recipesScreenStoryLoadedFilled(BuildContext context) {
     child: MultiBlocProvider(
       providers: [
         BlocProvider(
-          key: ValueKey(Random().nextInt(10000000)),
           create: (context) => RecipesCubit(
             recipeRepository:
                 RepositoryProvider.of<MemoryRepository<Recipe>>(context),

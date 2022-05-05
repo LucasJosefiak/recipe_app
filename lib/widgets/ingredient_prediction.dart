@@ -10,7 +10,7 @@ Widget ingredientPredictionStory(BuildContext context) {
   return Column(
     children: [
       IngredientPrediction(
-        ingredient: getTestIngredient(),
+        ingredient: getTestIngredient(context),
       ),
     ],
   );

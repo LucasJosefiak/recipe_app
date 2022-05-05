@@ -13,7 +13,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget editIngredientScreenStory(BuildContext context) {
   return EditIngredientScreen(
     recipe: getTestRecipe(context),
-    ingredientAmount: getTestIngredientAmount(),
+    ingredientAmount: getTestIngredientAmount(context),
   );
 }
 

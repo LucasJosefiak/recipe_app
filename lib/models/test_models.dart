@@ -14,7 +14,7 @@ Unit getTestUnit() {
   );
 }
 
-Ingredient getTestIngredient() {
+Ingredient getTestIngredient(BuildContext context) {
   return Ingredient(
     identifier: '1',
     unit: getTestUnit(),
@@ -23,10 +23,17 @@ Ingredient getTestIngredient() {
   );
 }
 
-IngredientAmount getTestIngredientAmount() {
-  final ingredient = getTestIngredient();
+IngredientAmount getTestIngredientAmount(BuildContext context) {
+  final ingredient = getTestIngredient(context);
   return IngredientAmount(
-    amount: 100,
+    amount: context.knobs
+        .slider(
+          label: 'Ingredient amount',
+          min: 0,
+          max: 999,
+          initialValue: 100,
+        )
+        .toInt(),
     ingredient: ingredient,
   );
 }
@@ -52,7 +59,7 @@ IngredientAmount getTestIngredientAmountAlternative() {
 }
 
 Recipe getTestRecipe(BuildContext context) {
-  final ingredientAmount = getTestIngredientAmount();
+  final ingredientAmount = getTestIngredientAmount(context);
   return Recipe(
     identifier: '1',
     title: context.knobs.text(
