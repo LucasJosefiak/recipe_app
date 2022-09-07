@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceries_app/cubit/shopping_list_cubit.dart';
 import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/test_models.dart';
 import 'package:groceries_app/screens/recipe_details_screen.dart';
 import 'package:groceries_app/widgets/common/padded_card.dart';
 import 'package:groceries_app/widgets/tile_title.dart';
@@ -12,11 +13,7 @@ Widget defaultStory(BuildContext context) {
   return Column(
     children: [
       RecipeInfo(
-        recipe: Recipe(
-          identifier: '1',
-          title: 'Tomato Lasagna',
-          createdAt: DateTime.now(),
-        ),
+        recipe: buildRecipeKnobs(context),
       ),
     ],
   );

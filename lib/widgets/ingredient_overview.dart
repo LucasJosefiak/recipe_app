@@ -9,7 +9,7 @@ Widget ingredientOverviewStory(BuildContext context) {
   return Column(
     children: [
       IngredientOverview(
-        ingredient: getTestIngredient(),
+        ingredient: buildIngredientKnobs(context),
       ),
     ],
   );

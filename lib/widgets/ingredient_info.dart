@@ -11,7 +11,7 @@ Widget ingredientInfoStory(BuildContext buildContext) {
   return Column(
     children: [
       IngredientInfo(
-        ingredient: getTestIngredient(),
+        ingredient: buildIngredientKnobs(buildContext),
       ),
     ],
   );

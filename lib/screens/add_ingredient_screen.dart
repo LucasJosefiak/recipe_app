@@ -16,22 +16,23 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 @WidgetbookUseCase(name: 'Default', type: AddIngredientScreen)
 Widget addIngredientScreenStory(BuildContext context) {
   return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => UnitCubit(),
-        ),
-        BlocProvider(
-          create: (context) => IngredientsCubit(
-            ingredientRepository: MemoryRepository<Ingredient>(),
-          )..addIngredient(
-              name: 'Tomato Sauce',
-              unit: getTestUnit(),
-            ),
-        )
-      ],
-      child: AddIngredientScreen(
-        recipe: getTestRecipe(context),
-      ));
+    providers: [
+      BlocProvider(
+        create: (context) => UnitCubit(),
+      ),
+      BlocProvider(
+        create: (context) => IngredientsCubit(
+          ingredientRepository: MemoryRepository<Ingredient>(),
+        )..addIngredient(
+            name: 'Tomato Sauce',
+            unit: getTestUnit(),
+          ),
+      )
+    ],
+    child: AddIngredientScreen(
+      recipe: getTestRecipeModel(),
+    ),
+  );
 }
 
 class AddIngredientScreen extends StatelessWidget {

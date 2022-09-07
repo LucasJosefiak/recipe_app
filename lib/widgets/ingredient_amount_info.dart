@@ -15,7 +15,7 @@ Widget ingredientAmountInfoStory(BuildContext context) {
   return Column(
     children: [
       IngredientAmountInfo(
-        recipe: getTestRecipe(context),
+        recipe: getTestRecipeModel(),
         ingredientAmount: getTestIngredientAmount(),
       ),
     ],
@@ -24,11 +24,16 @@ Widget ingredientAmountInfoStory(BuildContext context) {
 
 @WidgetbookUseCase(name: 'Long title', type: IngredientAmountInfo)
 Widget ingredientAmountInfoAlternativeStory(BuildContext context) {
+  final ingredient = getTestIngredient().copyWith(
+    name: 'Tomato Sauce with Basil and Garlic',
+  );
   return Column(
     children: [
       IngredientAmountInfo(
-        recipe: getTestRecipe(context),
-        ingredientAmount: getTestIngredientAmountAlternative(),
+        recipe: getTestRecipeModel(),
+        ingredientAmount: getTestIngredientAmount(
+          defaultIngredient: ingredient,
+        ),
       ),
     ],
   );

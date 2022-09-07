@@ -4,79 +4,80 @@
 // WidgetbookGenerator
 // **************************************************************************
 
-import 'package:groceries_app/themes/light_theme.dart';
 import 'dart:core';
-import 'package:groceries_app/constants/radii.dart';
-import 'package:flutter/material.dart';
-import 'package:groceries_app/constants/borders.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:groceries_app/constants/colors.dart';
-import 'package:groceries_app/themes/dark_theme.dart';
-import 'package:groceries_app/screens/add_ingredient_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:groceries_app/repositories/ingredient_repository.dart';
-import 'package:groceries_app/models/ingredient.dart';
-import 'package:groceries_app/cubit/ingredients_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groceries_app/models/recipe.dart';
-import 'package:groceries_app/widgets/add_ingredient.dart';
-import 'package:groceries_app/repositories/memory_repository.dart';
-import 'package:groceries_app/widgets/common/padded_scaffold.dart';
-import 'package:groceries_app/models/test_models.dart';
-import 'package:groceries_app/cubit/unit_cubit.dart';
-import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
-import 'package:groceries_app/screens/recipes_screen.dart';
-import 'package:groceries_app/screens/add_recipe_screen.dart';
-import 'package:groceries_app/cubit/recipes_cubit.dart';
-import 'package:groceries_app/widgets/recipes_list.dart';
-import 'package:groceries_app/widgets/add_recipe.dart';
-import 'package:groceries_app/screens/edit_ingredient_screen.dart';
-import 'package:groceries_app/widgets/edit_ingredient.dart';
-import 'package:groceries_app/models/ingredient_amount.dart';
-import 'package:groceries_app/cubit/recipe_cubit.dart';
-import 'package:groceries_app/screens/shopping_list_screen.dart';
-import 'package:groceries_app/cubit/shopping_list_cubit.dart';
-import 'package:groceries_app/repositories/shopping_list_repository.dart';
-import 'package:groceries_app/widgets/shopping_list.dart';
-import 'package:groceries_app/screens/recipe_details_screen.dart';
-import 'package:groceries_app/widgets/recipe_detail.dart';
-import 'package:groceries_app/repositories/recipe_repository.dart';
-import 'package:groceries_app/widgets/recipe_overview.dart';
-import 'package:groceries_app/widgets/ingredient_amount_info.dart';
-import 'package:groceries_app/widgets/common/separated_list_view.dart';
-import 'package:groceries_app/widgets/ingredient_overview.dart';
-import 'package:groceries_app/widgets/common/padded_card.dart';
-import 'package:groceries_app/widgets/ingredient_info.dart';
-import 'package:groceries_app/widgets/tile_title.dart';
-import 'package:groceries_app/widgets/tile_icon.dart';
-import 'package:groceries_app/widgets/tile_unit.dart';
-import 'package:groceries_app/widgets/tile.dart';
-import 'package:groceries_app/widgets/ingredient_prediction.dart';
-import 'package:groceries_app/widgets/recipe_info.dart';
-import 'package:groceries_app/components.dart';
-import 'package:flutter/src/material/theme.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/material/floating_action_button_theme.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/src/material/theme_data.dart';
-import 'package:flutter/src/material/tooltip.dart';
 import 'dart:math';
-import 'package:flutter/src/material/button.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/src/material/scaffold.dart';
 import 'dart:ui';
-import 'package:flutter/src/material/color_scheme.dart';
-import 'package:flutter/src/material/material_state.dart';
-import 'package:flutter/src/material/ink_well.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/src/material/button.dart';
 import 'package:flutter/src/material/button_style.dart';
 import 'package:flutter/src/material/button_style_button.dart';
-import 'package:flutter/src/material/ink_ripple.dart';
+import 'package:flutter/src/material/color_scheme.dart';
+import 'package:flutter/src/material/colors.dart';
 import 'package:flutter/src/material/constants.dart';
 import 'package:flutter/src/material/elevated_button_theme.dart';
+import 'package:flutter/src/material/floating_action_button_theme.dart';
+import 'package:flutter/src/material/ink_ripple.dart';
+import 'package:flutter/src/material/ink_well.dart';
+import 'package:flutter/src/material/material_state.dart';
 import 'package:flutter/src/material/outlined_button_theme.dart';
-import 'package:flutter/src/material/colors.dart';
+import 'package:flutter/src/material/scaffold.dart';
 import 'package:flutter/src/material/text_button_theme.dart';
+import 'package:flutter/src/material/text_theme.dart';
+import 'package:flutter/src/material/theme.dart';
+import 'package:flutter/src/material/theme_data.dart';
+import 'package:flutter/src/material/tooltip.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:groceries_app/app.dart';
+import 'package:groceries_app/components.dart';
+import 'package:groceries_app/constants/borders.dart';
+import 'package:groceries_app/constants/colors.dart';
+import 'package:groceries_app/constants/radii.dart';
+import 'package:groceries_app/cubit/add_ingredient_cubit.dart';
+import 'package:groceries_app/cubit/ingredients_cubit.dart';
+import 'package:groceries_app/cubit/recipe_cubit.dart';
+import 'package:groceries_app/cubit/recipes_cubit.dart';
+import 'package:groceries_app/cubit/shopping_list_cubit.dart';
+import 'package:groceries_app/cubit/unit_cubit.dart';
+import 'package:groceries_app/models/ingredient.dart';
+import 'package:groceries_app/models/ingredient_amount.dart';
+import 'package:groceries_app/models/recipe.dart';
+import 'package:groceries_app/models/test_models.dart';
+import 'package:groceries_app/repositories/ingredient_repository.dart';
+import 'package:groceries_app/repositories/memory_repository.dart';
+import 'package:groceries_app/repositories/recipe_repository.dart';
+import 'package:groceries_app/repositories/shopping_list_repository.dart';
+import 'package:groceries_app/screens/add_ingredient_screen.dart';
+import 'package:groceries_app/screens/add_recipe_screen.dart';
+import 'package:groceries_app/screens/edit_ingredient_screen.dart';
+import 'package:groceries_app/screens/recipe_details_screen.dart';
+import 'package:groceries_app/screens/recipes_screen.dart';
+import 'package:groceries_app/screens/shopping_list_screen.dart';
+import 'package:groceries_app/themes/dark_theme.dart';
+import 'package:groceries_app/themes/light_theme.dart';
+import 'package:groceries_app/widgets/add_ingredient.dart';
+import 'package:groceries_app/widgets/add_recipe.dart';
+import 'package:groceries_app/widgets/common/padded_card.dart';
+import 'package:groceries_app/widgets/common/padded_scaffold.dart';
+import 'package:groceries_app/widgets/common/separated_list_view.dart';
+import 'package:groceries_app/widgets/edit_ingredient.dart';
+import 'package:groceries_app/widgets/ingredient_amount_info.dart';
+import 'package:groceries_app/widgets/ingredient_info.dart';
+import 'package:groceries_app/widgets/ingredient_overview.dart';
+import 'package:groceries_app/widgets/ingredient_prediction.dart';
+import 'package:groceries_app/widgets/recipe_detail.dart';
+import 'package:groceries_app/widgets/recipe_info.dart';
+import 'package:groceries_app/widgets/recipe_overview.dart';
+import 'package:groceries_app/widgets/recipes_list.dart';
+import 'package:groceries_app/widgets/shopping_list.dart';
+import 'package:groceries_app/widgets/tile.dart';
+import 'package:groceries_app/widgets/tile_icon.dart';
+import 'package:groceries_app/widgets/tile_title.dart';
+import 'package:groceries_app/widgets/tile_unit.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void main() {
@@ -94,6 +95,10 @@ class HotReload extends StatelessWidget {
       ),
       supportedLocales: supportedLocales,
       localizationsDelegates: localizationsDelegates,
+      frames: [
+        WidgetbookFrame.defaultFrame(),
+        WidgetbookFrame.noFrame(),
+      ],
       themes: [
         WidgetbookTheme(
           name: 'Light',
@@ -105,28 +110,8 @@ class HotReload extends StatelessWidget {
         ),
       ],
       devices: [
-        Device(
-          name: 'iPhone 12',
-          resolution: Resolution(
-            nativeSize: DeviceSize(
-              height: 2532.0,
-              width: 1170.0,
-            ),
-            scaleFactor: 3.0,
-          ),
-          type: DeviceType.mobile,
-        ),
-        Device(
-          name: 'S21 Ultra',
-          resolution: Resolution(
-            nativeSize: DeviceSize(
-              height: 3200.0,
-              width: 1440.0,
-            ),
-            scaleFactor: 3.75,
-          ),
-          type: DeviceType.mobile,
-        ),
+        Apple.iPhone13,
+        Apple.iPhone13Mini,
       ],
       textScaleFactors: [
         1.0,

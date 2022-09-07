@@ -12,8 +12,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 @WidgetbookUseCase(name: 'Default', type: EditIngredientScreen)
 Widget editIngredientScreenStory(BuildContext context) {
   return EditIngredientScreen(
-    recipe: getTestRecipe(context),
-    ingredientAmount: getTestIngredientAmount(),
+    recipe: getTestRecipeModel(),
+    ingredientAmount: buildIngredientAmountKnobs(context),
   );
 }
 
