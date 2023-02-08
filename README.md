@@ -1,7 +1,16 @@
-# Recipe App
+# recipe_app
 
-This app simplifies grocery shopping. You can add your favorite recipes, consisting of ingredients. When added to the shopping list, the built in calculator automatically adds the same ingredients of different selected recipes together and thus creates the perfect shopping list. 
+A new Flutter project.
 
-## Learning Flutter
+## Getting Started
 
-This app also helps me to improve my Flutter skills
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
